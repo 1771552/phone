@@ -417,6 +417,278 @@ body.fullphone.viewer{background:#000}
 .cpage img{width:100%;border-radius:14px;margin-bottom:14px;display:block}
 .cpage p{white-space:pre-wrap;font-size:17px;line-height:1.5;margin:0}
 
+/* iOS polish */
+.view.anim-push{animation:vpush .34s cubic-bezier(.2,.8,.2,1)}
+.view.anim-pop{animation:vpop .3s cubic-bezier(.2,.8,.2,1)}
+.view.anim-open{animation:vopen .36s cubic-bezier(.2,.85,.25,1)}
+.view.anim-close{animation:vclose .32s cubic-bezier(.2,.85,.25,1)}
+.view.anim-unlock{animation:vunlock .38s cubic-bezier(.2,.85,.25,1)}
+@keyframes vpush{from{transform:translateX(38%);opacity:.5}to{transform:none;opacity:1}}
+@keyframes vpop{from{transform:translateX(-26%);opacity:.6}to{transform:none;opacity:1}}
+@keyframes vopen{from{transform:scale(.18);opacity:0;border-radius:60px}to{transform:none;opacity:1}}
+@keyframes vclose{from{transform:scale(1.12);opacity:.3}to{transform:none;opacity:1}}
+@keyframes vunlock{from{transform:scale(1.14);opacity:0}to{transform:none;opacity:1}}
+.view{overflow:hidden}
+.lock-ic{display:flex;justify-content:center;margin-bottom:6px;opacity:.95}
+.hsearch{align-self:center;display:flex;align-items:center;gap:5px;padding:6px 13px;border-radius:16px;background:rgba(255,255,255,.26);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);color:#fff;font-size:13px;font-weight:600;margin:0 0 12px}
+.home.ink .hsearch{color:#111;background:rgba(255,255,255,.55)}
+.hsearch svg{width:13px;height:13px}
+.app .nav{position:relative;z-index:3;transition:background .2s,box-shadow .2s}
+.app.has-lt .nav .nt{opacity:0;transition:opacity .18s}
+.app.has-lt.scrolled .nav .nt{opacity:1}
+.app.scrolled .nav{background:rgba(249,249,249,.88);backdrop-filter:blur(20px) saturate(1.6);-webkit-backdrop-filter:blur(20px) saturate(1.6);box-shadow:0 .5px 0 rgba(0,0,0,.18)}
+.app.grp.scrolled .nav,.notesapp.scrolled .nav{background:rgba(242,242,247,.88)}
+.app.scrolled{padding-top:0}
+.app.scrolled .nav{padding-top:54px;height:98px}
+.app{transition:none}
+.bub.tail::before,.bub.tail::after{content:"";position:absolute;bottom:0;height:20px;pointer-events:none}
+.me .bub.tail::before{right:-7px;width:20px;background:var(--ios-blue);border-bottom-left-radius:16px 14px}
+.me .bub.tail::after{right:-26px;width:26px;background:#fff;border-bottom-left-radius:10px}
+.them .bub.tail::before{left:-7px;width:20px;background:var(--ios-bub);border-bottom-right-radius:16px 14px}
+.them .bub.tail::after{left:-26px;width:26px;background:#fff;border-bottom-right-radius:10px}
+.bub.tail.ed-on{outline:none}
+.btool{flex:none;display:grid;grid-template-columns:44px 1fr 44px;align-items:center;padding:8px 14px 34px;font-size:12px;color:#3c3c43;text-align:center;background:rgba(249,249,249,.94);border-top:.5px solid var(--ios-sep)}
+.grp .btool,.notesapp .btool{background:rgba(242,242,247,.94)}
+.btool>:last-child{justify-self:end;color:var(--ios-blue);display:grid;place-items:center}
+.notesapp .btool>:last-child{color:#d9a400}
+/* photos */
+.photosapp .nb.ed{background:rgba(0,122,255,.12)!important}
+.scroll.tabbed{padding-bottom:100px}
+.tabbar{position:absolute;left:0;right:0;bottom:0;z-index:4;display:flex;justify-content:space-around;padding:7px 30px 30px;background:rgba(249,249,249,.92);backdrop-filter:blur(20px) saturate(1.6);-webkit-backdrop-filter:blur(20px) saturate(1.6);border-top:.5px solid rgba(0,0,0,.18)}
+.tabbar button{display:flex!important;flex-direction:column;align-items:center;gap:2px;font-size:10px;font-weight:500;color:#999;min-width:70px}
+.tabbar button.on{color:var(--ios-blue)}
+.pgrid{gap:1.5px}
+.pt-ph{position:absolute;inset:0;opacity:.75}
+.albums{display:grid;grid-template-columns:1fr 1fr;gap:18px 14px;padding:0 16px 20px}
+.alb{display:flex!important;flex-direction:column;align-items:flex-start;gap:3px;text-align:left!important;min-width:0}
+.alb-c{width:100%;aspect-ratio:1;border-radius:9px;overflow:hidden;background:#e4e4e8;display:block;margin-bottom:5px}
+.alb-c img{width:100%;height:100%;object-fit:cover;display:block}
+.alb b{font-size:15px;font-weight:400;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.alb span{font-size:15px;color:var(--ios-sec)}
+.alb-h{font-size:22px;font-weight:700;padding:4px 16px 12px}
+.pviewer{background:#fff;padding-top:54px;transition:background .25s}
+.pviewer.dark{background:#000}
+.pviewer .nav{background:rgba(249,249,249,.94);border-bottom:.5px solid var(--ios-sep);transition:opacity .2s}
+.pviewer.dark .nav,.pviewer.dark .pv-tools,.pviewer.dark .pv-strip,.pviewer.dark .pv-info{opacity:0;pointer-events:none}
+.pv-t{display:flex;flex-direction:column;align-items:center;line-height:1.2;max-width:220px;text-align:center}
+.pv-t b{font-size:15px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.pv-t small{font-size:12px;color:var(--ios-sec);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.pv{flex:1;display:grid;place-items:center;min-height:0;overflow:hidden;touch-action:pan-y;user-select:none}
+.pv{position:relative}
+.pv-in{position:absolute;inset:0;overflow:hidden;display:grid;place-items:center}
+.pv-in img{width:100%;height:100%;display:block;-webkit-user-drag:none}
+.pv-ph{width:100%;aspect-ratio:4/3}
+.pv.slide-next .pv-in{animation:pnext .25s ease-out}
+.pv.slide-prev .pv-in{animation:pprev .25s ease-out}
+@keyframes pnext{from{transform:translateX(40%);opacity:.3}to{transform:none;opacity:1}}
+@keyframes pprev{from{transform:translateX(-40%);opacity:.3}to{transform:none;opacity:1}}
+.pv-strip{flex:none;display:flex;gap:2px;justify-content:center;padding:8px 10px 2px;overflow-x:auto;background:#fff;scrollbar-width:none}
+.pv-strip button{width:28px;height:40px;flex:none;overflow:hidden;opacity:.7;display:block!important}
+.pv-strip button.on{width:40px;opacity:1;margin:0 4px}
+.pv-strip img,.pv-strip span{width:100%;height:100%;object-fit:cover;display:block}
+.pv-tools{flex:none;display:flex;justify-content:space-between;align-items:center;padding:10px 26px 38px;color:var(--ios-blue);background:#fff}
+.pv-tools button{color:var(--ios-blue)}
+.pv-tools button.on{opacity:.6}
+.pv-tools span{opacity:.9}
+.pv-info{position:absolute;left:12px;right:12px;bottom:150px;z-index:5;background:rgba(255,255,255,.96);border-radius:14px;padding:12px 14px;box-shadow:0 8px 30px rgba(0,0,0,.18);display:flex;flex-direction:column;gap:2px;font-size:14px}
+.pv-info b{font-size:16px}
+.pv-info span{color:var(--ios-sec)}
+
+/* banner, badges */
+.bnr-layer{position:absolute;top:12px;left:12px;width:390px;height:844px;border-radius:54px;overflow:hidden;pointer-events:none;z-index:60;font-family:var(--f-phone)}
+body.fullphone .bnr-layer{top:0;left:0;border-radius:0}
+.bnr{position:absolute;left:9px;right:9px;top:50px;display:flex;gap:11px;align-items:center;padding:12px 14px;border:0;border-radius:24px;background:rgba(244,244,248,.86);backdrop-filter:blur(24px) saturate(1.8);-webkit-backdrop-filter:blur(24px) saturate(1.8);box-shadow:0 10px 30px rgba(0,0,0,.2);color:#000;text-align:left;pointer-events:auto;font-family:var(--f-phone);animation:bnrIn .5s cubic-bezier(.2,.9,.25,1.12)}
+.bnr.out{animation:bnrOut .3s ease-in forwards}
+@keyframes bnrIn{from{transform:translateY(-140%)}to{transform:none}}
+@keyframes bnrOut{to{transform:translateY(-140%)}}
+.mini-ic{display:inline-grid;place-items:center;overflow:hidden;flex:none;vertical-align:middle}
+.mini-ic svg,.mini-ic img{width:100%;height:100%;object-fit:cover;display:block}
+.bnr-m{flex:1;min-width:0}
+.bnr-top{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.bnr-top b{font-size:15px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bnr-top span{font-size:13px;color:#6c6c70;white-space:nowrap}
+.bnr-b{font-size:15px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;white-space:pre-wrap}
+.appi{position:relative}
+.badge{position:absolute;top:-7px;right:1px;min-width:22px;height:22px;padding:0 6px;border-radius:11px;background:#ff3b30;color:#fff;font:600 13px/22px var(--f-phone);font-style:normal;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.pin-dot.gray{background:#c7c7cc}
+.k-r{display:flex;flex-direction:column;align-items:flex-end;gap:5px;align-self:flex-start;margin-top:4px}
+.k-r em{margin-top:0!important}
+.k-badge{background:#ff4b3a;color:#fff;font-size:11px;font-weight:700;min-width:19px;height:19px;border-radius:10px;padding:0 5px;display:grid;place-items:center}
+.nt-h .mini-ic{margin-right:1px}
+/* camera */
+.cam{position:absolute;inset:0;background:#000;color:#fff;display:flex;flex-direction:column}
+.cam-top{height:50px;margin-top:54px;display:flex;justify-content:space-between;align-items:center;padding:0 22px;flex:none}
+.cam-top>span{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.12);display:grid;place-items:center;color:#fff}
+.cam-top .cam-chev{background:none}
+.cam-vf{position:relative;width:100%;aspect-ratio:3/4;overflow:hidden;background:#111;flex:none}
+.cam-vf>img{position:absolute;inset:0;width:100%;height:100%;display:block}
+.cam-vf.flip{animation:camflip .5s ease}
+@keyframes camflip{0%{transform:none;filter:none}45%,55%{transform:rotateY(90deg);filter:blur(6px)}100%{transform:none;filter:none}}
+.cam-empty{position:absolute;inset:0;display:grid;place-items:center;padding:40px;text-align:center;font-size:14px;color:#9a9aa0;background:linear-gradient(160deg,#1b1b1f,#2c2c33)}
+.cam-zoom{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);display:flex;gap:6px;background:rgba(0,0,0,.25);padding:4px;border-radius:22px}
+.cam-zoom button{width:34px;height:34px;border-radius:50%;background:rgba(25,25,25,.7)!important;color:#fff;font-size:12px;font-weight:600;display:grid!important;place-items:center;text-align:center!important}
+.cam-zoom button.on{color:#ffd60a;font-size:13px}
+.cam-flash{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none}
+.cam-flash.go{animation:camfl .3s ease-out}
+@keyframes camfl{0%{opacity:0}20%{opacity:1}100%{opacity:0}}
+.cam-modes{display:flex;justify-content:center;gap:18px;padding:16px 0 6px;font-size:13px;font-weight:600;letter-spacing:.04em;flex:none;overflow:hidden}
+.cam-modes button{color:#fff;white-space:nowrap}
+.cam-modes button.on{color:#ffd60a}
+.cam-bot{flex:1;display:flex;align-items:center;justify-content:space-between;padding:0 32px 34px}
+.cam-thumb{width:50px;height:50px;border-radius:8px;overflow:hidden;background:#222!important;display:block!important;border:1.5px solid rgba(255,255,255,.25)!important;padding:0!important}
+.cam-thumb img{width:100%;height:100%;display:block}
+.cam-thumb.pop{animation:thpop .35s ease}
+@keyframes thpop{0%{transform:scale(.5)}70%{transform:scale(1.08)}100%{transform:none}}
+.cam-shut{width:76px;height:76px;border-radius:50%;border:4px solid #fff!important;display:grid!important;place-items:center;padding:0!important}
+.cam-shut i{width:62px;height:62px;border-radius:50%;background:#fff;transition:transform .1s}
+.cam-shut:active i{transform:scale(.88)}
+.cam-shut.video i{background:#ff3b30}
+.cam-flip{width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.14)!important;display:grid!important;place-items:center}
+.edfab.cam-ed{top:330px}
+/* photo adjust preview */
+.adjprev{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap}
+.ap{margin:0;display:flex;flex-direction:column;gap:4px;align-items:center}
+.ap>div{overflow:hidden;border-radius:8px;background:var(--sunk);border:1px solid var(--line);position:relative}
+.ap img{position:absolute;inset:0;width:100%;height:100%;display:block}
+.ap-thumb>div{width:90px;height:90px}
+.ap-view>div{width:90px;height:150px;background:#000}
+.ap-cam>div{width:120px;height:160px;background:#111}
+.ap figcaption{font-size:11px;color:var(--mute)}
+.fld output{font-weight:400;color:var(--ink);margin-left:4px;font-variant-numeric:tabular-nums}
+.fld input[type=range]{width:100%;accent-color:var(--accent)}
+
+/* phone app */
+.phoneapp .nb.ed{background:rgba(0,122,255,.12)!important}
+.rc{display:flex!important;align-items:center;gap:12px;width:100%;padding:6px 16px!important;text-align:left!important}
+.rc-m{flex:1;min-width:0;border-bottom:.5px solid var(--ios-sep);padding:6px 0 10px}
+.rc-m b{display:block;font-size:17px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rc-m span{font-size:14px;color:var(--ios-sec);display:flex;align-items:center;gap:3px}
+.rc.miss .rc-m b{color:var(--ios-red)}
+.rc em{font-style:normal;font-size:15px;color:var(--ios-sec);white-space:nowrap}
+.ct-me{display:flex!important;align-items:center;gap:12px;width:100%;padding:8px 16px 14px!important;text-align:left!important;border-bottom:.5px solid var(--ios-sep);margin-bottom:6px}
+.ct-me b{display:block;font-size:20px;font-weight:600}
+.ct-me span{font-size:13px;color:var(--ios-sec)}
+.ct{display:block!important;width:100%;text-align:left!important;padding:11px 16px!important;font-size:17px;position:relative}
+.ct+.ct::before{content:"";position:absolute;top:0;left:16px;right:0;border-top:.5px solid var(--ios-sep)}
+.ct-hero{display:flex;flex-direction:column;align-items:center;gap:10px;padding:8px 0 16px}
+.ct-hero b{font-size:28px;font-weight:600}
+.ct-acts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0 16px 20px}
+.ct-acts>*{display:flex!important;flex-direction:column;align-items:center;gap:4px;background:#fff!important;border-radius:12px;padding:10px 0!important;font-size:12px;color:var(--ios-blue)}
+.ct-acts span{opacity:.45}
+.ct-acts i{height:24px;display:grid;place-items:center}
+.ct-acts i svg{width:22px;height:22px}
+.ct-num{flex-direction:column;align-items:flex-start!important;gap:0!important;color:var(--ios-blue)}
+.ct-num small{font-size:13px;color:#000}
+.edhint{white-space:pre-wrap}
+.kp{flex:1;display:flex;flex-direction:column;align-items:center;padding:30px 0 100px}
+.kp-num{font-size:36px;min-height:48px;letter-spacing:.02em;font-variant-numeric:tabular-nums;max-width:330px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kp-name{font-size:15px;color:var(--ios-blue);min-height:22px;margin-bottom:18px}
+.kp-keys .key{background:#e5e5ea!important;color:#000}
+.kp-keys .key:active{background:#c7c7cc!important}
+.kp-bot{display:grid;grid-template-columns:78px 78px 78px;gap:26px;margin-top:16px;align-items:center;justify-items:center}
+.kp-del{font-size:24px;color:#555}
+
+/* kakaotalk-style */
+.talkapp{background:#fff}
+.talkapp .nb.ed{background:rgba(0,0,0,.07)!important;color:#111}
+.k-head{display:flex;justify-content:space-between;align-items:center;padding:6px 18px 10px;flex:none}
+.k-head b{font-size:22px;font-weight:700}
+.k-scroll{padding-bottom:100px}
+.kav{border-radius:38%;flex:none;display:grid;place-items:center;color:#fff;font-weight:600;overflow:hidden}
+.kav img{width:100%;height:100%;object-fit:cover}
+.k-me,.k-fr,.k-row{display:flex!important;align-items:center;gap:12px;width:100%;padding:8px 18px!important;text-align:left!important}
+.k-me div,.k-fr div{min-width:0}
+.k-me b{display:block;font-size:17px;font-weight:600}
+.k-fr b{display:block;font-size:15px;font-weight:500}
+.k-me span,.k-fr span{display:block;font-size:13px;color:#888;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.k-sec{font-size:12px;color:#888;padding:14px 18px 4px;border-top:.5px solid #ececec;margin-top:6px}
+.k-mid{flex:1;min-width:0}
+.k-mid b{display:block;font-size:15px;font-weight:600}
+.k-mid span{font-size:13.5px;color:#888;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.35}
+.k-row em{font-style:normal;font-size:11.5px;color:#aaa;align-self:flex-start;margin-top:4px;white-space:nowrap}
+.k-tabs button{color:#b5b5b5}
+.k-tabs button.on{color:#111}
+.kchat{background:#b2c7d9}
+.k-chead{flex:none;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 8px 8px}
+.k-chead .nb{color:#111}
+.k-chead b{font-size:16px;font-weight:600;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.k-chead .nb.ed{background:rgba(0,0,0,.08)!important;color:#111}
+.k-ic{color:#111;padding:6px}
+.kchatlog{padding:6px 10px 16px;gap:4px}
+.kdate{align-self:center;background:rgba(0,0,0,.16)!important;color:#fff;font-size:11.5px;border-radius:12px;padding:3px 12px!important;margin:12px 0 8px}
+.krow{display:flex;align-items:flex-end;gap:5px}
+.krow.me{justify-content:flex-end}
+.krow.them{align-items:flex-start}
+.krow.them.first{margin-top:8px}
+.kav-sp{width:38px;flex:none}
+.kcol{display:flex;flex-direction:column;gap:4px;min-width:0;max-width:78%}
+.kname{font-size:12.5px;color:#4a5560}
+.kline{display:flex;align-items:flex-end;gap:5px}
+.kb{max-width:236px;padding:7px 10px!important;border-radius:14px;font-size:15px;line-height:1.4;white-space:pre-wrap;overflow-wrap:anywhere;text-align:left!important;background:#fff!important;color:#111}
+.krow.me .kb{background:#fee500!important}
+.krow.them .kb.first{border-top-left-radius:4px}
+.krow.me .kb.first{border-top-right-radius:4px}
+.kb.pic{padding:0!important;background:none!important;overflow:hidden}
+.kb img{display:block;max-width:200px;max-height:260px;border-radius:12px;object-fit:cover}
+.kb img+span{display:block;margin-top:6px}
+.kb.ed-on{outline:1.5px dashed rgba(0,0,0,.35);outline-offset:2px}
+.kmeta{display:flex;flex-direction:column;align-items:flex-end;flex:none;line-height:1.2}
+.krow.them .kmeta{align-items:flex-start}
+.kmeta i{font-style:normal;color:#e0b000;font-weight:700;font-size:11px}
+.kmeta small{font-size:10px;color:#55606b}
+.kchat .typing{background:#fff}
+.kchat .tempnote{color:#55606b}
+.kcomposer{background:#fff;border-top:none}
+.kcomposer input{border:none;background:#f3f3f3}
+.kplus{width:30px;height:30px;display:grid;place-items:center;color:#999;font-size:26px;flex:none}
+.ksend{width:34px;height:34px;border-radius:50%;background:#fee500!important;color:#3c1e1e;display:grid!important;place-items:center;flex:none}
+.kprof{position:absolute;inset:0;color:#fff}
+.kprof-dim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.5))}
+.kprof-in{position:relative;height:100%;display:flex;flex-direction:column;padding:60px 18px 56px}
+.kprof-top{display:flex;justify-content:space-between;align-items:center}
+.kprof-top .nb{color:#fff;font-size:22px}
+.kprof-top .nb.ed{font-size:14px;background:rgba(255,255,255,.22)!important}
+.kprof-mid{margin-top:auto;display:flex;flex-direction:column;align-items:center;gap:8px;padding-bottom:24px;border-bottom:.5px solid rgba(255,255,255,.35);text-align:center}
+.kprof-mid b{font-size:20px;font-weight:600}
+.kprof-mid span{font-size:14px;opacity:.88}
+.kprof-acts{display:flex;justify-content:center;gap:48px;padding-top:20px}
+.kprof-acts>*{display:flex!important;flex-direction:column;align-items:center;gap:6px;color:#fff;font-size:12px}
+.kprof-acts i{display:grid;place-items:center;height:28px}
+
+/* calendar */
+.calapp .nb{color:#ff3b30}
+.calapp .nb.ed{background:rgba(255,59,48,.1)!important}
+.cal-y{color:#ff3b30;font-size:17px;padding-left:8px}
+.cal-top{display:flex;align-items:flex-end;justify-content:space-between;padding:0 16px 6px}
+.cal-m{font-size:34px;font-weight:700;margin:0;letter-spacing:-.02em}
+.cal-arrows{display:flex;gap:18px;color:#ff3b30;padding-bottom:8px}
+.cal-arrows button{color:#ff3b30;padding:4px!important}
+.cal-dow{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;font-size:11px;color:#3c3c43;padding:4px 8px;border-bottom:.5px solid var(--ios-sep)}
+.cal-dow .we,.cd.we span{color:#8a8a8e}
+.cal-grid{flex:none;display:grid;grid-template-columns:repeat(7,1fr);row-gap:2px;padding:6px 8px 8px;border-bottom:.5px solid var(--ios-sep)}
+.cd{height:46px;display:flex!important;flex-direction:column;align-items:center;justify-content:flex-start;gap:3px;padding-top:4px!important;text-align:center!important}
+.cd span{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:19px;font-variant-numeric:tabular-nums;color:#000}
+.cd.today span{color:#ff3b30;font-weight:600}
+.cd.sel span{background:#000;color:#fff;font-weight:600}
+.cd.today.sel span{background:#ff3b30;color:#fff}
+.cd i{width:5px;height:5px;border-radius:50%;background:#b0b0b5;margin-top:-1px}
+.cal-list{padding:10px 0 20px}
+.cal-day{font-size:13px;color:var(--ios-sec);padding:4px 16px 8px;font-weight:500}
+.ev{display:flex!important;align-items:center;gap:10px;width:100%;padding:9px 16px!important;text-align:left!important}
+.ev i{width:4px;align-self:stretch;border-radius:2px;flex:none}
+.ev div{flex:1;min-width:0}
+.ev b{display:block;font-size:16px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ev div span{font-size:14px;color:var(--ios-sec)}
+.ev em{font-style:normal;font-size:14px;color:var(--ios-sec);white-space:nowrap}
+.ev-none{color:var(--ios-sec);text-align:center;margin:26px 0;font-size:15px}
+.ev-doc{padding:6px 20px 22px}
+.ev-doc h2{font-size:26px;margin:0 0 4px;line-height:1.2}
+.ev-place{margin:0 0 10px;color:#3c3c43;font-size:16px}
+.ev-when{margin:0;color:var(--ios-sec);font-size:16px;line-height:1.45}
+.ev-dot{width:12px;height:12px;border-radius:50%;flex:none}
+.ev-note{flex-direction:column;align-items:flex-start!important;gap:2px!important;white-space:pre-wrap;font-size:16px}
+.ev-note small{font-size:13px;color:var(--ios-sec)}
+
 /* incoming call */
 .call{position:absolute;inset:0;color:#fff;z-index:2}
 .call-dim{position:absolute;inset:0;background:rgba(15,15,25,.42);backdrop-filter:blur(30px) saturate(1.3);-webkit-backdrop-filter:blur(30px) saturate(1.3)}
@@ -480,6 +752,10 @@ body.fullphone.viewer{background:#000}
 .sh-empty{color:var(--mute);text-align:center;margin:8px 0}
 .linkbox{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:9px 11px;font-size:14px}
 .menu{display:flex;flex-direction:column;gap:8px}
+.shortbox{border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:12px}
+.shortbox h3{margin:0;font-size:15px}
+.steps{margin:0;padding-left:20px;font-size:13px;color:var(--mute);display:flex;flex-direction:column;gap:4px}
+.steps b{color:var(--ink)}
 
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;font-size:14px;opacity:0;pointer-events:none;transition:.2s;z-index:200;max-width:calc(100% - 32px)}
 .toast.on{opacity:1;transform:translateX(-50%)}
@@ -531,6 +807,9 @@ const GLYPH={
  mail:`<svg viewBox="0 0 60 60"><rect x="12" y="18" width="36" height="25" rx="4" fill="${W}"/><path d="M13.5 20.5L30 33l16.5-12.5" fill="none" stroke="#3d5fe0" stroke-width="2.6" stroke-linejoin="round"/></svg>`,
  diary:`<svg viewBox="0 0 60 60"><path d="M18 13h22a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4H18z" fill="${W}"/><path d="M18 13v36" stroke="#9c7148" stroke-width="3"/><path d="M33 13v12l3.5-2.5L40 25V13" fill="#e2574c"/></svg>`,
  settings:`<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="14" fill="none" stroke="${W}" stroke-width="7" stroke-dasharray="4.4 3.2"/><circle cx="30" cy="30" r="9.5" fill="none" stroke="${W}" stroke-width="3.4"/><circle cx="30" cy="30" r="3.4" fill="${W}"/></svg>`,
+ camera:`<svg viewBox="0 0 60 60"><path d="M15 21.5h7.2l3-4.5h9.6l3 4.5H45a3.5 3.5 0 0 1 3.5 3.5v16.5a3.5 3.5 0 0 1-3.5 3.5H15a3.5 3.5 0 0 1-3.5-3.5V25a3.5 3.5 0 0 1 3.5-3.5z" fill="#2c2c2e"/><circle cx="30" cy="33" r="8.4" fill="#d1d1d6"/><circle cx="30" cy="33" r="6" fill="#1c1c1e"/><circle cx="27.8" cy="30.8" r="1.6" fill="#5a5a5f"/><circle cx="43" cy="26" r="1.5" fill="#f2c94c"/></svg>`,
+ phone:`<svg viewBox="0 0 60 60"><path d="M21.6 26.6a24 24 0 0 0 11.8 11.8l3.9-3.9a1.8 1.8 0 0 1 1.8-.45c2 .66 4.1 1 6.4 1a1.8 1.8 0 0 1 1.8 1.8v6.2a1.8 1.8 0 0 1-1.8 1.8A30.3 30.3 0 0 1 15.2 14.6a1.8 1.8 0 0 1 1.8-1.8h6.3a1.8 1.8 0 0 1 1.8 1.8c0 2.2.36 4.4 1 6.4a1.8 1.8 0 0 1-.45 1.8z" fill="#fff"/></svg>`,
+ talk:`<svg viewBox="0 0 60 60"><path d="M35 17c-8.3 0-15 5.3-15 11.8 0 3.8 2.3 7.2 5.8 9.3l-1.3 5.2 5.7-3.4c1.5.3 3.1.5 4.8.5 8.3 0 15-5.3 15-11.6S43.3 17 35 17z" fill="#2b2b38"/><path d="M24 14c-7.7 0-14 4.9-14 11 0 3.6 2.2 6.8 5.6 8.8l-1.4 5.4 5.9-3.6c1.2.2 2.5.3 3.9.3 7.7 0 14-4.9 14-10.9S31.7 14 24 14z" fill="#fff"/><circle cx="18.5" cy="25" r="1.9" fill="#2b2b38"/><circle cx="24" cy="25" r="1.9" fill="#2b2b38"/><circle cx="29.5" cy="25" r="1.9" fill="#2b2b38"/></svg>`,
  custom:`<svg viewBox="0 0 60 60"><path d="M30 14l4.9 10 11 1.6-8 7.8 1.9 11L30 39.2l-9.8 5.2 1.9-11-8-7.8 11-1.6z" fill="${W}"/></svg>`
 };
 const APPDEF={
@@ -539,14 +818,27 @@ const APPDEF={
  notes:{label:'메모',bg:'linear-gradient(180deg,#ffe066,#f7b801)'},
  web:{label:'인터넷',bg:'linear-gradient(180deg,#56c6f5,#1f7fe0)'},
  music:{label:'음악',bg:'linear-gradient(180deg,#d66bf0,#8e3bd6)'},
- sns:{label:'SNS',bg:'linear-gradient(160deg,#ffa36c,#ff5277)'},
+ sns:{label:'인스타그램',bg:'linear-gradient(160deg,#ffa36c,#ff5277)'},
  mail:{label:'메일',bg:'linear-gradient(180deg,#7a96ff,#3d5fe0)'},
  diary:{label:'일기',bg:'linear-gradient(180deg,#c8a27a,#9c7148)'},
  settings:{label:'설정',bg:'linear-gradient(180deg,#b9bec6,#868b94)'},
+ calendar:{label:'캘린더',bg:'#ffffff'},
+ camera:{label:'카메라',bg:'linear-gradient(180deg,#e4e4e8,#a9a9b0)'},
+ phone:{label:'전화',bg:'linear-gradient(180deg,#6df08a,#22c045)'},
+ talk:{label:'카카오톡',bg:'linear-gradient(180deg,#ffe24a,#ffc800)'},
  custom:{label:'새 앱',bg:'linear-gradient(180deg,#a99bff,#6a5cff)'}
 };
 const SV={
  chev:'<svg width="12" height="20" viewBox="0 0 12 20"><path d="M10 2L2 10l8 8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+ lock:'<svg width="16" height="20" viewBox="0 0 16 20"><rect x="1.5" y="8.5" width="13" height="10" rx="2.4" fill="currentColor"/><path d="M4.3 8.5V6a3.7 3.7 0 0 1 7.4 0v2.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
+ share:'<svg width="22" height="26" viewBox="0 0 22 26"><path d="M11 2v14M6 6.5L11 1.5l5 5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M7.5 10H4.5a1.5 1.5 0 0 0-1.5 1.5v11A1.5 1.5 0 0 0 4.5 24h13a1.5 1.5 0 0 0 1.5-1.5v-11A1.5 1.5 0 0 0 17.5 10h-3" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>',
+ info:'<svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M12 11v6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="7.4" r="1.4" fill="currentColor"/></svg>',
+ trash:'<svg width="22" height="24" viewBox="0 0 22 24"><path d="M2 5h18M8 5V3h6v2M4.5 5l1.2 16a1.6 1.6 0 0 0 1.6 1.5h7.4a1.6 1.6 0 0 0 1.6-1.5L17.5 5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+ compose:'<svg width="24" height="24" viewBox="0 0 24 24"><path d="M11 3.5H5.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2V13" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M18.4 2.6a1.9 1.9 0 0 1 2.7 2.7L12 14.4 8.6 15.4l1-3.4z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>',
+ tabLib:'<svg width="26" height="24" viewBox="0 0 26 24"><rect x="1.5" y="3" width="23" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="1.9"/><circle cx="17.5" cy="8.5" r="2" fill="currentColor"/><path d="M3 18l6-6.5 4.5 4.5 3-3L23 19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>',
+ tabAlb:'<svg width="26" height="24" viewBox="0 0 26 24"><rect x="5" y="1.5" width="19" height="16" rx="2.6" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M2 6.5v12.5a2.5 2.5 0 0 0 2.5 2.5H19" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>',
+ kFriends:'<svg width="26" height="24" viewBox="0 0 26 24"><circle cx="13" cy="8" r="4.6" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M4 21.5c.8-4.3 4.4-7 9-7s8.2 2.7 9 7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>',
+ kChats:'<svg width="26" height="24" viewBox="0 0 26 24"><path d="M13 3C7.5 3 3 6.6 3 11c0 2.7 1.7 5.1 4.3 6.5L6.4 21.5l4.2-2.6c.8.1 1.6.2 2.4.2 5.5 0 10-3.6 10-8.1S18.5 3 13 3z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></svg>',
  phone:'<svg width="34" height="34" viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z" fill="currentColor"/></svg>',
  chevR:'<svg class="chev" width="8" height="13" viewBox="0 0 8 13"><path d="M1.5 1.5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
  sig:'<svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>',
@@ -596,10 +888,10 @@ function template(){
  return {
   v:1,name:'새 휴대폰',owner:'캐릭터 이름',createdAt:t,updatedAt:t,
   status:{carrier:'OC',battery:76},
-  lock:{time:'09:41',date:'10월 18일 일요일',wall:'g:0',clock:'light',passcode:'',
+  lock:{time:'09:41',date:'10월 18일 일요일',year:2026,wall:'g:0',clock:'light',passcode:'',
    notifs:[{id:uid(),app:'메시지',title:'유하',body:'일어났어? 오늘 약속 잊지 마',time:'지금'}]},
   home:{wall:'g:9',ink:false,widget:{type:'clock',text:'오늘 할 일\n· 열한 시에 유하 만나기\n· 도서관 책 반납',img:''},
-   apps:[app('photos'),app('notes'),app('sns'),app('diary'),app('settings'),app('messages',1),app('web',1),app('music',1),app('mail',1)]},
+   apps:[app('talk'),app('calendar'),app('photos'),app('camera'),app('notes'),app('sns'),app('mail'),app('diary'),app('settings'),app('phone',1),app('web',1),app('messages',1),app('music',1)]},
   messages:{threads:[
    {id:uid(),name:'유하',avatar:'',pinned:true,fallback:'',
     msgs:[d('어제'),m(false,'내일 몇 시에 볼까?','오후 10:12'),m(true,'열한 시 어때','오후 10:13'),m(false,'좋아 늦지 마','오후 10:13'),d('오늘'),m(false,'일어났어? 오늘 약속 잊지 마','오전 9:38')],
@@ -625,6 +917,20 @@ function template(){
   mail:{name:'캐릭터 이름',address:'me@oc.mail',items:[
    {id:uid(),box:'inbox',from:'시립도서관',addr:'library@oc.mail',to:'나',subject:'대출 도서 반납 안내',body:'안녕하세요.\n대출하신 「밤의 정원」 반납일은 10월 20일입니다.\n기한 안에 반납해 주세요.',date:'오전 8:02',unread:true},
    {id:uid(),box:'sent',from:'나',addr:'me@oc.mail',to:'유하',subject:'내일 일정',body:'열한 시에 역 앞에서 보자.',date:'어제',unread:false}]},
+  camera:{img:'',front:'',zoom:100,px:50,py:50},
+  phone:{contacts:[
+   {id:uid(),name:'유하',number:'010-1234-5678',avatar:'',answer:true,lines:'여보세요?\n왜, 무슨 일 있어?\n…알았어. 이따 봐.'},
+   {id:uid(),name:'엄마',number:'010-9876-5432',avatar:'',answer:false,lines:''}],
+   recents:[{id:uid(),name:'엄마',kind:'missed',when:'어제',dur:''},{id:uid(),name:'유하',kind:'out',when:'어제',dur:'3:12'}]},
+  talk:{me:{name:'캐릭터 이름',status:'오늘도 무사히',avatar:'',bg:''},threads:[
+   {id:uid(),name:'유하',avatar:'',bg:'',status:'날씨 좋다',pinned:false,fallback:'',
+    msgs:[d('2026년 10월 18일 일요일'),m(false,'뭐 해?','오전 9:12'),m(true,'그냥 누워 있어','오전 9:13'),m(false,'이따 열한 시 맞지?','오전 9:13')],
+    rules:[{id:uid(),keys:'응, 맞아',exact:false,reply:'ㅇㅋ 늦으면 커피 사',delay:2}],
+    incoming:[{id:uid(),text:'일어났어?\n대답 좀 해',after:8}]}]},
+  calendar:{events:[
+   {id:uid(),date:'2026-10-18',time:'오전 11:00',title:'유하 만나기',place:'역 앞',note:'늦지 말 것',color:'#007aff'},
+   {id:uid(),date:'2026-10-20',time:'하루 종일',title:'도서관 책 반납',place:'시립도서관',note:'',color:'#34c759'},
+   {id:uid(),date:'2026-10-24',time:'오후 7:00',title:'생일 파티',place:'',note:'선물 미리 사 두기',color:'#ff9500'}]},
   diary:{lock:'',items:[
    {id:uid(),date:'2026년 10월 17일',weather:'흐림',mood:'조금 피곤',title:'아무 일도 없던 날',body:'하루 종일 비가 올 것 같더니 결국 오지 않았다.\n내일은 유하를 만난다. 무슨 말을 해야 할지 아직 모르겠다.'}]}
  };
@@ -636,6 +942,14 @@ function normalize(d){
   if(typeof t[k]==='object'&&!Array.isArray(t[k])) for(const k2 in t[k]) if(d[k][k2]==null) d[k][k2]=t[k][k2];
  }
  if(!d.home.widget) d.home.widget=t.home.widget;
+ if(!d.home.apps.some(a=>a.type==='camera')){ const at=d.home.apps.findIndex(a=>a.type==='photos'); d.home.apps.splice(at<0?d.home.apps.length:at+1,0,{id:'camera',type:'camera',label:'카메라',bg:APPDEF.camera.bg,icon:'',hidden:false,dock:false}); }
+ if(!d.home.apps.some(a=>a.type==='phone')) d.home.apps.unshift({id:'phone',type:'phone',label:'전화',bg:APPDEF.phone.bg,icon:'',hidden:false,dock:false});
+ if(!Array.isArray(d.phone.contacts)) d.phone.contacts=[]; if(!Array.isArray(d.phone.recents)) d.phone.recents=[];
+ if(!d.home.apps.some(a=>a.type==='talk')) d.home.apps.unshift({id:'talk',type:'talk',label:'카카오톡',bg:APPDEF.talk.bg,icon:'',hidden:false,dock:false});
+ if(!d.talk.me) d.talk.me=t.talk.me; if(!Array.isArray(d.talk.threads)) d.talk.threads=[];
+ if(!d.home.apps.some(a=>a.type==='calendar')){ const at=d.home.apps.findIndex(a=>a.type==='settings'); d.home.apps.splice(at<0?d.home.apps.length:at,0,{id:'calendar',type:'calendar',label:'캘린더',bg:APPDEF.calendar.bg,icon:'',hidden:false,dock:false}); }
+ if(!Array.isArray(d.calendar.events)) d.calendar.events=[];
+ d.home.apps.forEach(a=>{ if(a.type==='sns'&&a.label==='SNS') a.label='인스타그램'; });
  d.home.apps.forEach(a=>{ if(a.type==='custom'&&!a.page) a.page={title:a.label,body:'',img:''}; });
  return d;
 }
@@ -644,7 +958,7 @@ function normalize(d){
 let DB=null, ASSETS=null, USER=null, canWrite=false, LOCAL=false, READY=false;
 let LIST=null, PID=null, P=null, editMode=false, route=[{s:'lock'}];
 let T=freshTemp();
-function freshTemp(){return {chats:{},liked:{},fav:{},read:{},history:[],now:null,playing:false,pos:0,typing:null,pin:'',shake:false,diaryOpen:false,sendAs:'me',follow:false,readUpTo:{}};}
+function freshTemp(){return {chats:{},liked:{},fav:{},read:{},history:[],now:null,playing:false,pos:0,typing:null,pin:'',shake:false,diaryOpen:false,sendAs:'me',follow:false,readUpTo:{},readSet:new Set(),talkTab:'chats',recents:[],dial:'',phoneTab:'recents',unread:{},lockNotifs:[],nmap:{},schedDone:new Set(),schedTimers:[],schedOn:false,missedNew:0,shots:[],camZoom:1,camFront:false,camMode:'사진'};}
 let unsubPhone=null, unsubList=null, pendingRemote=null, lastSaved='';
 const cur=()=>route[route.length-1];
 const LKEY='ocphone.local.v1';
@@ -719,8 +1033,17 @@ async function unpackPhone(h){
  return JSON.parse(new TextDecoder().decode(bytes));
 }
 function stripLocalImages(o){ let n=0; const walk=x=>{ if(Array.isArray(x)) x.forEach((v,i)=>{ if(typeof v==='string'&&v.startsWith('data:')){x[i]='';n++;} else if(v&&typeof v==='object') walk(v); }); else for(const k in x){ const v=x[k]; if(typeof v==='string'&&v.startsWith('data:')){x[k]='';n++;} else if(v&&typeof v==='object') walk(v); } }; walk(o); return n; }
-async function makeViewLink(d){
- const data=clone(d); const dropped=stripLocalImages(data);
+function compactPhone(o){
+ delete o.createdAt; delete o.updatedAt; delete o.shareSlug;
+ (o.home&&o.home.apps||[]).forEach(a=>{ if(APPDEF[a.type]&&a.bg===APPDEF[a.type].bg) delete a.bg; });
+ const walkArr=arr=>arr.forEach(it=>{ if(it&&typeof it==='object'&&!Array.isArray(it)){ for(const k in it){ const v=it[k]; if(v===''||v===false) delete it[k]; else if(Array.isArray(v)) walkArr(v); } } });
+ const walk=x=>{ for(const k in x){ const v=x[k]; if(Array.isArray(v)) walkArr(v); else if(v&&typeof v==='object') walk(v); } };
+ walk(o); return o;
+}
+const slugOk=v=>/^[a-z0-9][a-z0-9_-]{0,39}$/.test(v||'');
+function suggestSlug(d){ const a=String(d.name||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,''); return slugOk(a)?a:'phone'+Math.floor(Math.random()*900+100); }
+async function makeViewLink(d,id){
+ const data=compactPhone(clone(d)); const dropped=stripLocalImages(data);
  const base=location.href.split('#')[0];
  const url=base+'#'+(await packPhone(data));
  const online=/^https?:/.test(location.protocol);
@@ -728,8 +1051,12 @@ async function makeViewLink(d){
   ${online?'':'<p class="sh-note">지금은 사이트가 아닌 파일로 열려 있어서 이 링크는 다른 사람에게 열리지 않아요. GitHub Pages에 올린 주소에서 다시 만들어 주세요.</p>'}
   <p class="sh-note">이 링크를 열면 휴대폰이 보기 전용으로 실행돼요. 고치거나 새로 만들 수는 없어요. 휴대폰 내용이 링크 안에 담겨 있어서, 나중에 내용을 바꾸면 링크를 새로 만들어 보내야 해요.${dropped?`\n\n직접 올린 사진 ${dropped}장은 너무 커서 링크에 담지 못하고 빠졌어요. 링크에서도 사진이 보이게 하려면 사진을 고를 때 ‘주소로 넣기’로 인터넷에 올린 사진 주소를 넣어 주세요.`:''}</p>
   <div class="fld"><label for="linkbox">링크 (${url.length.toLocaleString()}자)</label><textarea class="linkbox" id="linkbox" rows="4" readonly>${esc(url)}</textarea></div>
-  <div class="menu"><button class="btn primary row" style="justify-content:center" data-a="copyView">링크 복사</button>${navigator.share?'<button class="btn row" style="justify-content:center" data-a="shareView">다른 앱으로 보내기</button>':''}<a class="btn row" style="justify-content:center;text-decoration:none" href="${esc(url)}" target="_blank" rel="noopener">새 창에서 열어 보기</a></div>`,
-  url,name:d.name});
+  <div class="menu"><button class="btn primary row" style="justify-content:center" data-a="copyView">링크 복사</button>${navigator.share?'<button class="btn row" style="justify-content:center" data-a="shareView">다른 앱으로 보내기</button>':''}<a class="btn row" style="justify-content:center;text-decoration:none" href="${esc(url)}" target="_blank" rel="noopener">새 창에서 열어 보기</a></div>
+  <div class="shortbox"><h3>더 짧은 링크로 보내기</h3>
+  <p class="sh-note">공유용 파일을 GitHub 저장소에 한 번 올려 두면 짧은 링크로 열려요. 직접 올린 사진도 그대로 보이고, 휴대폰을 고친 뒤 같은 이름으로 다시 올리면 링크는 그대로예요.</p>
+  <div class="fld"><label for="slug">링크에 쓸 영어 이름</label><input type="text" id="slug" value="${esc(d.shareSlug||suggestSlug(d))}" autocapitalize="off" autocomplete="off" spellcheck="false" placeholder="yuha"><small>영어 소문자, 숫자, 하이픈(-)만 쓸 수 있어요. 휴대폰마다 다른 이름을 쓰세요.</small></div>
+  <button class="btn row" style="justify-content:center" data-a="shortFile">공유용 파일 받기</button><div id="shortout"></div></div>`,
+  url,name:d.name,phoneId:id,phone:d});
 }
 
 /* ---------------- sheets (editors) ---------------- */
@@ -747,12 +1074,30 @@ function drawSheet(){
   <div class="sh-body">${s.html()}</div></div>`;
  const first=el.querySelector('.sh-body input:not([type=hidden]),.sh-body textarea');
  if(first&&s.autofocus) first.focus();
+ updAdj();
 }
+function updAdj(){
+ const box=document.querySelector('#sheet .adjprev'); if(!box) return;
+ const g=k=>{const e=$('#f_'+k);return e?e.value:null;};
+ let sv=g(box.dataset.src)||''; if(box.dataset.src==='urls') sv=fixUrl((sv.split(/\s+/).find(x=>x.trim())||'').trim());
+ const z=(+g('zoom')||100)/100, x=g('px')??50, y=g('py')??50, fit=g('fit')||'contain';
+ box.querySelectorAll('.ap').forEach(f=>{const img=f.querySelector('img'); const type=f.classList.contains('ap-view')?fit:'cover';
+  if(sv){ if(img.getAttribute('src')!==src(sv)) img.src=src(sv); img.hidden=false; } else { img.hidden=true; img.removeAttribute('src'); }
+  img.style.cssText=`object-fit:${type};object-position:${x}% ${y}%;transform:scale(${z});transform-origin:${x}% ${y}%`;});
+ ['zoom','px','py'].forEach(k=>{const o=$('#o_'+k),e=$('#f_'+k);if(o&&e)o.textContent=e.value+'%';});
+}
+function adjFields(srcKey,min){return [{k:'adj',t:'adjprev',src:srcKey,boxes:[['thumb','사진 목록'],['view','사진을 열었을 때']]},{k:'fit',l:'열었을 때 보기 방식',t:'select',o:[['contain','사진 전체 보이기'],['cover','화면 꽉 채우기']]},{k:'zoom',l:'크기',t:'range',min:min||50,max:300,step:5,unit:'%',def:100},{k:'px',l:'가로 위치',t:'range',min:0,max:100,unit:'%'},{k:'py',l:'세로 위치',t:'range',min:0,max:100,unit:'%'}];}
+const adjVals=o=>({fit:o.fit||'contain',zoom:o.zoom||100,px:o.px??50,py:o.py??50});
+function adjStyle(o,mode){ const z=(+o.zoom||100)/100, x=o.px??50, y=o.py??50, fit=mode==='thumb'?'cover':(o.fit||'contain'); return `object-fit:${fit};object-position:${x}% ${y}%;transform:scale(${z});transform-origin:${x}% ${y}%`; }
+const photoThumbImg=p=>p&&p.src?`<img src="${esc(src(p.src))}" alt="" loading="lazy" draggable="false" style="${adjStyle(p,'thumb')}">`:'';
 function fieldHtml(f,v){
  const id='f_'+f.k, lab=`<label for="${id}">${esc(f.l)}</label>`, help=f.h?`<small>${esc(f.h)}</small>`:'';
  if(f.t==='textarea') return `<div class="fld">${lab}<textarea id="${id}" rows="${f.rows||4}" placeholder="${esc(f.ph||'')}">${esc(v)}</textarea>${help}</div>`;
  if(f.t==='select') return `<div class="fld">${lab}<select id="${id}">${f.o.map(([ov,ol])=>`<option value="${esc(ov)}" ${String(ov)===String(v)?'selected':''}>${esc(ol)}</option>`).join('')}</select>${help}</div>`;
  if(f.t==='toggle') return `<div class="fld tog"><label for="${id}">${esc(f.l)}</label><input type="checkbox" id="${id}" ${v?'checked':''}></div>${help?`<div class="fld">${help}</div>`:''}`;
+ if(f.t==='range'){ const val=v??f.def??50; return `<div class="fld"><label for="${id}">${esc(f.l)} <output id="o_${f.k}">${esc(val)}${f.unit||''}</output></label><input type="range" id="${id}" min="${f.min}" max="${f.max}" step="${f.step||1}" value="${esc(val)}">${help}</div>`; }
+ if(f.t==='adjprev') return `<div class="adjprev" data-src="${f.src}">${f.boxes.map(([b,lab])=>`<figure class="ap ap-${b}"><div><img alt="" hidden></div><figcaption>${esc(lab)}</figcaption></figure>`).join('')}</div>`;
+ if(f.t==='date') return `<div class="fld">${lab}<input type="date" id="${id}" value="${esc(v)}">${help}</div>`;
  if(f.t==='number') return `<div class="fld">${lab}<input type="number" id="${id}" value="${esc(v)}" ${f.min!=null?`min="${f.min}"`:''} ${f.max!=null?`max="${f.max}"`:''} step="${f.step||1}">${help}</div>`;
  if(f.t==='image'||f.t==='wall'||f.t==='bg'){
   return `<div class="fld"><label>${esc(f.l)}</label><input type="hidden" id="${id}" value="${esc(v||'')}">
@@ -763,11 +1108,11 @@ function fieldHtml(f,v){
  return `<div class="fld">${lab}<input type="text" id="${id}" value="${esc(v)}" placeholder="${esc(f.ph||'')}" ${f.num?'inputmode="numeric"':''} ${f.max?`maxlength="${f.max}"`:''}>${help}</div>`;
 }
 function prevCss(t,v){ if(t==='image') return v?`center/cover no-repeat url("${src(v)}")`:'var(--sunk)'; return bgCss(v,'var(--sunk)'); }
-function setFieldVal(k,v){const i=$('#f_'+k);if(!i)return;i.value=v;const p=$('#pv_'+k);if(p)p.style.background=prevCss(p.dataset.t,v);}
+function setFieldVal(k,v){const i=$('#f_'+k);if(!i)return;i.value=v;const p=$('#pv_'+k);if(p)p.style.background=prevCss(p.dataset.t,v);updAdj();}
 function openForm({title,fields,values={},onSave,onDelete,extra=[],note,deleteLabel='삭제',autofocus}){
  const s={title,save:true,st:{...values},autofocus,
   html(){return `${note?`<p class="sh-note">${esc(note)}</p>`:''}${fields.map(f=>fieldHtml(f,this.st[f.k])).join('')}${extra.map((x,i)=>`<button type="button" class="btn row" data-a="shExtra" data-i="${i}">${esc(typeof x.label==='function'?x.label():x.label)} <span aria-hidden="true">›</span></button>`).join('')}${onDelete?`<button type="button" class="btn row danger" data-a="shDelete">${esc(deleteLabel)}</button>`:''}`;},
-  collect(){const out={...this.st};fields.forEach(f=>{const el=$('#f_'+f.k);if(!el)return;if(f.t==='toggle')out[f.k]=el.checked;else if(f.t==='number')out[f.k]=el.value===''?0:Number(el.value);else out[f.k]=el.value;});return out;},
+  collect(){const out={...this.st};fields.forEach(f=>{const el=$('#f_'+f.k);if(!el)return;if(f.t==='toggle')out[f.k]=el.checked;else if(f.t==='number'||f.t==='range')out[f.k]=el.value===''?0:Number(el.value);else out[f.k]=el.value;});return out;},
   doSave(){const v=this.collect();if(onSave(v)!==false){popSheet();commit();}},
   extra,onDelete,deleteLabel};
  pushSheet(s);
@@ -781,30 +1126,32 @@ function openList({title,get,label,sub,onEdit,onAdd,addLabel,note}){
 }
 
 /* ---------------- data helpers ---------------- */
-const thread=id=>P.messages.threads.find(t=>t.id===id);
+const thread=id=>P.messages.threads.find(t=>t.id===id)||((P.talk&&P.talk.threads)||[]).find(t=>t.id===id);
+const isTalk=t=>!!(P.talk&&P.talk.threads.includes(t));
+function markRead(id){(T.chats[id]||[]).forEach(x=>{if(x.me)T.readSet.add(x.id);});}
 function allMsgs(t){return editMode?t.msgs:t.msgs.concat(T.chats[t.id]||[]);}
 function lastMsg(t){const a=allMsgs(t).filter(m=>!m.date);return a[a.length-1];}
 function curTrack(){const id=T.now||P.music.now;return P.music.tracks.find(x=>x.id===id)||P.music.tracks[0];}
 function avatar(name,img,size){return `<span class="av" style="width:${size}px;height:${size}px;font-size:${Math.round(size*.42)}px;${img?'':`background:${GRADS[hashIdx(name)%GRADS.length]}`}">${img?`<img src="${esc(src(img))}" alt="">`:esc((name||'?').trim().charAt(0))}</span>`;}
 function cover(t,size){return `<span class="cov" style="width:${size}px;height:${size}px;background:${esc(t&&t.cover?'#222':GRADS[hashIdx(t?t.title:'')%GRADS.length])}">${t&&t.cover?`<img src="${esc(src(t.cover))}" alt="">`:SV.note}</span>`;}
 const ed=(label,a,id='')=>editMode?`<button class="nb ed" data-a="${a}" data-id="${esc(id)}">${esc(label)}</button>`:'';
-function navbar(title,{back,right='',large}={}){return `<div class="nav"><div>${back?`<button class="nb" data-a="back">${SV.chev}${esc(back)}</button>`:''}</div><div class="nt">${large?'':esc(title)}</div><div class="nr">${right}</div></div>${large?`<h1 class="lt">${esc(title)}</h1>`:''}`;}
+function navbar(title,{back,right='',large}={}){return `<div class="nav"><div>${back?`<button class="nb" data-a="back">${SV.chev}${esc(back)}</button>`:''}</div><div class="nt">${esc(title)}</div><div class="nr">${right}</div></div>${large?`<h1 class="lt">${esc(title)}</h1>`:''}`;}
 const appOf=type=>P.home.apps.find(a=>a.type===type);
 const appLabel=type=>(appOf(type)||{}).label||APPDEF[type].label;
 
 /* ---------------- screens ---------------- */
 const S={};
 S.lock=()=>{const L=P.lock;return `<div class="lock ${L.clock==='dark'?'ink':''}" style="background:${esc(bgCss(L.wall))}">
- <div class="lock-clock"><div class="lock-date">${esc(L.date)}</div><div class="lock-time">${esc(L.time)}</div></div>
+ <div class="lock-clock"><div class="lock-ic">${SV.lock}</div><div class="lock-date">${esc(L.date)}</div><div class="lock-time">${esc(L.time)}</div></div>
  ${editMode?'<button class="edfab" data-a="editLock">잠금 화면 편집</button>':''}
- <div class="notifs">${(L.notifs||[]).map(n=>`<button class="notif" data-a="unlock"><div class="nt-h"><span class="nt-ic"></span><b>${esc(n.app)}</b><span>${esc(n.time)}</span></div>${n.title?`<div class="nt-t">${esc(n.title)}</div>`:''}<div class="nt-b">${esc(n.body)}</div></button>`).join('')}</div>
+ <div class="notifs">${(editMode?[]:T.lockNotifs).map(n=>`<button class="notif" data-a="unlockTo" data-n="${n.id}"><div class="nt-h">${appMini(n.app,20)}<b>${esc(appLabel(n.app))}</b><span>${esc(n.time)}</span></div><div class="nt-t">${esc(n.title)}</div><div class="nt-b">${esc(n.body)}</div></button>`).join('')}${(L.notifs||[]).map(n=>`<button class="notif" data-a="unlock"><div class="nt-h"><span class="nt-ic"></span><b>${esc(n.app)}</b><span>${esc(n.time)}</span></div>${n.title?`<div class="nt-t">${esc(n.title)}</div>`:''}<div class="nt-b">${esc(n.body)}</div></button>`).join('')}</div>
  <div class="lock-foot"><span class="lk-btn">${SV.flash}</span><button class="lock-hint" data-a="unlock">${editMode||!L.passcode?'위로 쓸어 올려서 열기':'위로 쓸어 올려서 잠금 해제'}</button><span class="lk-btn">${SV.cam}</span></div></div>`;};
 S.pass=()=>{const code=P.lock.passcode||'';const n=Math.max(4,code.length);
  return `<div class="pass" style="background:${esc(bgCss(P.lock.wall))}"><div class="pass-dim"></div><div class="pass-in"><div class="pass-t">암호 입력</div>
  <div class="dots ${T.shake?'shake':''}">${Array.from({length:n},(_,i)=>`<i class="${i<T.pin.length?'on':''}"></i>`).join('')}</div>
  <div class="keys">${[1,2,3,4,5,6,7,8,9].map(k=>`<button class="key" data-a="pin" data-v="${k}"><b>${k}</b><small>${KEYL[k]||'&nbsp;'}</small></button>`).join('')}<button class="key z" data-a="pin" data-v="0"><b>0</b></button></div>
  <div class="pass-foot"><button data-a="cancelPass">취소</button><button data-a="delPin">${T.pin?'삭제':''}</button></div></div></div>`;};
-function appIcon(a,dock){return `<button class="appi" data-a="open" data-id="${esc(a.id)}" aria-label="${esc(a.label)}"><span class="ic" style="background:${esc(bgCss(a.bg,APPDEF[a.type]?.bg))}">${a.icon?`<img src="${esc(src(a.icon))}" alt="">`:(GLYPH[a.type]||GLYPH.custom)}</span>${dock?'':`<span class="al">${esc(a.label)}</span>`}</button>`;}
+function appIcon(a,dock){return `<button class="appi" data-a="open" data-id="${esc(a.id)}" aria-label="${esc(a.label)}"><span class="ic" style="background:${esc(bgCss(a.bg,APPDEF[a.type]?.bg))}">${a.icon?`<img src="${esc(src(a.icon))}" alt="">`:(a.type==='calendar'?calGlyph():(GLYPH[a.type]||GLYPH.custom))}</span>${badgeHtml(a.type)}${dock?'':`<span class="al">${esc(a.label)}</span>`}</button>`;}
 function widget(){const w=P.home.widget||{};
  if(w.type==='clock') return `<div class="wd wd-clock"><small>${esc(P.lock.date)}</small><b>${esc(P.lock.time)}</b></div>`;
  if(w.type==='text') return `<div class="wd wd-text"><small>${esc(appLabel('notes'))}</small><p>${esc(w.text)}</p></div>`;
@@ -813,13 +1160,14 @@ function widget(){const w=P.home.widget||{};
 S.home=()=>{const H=P.home;const vis=H.apps.filter(a=>!a.hidden);
  return `<div class="home ${H.ink?'ink':''}" style="background:${esc(bgCss(H.wall))}"><div class="home-in">${widget()}<div class="grid">${vis.filter(a=>!a.dock).map(a=>appIcon(a)).join('')}</div></div>
  ${editMode?'<button class="edfab low" data-a="editHome">홈 화면 편집</button>':''}
+ <div class="hsearch">${SV.search}<span>검색</span></div>
  <div class="dock">${vis.filter(a=>a.dock).slice(0,4).map(a=>appIcon(a,true)).join('')}</div></div>`;};
 
 /* messages */
 S.messages=()=>{const ts=[...P.messages.threads].sort((a,b)=>(b.pinned?1:0)-(a.pinned?1:0));
  return `<div class="app">${navbar(appLabel('messages'),{large:true,right:ed('+ 대화','addThread')})}<div class="scroll">
  <div class="sbar">${SV.search}검색</div>
- ${ts.map(t=>{const l=lastMsg(t);return `<button class="tl-row" data-a="go" data-s="thread" data-id="${t.id}">${t.pinned?'<span class="pin-dot" aria-label="고정됨"></span>':''}${avatar(t.name,t.avatar,48)}<div class="tl-mid"><div class="tl-top"><b>${esc(t.name)}</b><span>${esc(l?.time||'')} ›</span></div><div class="tl-prev">${esc(l?(l.text||(l.img?'사진':'')):'')}</div></div></button>`;}).join('')}
+ ${ts.map(t=>{const l=lastMsg(t);return `<button class="tl-row" data-a="go" data-s="thread" data-id="${t.id}">${!editMode&&T.unread[t.id]?'<span class="pin-dot" aria-label="읽지 않음"></span>':(t.pinned?'<span class="pin-dot gray" aria-label="고정됨"></span>':'')}${avatar(t.name,t.avatar,48)}<div class="tl-mid"><div class="tl-top"><b>${esc(t.name)}</b><span>${esc(l?.time||'')} ›</span></div><div class="tl-prev">${esc(l?(l.text||(l.img?'사진':'')):'')}</div></div></button>`;}).join('')}
  ${ts.length?'':`<div class="empty-in"><b>대화 없음</b>${editMode?'오른쪽 위 + 대화로 새 대화를 만드세요.':''}</div>`}
  </div></div>`;};
 function chatLog(t){
@@ -828,7 +1176,7 @@ function chatLog(t){
  arr.forEach((m,i)=>{
   if(m.date){h+=`<button class="cdate" ${editMode?`data-a="editMsg" data-t="${t.id}" data-id="${m.id}"`:''}>${esc(m.text)}</button>`;return;}
   const nx=arr[i+1];const end=!nx||nx.date||nx.me!==m.me;const saved=i<tempStart;
-  h+=`<div class="brow ${m.me?'me':'them'} ${end?'end':''}"><button class="bub ${m.img&&!m.text?'pic':''} ${editMode?'ed-on':''}" ${editMode&&saved?`data-a="editMsg" data-t="${t.id}" data-id="${m.id}"`:''}>${m.img?`<img src="${esc(src(m.img))}" alt="">`:''}${m.text?`<span>${esc(m.text)}</span>`:''}</button>${end&&m.time?`<span class="btime">${esc(m.time)}</span>`:''}</div>`;
+  h+=`<div class="brow ${m.me?'me':'them'} ${end?'end':''}"><button class="bub ${m.img&&!m.text?'pic':(end?'tail':'')} ${editMode?'ed-on':''}" ${editMode&&saved?`data-a="editMsg" data-t="${t.id}" data-id="${m.id}"`:''}>${m.img?`<img src="${esc(src(m.img))}" alt="">`:''}${m.text?`<span>${esc(m.text)}</span>`:''}</button>${end&&m.time?`<span class="btime">${esc(m.time)}</span>`:''}</div>`;
   if(!editMode&&T.readUpTo[t.id]===m.id) h+='<span class="readmark">읽음</span>';
  });
  if(!editMode&&T.typing===t.id) h+='<div class="brow them"><div class="typing"><i></i><i></i><i></i></div></div>';
@@ -836,8 +1184,8 @@ function chatLog(t){
  if(editMode&&!t.msgs.length) h+='<div class="empty-in">아래 입력창에서 <b style="display:inline;font-size:inherit">나</b> 또는 <b style="display:inline;font-size:inherit">상대</b>를 고르고 메시지를 추가하세요.</div>';
  return h;
 }
-function renderChatLog(){const t=thread(cur().id);const el=$('#chatlog');if(!t||!el)return;el.innerHTML=chatLog(t);el.scrollTop=el.scrollHeight;}
-S.thread=r=>{const t=thread(r.id);if(!t){route.pop();return S.messages();}
+function renderChatLog(){const t=thread(cur().id);const el=$('#chatlog');if(!t||!el)return;el.innerHTML=cur().s==='kthread'?kChatLog(t):chatLog(t);el.scrollTop=el.scrollHeight;}
+S.thread=r=>{const t=thread(r.id);if(!t){route.pop();return S.messages();}T.unread[t.id]=0;
  return `<div class="app chat"><div class="chat-head"><div><button class="nb" data-a="back">${SV.chev}</button></div>
  <button class="ch-who" ${editMode?`data-a="editThread" data-id="${t.id}"`:''}>${avatar(t.name,t.avatar,44)}<span>${esc(t.name)} ${editMode?'✎':''}</span></button>
  <div class="nr">${editMode?`<button class="nb ed" data-a="rules" data-id="${t.id}">자동 답장</button>`:''}</div></div>
@@ -846,12 +1194,31 @@ S.thread=r=>{const t=thread(r.id);if(!t){route.pop();return S.messages();}
  <input id="chatin" autocomplete="off" aria-label="메시지" placeholder="${editMode?(T.sendAs==='me'?'내가 보낸 메시지':'상대가 보낸 메시지'):'메시지'}"><button class="send" aria-label="보내기">${SV.up}</button></form></div>`;};
 
 /* photos */
-S.photos=()=>{const it=P.photos.items;
- return `<div class="app">${navbar(appLabel('photos'),{large:true,right:ed('+ 사진','addPhotos')})}<div class="scroll">
- ${it.length||editMode?`<div class="pgrid">${it.map(p=>`<button class="pt" data-a="go" data-s="photo" data-id="${p.id}" aria-label="${esc(p.caption||'사진')}">${p.src?`<img src="${esc(src(p.src))}" alt="" loading="lazy">`:''}${(editMode?p.fav:(T.fav[p.id]??p.fav))?'<span class="fav">♥</span>':''}</button>`).join('')}${editMode?'<button class="pt add" data-a="addPhotos" aria-label="사진 추가">+</button>':''}</div><p class="pcount">사진 ${it.length}장</p>`:'<div class="empty-in"><b>사진 없음</b>편집 모드에서 사진을 추가할 수 있어요.</div>'}</div></div>`;};
-S.photo=r=>{const p=P.photos.items.find(x=>x.id===r.id);if(!p){route.pop();return S.photos();}const fav=editMode?p.fav:(T.fav[p.id]??p.fav);
- return `<div class="app viewer">${navbar('',{back:appLabel('photos'),right:ed('편집','editPhoto',p.id)})}<div class="pv">${p.src?`<img src="${esc(src(p.src))}" alt="${esc(p.caption)}">`:''}</div>
- ${p.caption||p.date?`<div class="pv-cap">${esc(p.caption)}<small>${esc(p.date)}</small></div>`:''}<div class="pv-bar"><button data-a="favPhoto" data-id="${p.id}" aria-label="즐겨찾기">${fav?SV.heartF:SV.heart}</button></div></div>`;};
+const photoFav=p=>editMode?!!p.fav:!!(T.fav[p.id]??p.fav);
+function photoList(ctx){const it=editMode?P.photos.items:P.photos.items.concat(T.shots||[]); if(ctx==='fav') return it.filter(photoFav); if(ctx&&ctx.startsWith('album:')){const n=ctx.slice(6);return it.filter(p=>(p.album||'')===n);} return it;}
+function albums(){const out=[{ctx:'all',name:'최근 항목',list:photoList('all')},{ctx:'fav',name:'즐겨찾는 항목',list:photoList('fav')}];const seen=new Set();P.photos.items.forEach(p=>{const n=(p.album||'').trim();if(n&&!seen.has(n)){seen.add(n);out.push({ctx:'album:'+n,name:n,list:photoList('album:'+n)});}});return out;}
+function photoGrid(list,ctx){return `<div class="pgrid">${list.map(p=>`<button class="pt" data-a="go" data-s="photo" data-id="${p.id}" data-ctx="${esc(ctx)}" aria-label="${esc(p.caption||'사진')}">${p.src?photoThumbImg(p):`<span class="pt-ph" style="background:${GRADS[hashIdx(p.id)%GRADS.length]}"></span>`}${photoFav(p)?'<span class="fav">♥</span>':''}</button>`).join('')}${editMode&&ctx==='all'?'<button class="pt add" data-a="addPhotos" aria-label="사진 추가">+</button>':''}</div>`;}
+function photoTabs(){const t=T.photoTab||'library';return `<div class="tabbar"><button class="${t==='library'?'on':''}" data-a="photoTab" data-v="library">${SV.tabLib}<span>보관함</span></button><button class="${t==='albums'?'on':''}" data-a="photoTab" data-v="albums">${SV.tabAlb}<span>앨범</span></button></div>`;}
+S.photos=()=>{const it=photoList('all');T.photoAlbum='';
+ if((T.photoTab||'library')==='albums'){
+  const al=albums();
+  return `<div class="app photosapp">${navbar('앨범',{large:true,right:ed('+ 사진','addPhotos')})}<div class="scroll tabbed">
+  <div class="alb-h">나의 앨범</div><div class="albums">${al.map(x=>{const c=x.list[x.list.length-1];return `<button class="alb" data-a="go" data-s="album" data-id="${esc(x.ctx)}"><span class="alb-c">${photoThumbImg(c)}</span><b>${esc(x.name)}</b><span>${x.list.length}</span></button>`;}).join('')}</div>
+  ${editMode?'<p class="edhint">사진을 편집할 때 ‘앨범’ 칸에 이름을 적으면 그 이름의 앨범이 생겨요.</p>':''}</div>${photoTabs()}</div>`;
+ }
+ return `<div class="app photosapp">${navbar('보관함',{large:true,right:ed('+ 사진','addPhotos')})}<div class="scroll tabbed lib">
+ ${it.length||editMode?photoGrid(it,'all')+`<p class="pcount">사진 ${it.length}장</p>`:'<div class="empty-in"><b>사진 없음</b>편집 모드에서 사진을 추가할 수 있어요.</div>'}</div>${photoTabs()}</div>`;};
+S.album=r=>{const al=albums().find(x=>x.ctx===r.id);if(!al){route.pop();return S.photos();}T.photoAlbum=al.ctx.startsWith('album:')?al.ctx.slice(6):'';
+ return `<div class="app photosapp">${navbar(al.name,{back:'앨범',large:true,right:ed('+ 사진','addPhotos')})}<div class="scroll lib">${al.list.length?photoGrid(al.list,al.ctx)+`<p class="pcount">사진 ${al.list.length}장</p>`:'<div class="empty-in"><b>사진 없음</b></div>'}</div></div>`;};
+S.photo=r=>{const list=photoList(r.ctx);const i=list.findIndex(x=>x.id===r.id);const p=list[i];if(!p){route.pop();return S.photos();}
+ const dark=!!T.pvDark;
+ return `<div class="app pviewer ${dark?'dark':''}">
+ <div class="nav pv-nav"><div><button class="nb" data-a="back" aria-label="뒤로">${SV.chev}</button></div><div class="pv-t"><b>${esc(p.date||'사진')}</b>${p.caption?`<small>${esc(p.caption)}</small>`:''}</div><div class="nr">${ed('편집','editPhoto',p.id)}</div></div>
+ <div class="pv" data-a="pvTap" data-swipe="photo"><div class="pv-in">${p.src?`<img src="${esc(src(p.src))}" alt="${esc(p.caption)}" draggable="false" style="${adjStyle(p,'view')}">`:`<div class="pv-ph" style="background:${GRADS[hashIdx(p.id)%GRADS.length]}"></div>`}</div></div>
+ ${T.pvInfo?`<div class="pv-info"><b>${esc(p.caption||'설명 없음')}</b><span>${esc(p.date||'')}</span>${p.album?`<span>앨범: ${esc(p.album)}</span>`:''}</div>`:''}
+ ${list.length>1?`<div class="pv-strip">${list.map(x=>`<button class="${x.id===p.id?'on':''}" data-a="pvJump" data-id="${x.id}">${x.src?photoThumbImg(x):`<span style="background:${GRADS[hashIdx(x.id)%GRADS.length]}"></span>`}</button>`).join('')}</div>`:''}
+ <div class="pv-tools"><span aria-hidden="true">${SV.share}</span><button data-a="favPhoto" data-id="${p.id}" aria-label="즐겨찾기">${photoFav(p)?SV.heartF:SV.heart}</button><button data-a="pvInfo" aria-label="정보" class="${T.pvInfo?'on':''}">${SV.info}</button>${editMode?`<button data-a="delPhoto" data-id="${p.id}" aria-label="삭제">${SV.trash}</button>`:`<span aria-hidden="true">${SV.trash}</span>`}</div>
+ </div>`;};
 
 /* notes */
 S.notes=()=>{const it=P.notes.items;const pin=it.filter(n=>n.pinned),rest=it.filter(n=>!n.pinned);
@@ -859,7 +1226,8 @@ S.notes=()=>{const it=P.notes.items;const pin=it.filter(n=>n.pinned),rest=it.fil
  return `<div class="app grp notesapp">${navbar(appLabel('notes'),{large:true,right:ed('+ 메모','addNote')})}<div class="scroll">
  ${pin.length?`<div class="gh">고정됨</div><div class="grpl">${pin.map(row).join('')}</div>`:''}
  ${rest.length?`<div class="gh">메모</div><div class="grpl">${rest.map(row).join('')}</div>`:''}
- ${it.length?'':'<div class="empty-in"><b>메모 없음</b></div>'}</div></div>`;};
+ ${it.length?'':'<div class="empty-in"><b>메모 없음</b></div>'}</div>
+ <div class="btool"><span></span><span>메모 ${it.length}개</span>${editMode?`<button data-a="addNote" aria-label="새 메모">${SV.compose}</button>`:`<span aria-hidden="true">${SV.compose}</span>`}</div></div>`;};
 S.note=r=>{const n=P.notes.items.find(x=>x.id===r.id);if(!n){route.pop();return S.notes();}
  return `<div class="app notesapp">${navbar('',{back:appLabel('notes'),right:ed('정보','editNote',n.id)})}<div class="scroll"><div class="note-doc"><div class="nd">${esc(n.date)}</div>
  ${editMode?`<input class="inplace h" data-bind="note|${n.id}|title" value="${esc(n.title)}" placeholder="제목" aria-label="제목"><textarea class="inplace b" data-bind="note|${n.id}|body" placeholder="내용을 입력하세요" aria-label="내용">${esc(n.body)}</textarea>`:`<h2>${esc(n.title)}</h2><p>${esc(n.body)}</p>`}</div></div></div>`;};
@@ -884,16 +1252,16 @@ S.websearch=r=>{const q=norm(r.q);const res=P.web.pages.filter(p=>norm(p.title+'
 /* music */
 S.music=()=>{const tr=P.music.tracks;const c=curTrack();
  return `<div class="app musicapp">${navbar(appLabel('music'),{large:true,right:ed('+ 노래','addTrack')})}<div class="scroll">
- ${tr.map(t=>`<button class="trow" data-a="playTrack" data-id="${t.id}">${cover(t,48)}<div class="tm ${c&&c.id===t.id?'on':''}"><b>${esc(t.title)}</b><span>${esc(t.artist)}${t.len?' · '+esc(t.len):''}</span></div>${c&&c.id===t.id?`<span class="bars ${T.playing?'go':''}"><i></i><i></i><i></i></span>`:''}</button>`).join('')}
+ ${tr.map(t=>`<button class="trow" data-a="playTrack" data-id="${t.id}">${cover(t,48)}<div class="tm ${c&&c.id===t.id?'on':''}"><b>${esc(t.title)}</b><span>${esc(t.artist)}${t.len?' · '+esc(t.len):''}${hasAudio(t)?' · 음원':''}</span></div>${c&&c.id===t.id?`<span class="bars ${T.playing?'go':''}"><i></i><i></i><i></i></span>`:''}</button>`).join('')}
  ${tr.length?'':'<div class="empty-in"><b>노래 없음</b></div>'}
  ${editMode&&tr.length?'<p class="edhint" style="margin-top:12px">노래를 누르면 재생 화면이 열려요. 재생 화면의 편집 버튼으로 제목, 가수, 커버를 바꿀 수 있어요.</p>':''}</div>
  ${c?`<button class="minip" data-a="go" data-s="player">${cover(c,44)}<b>${esc(c.title)}</b><span data-a="togglePlay" style="color:#000">${T.playing?SV.pause.replace('width="40" height="40"','width="22" height="22"'):SV.play.replace('width="40" height="40"','width="22" height="22"')}</span></button>`:''}</div>`;};
-S.player=()=>{const c=curTrack();if(!c){route.pop();return S.music();}const d=durSec(c.len);
+S.player=()=>{const c=curTrack();if(!c){route.pop();return S.music();}const d=trackDur(c);
  return `<div class="player" style="background:${esc(c.cover?'linear-gradient(180deg,#3a3a46,#14141a)':GRADS[hashIdx(c.title)%GRADS.length])}">
  <div style="display:flex;justify-content:space-between"><button class="nb" data-a="back">${SV.chev} ${esc(appLabel('music'))}</button>${editMode?`<button class="nb ed" data-a="editTrack" data-id="${c.id}" style="color:#fff;background:rgba(255,255,255,.2)!important">편집</button>`:''}</div>
  <div class="bigcov ${T.playing?'':'paused'}">${c.cover?`<img src="${esc(src(c.cover))}" alt="">`:`<div style="width:100%;height:100%;display:grid;place-items:center;background:rgba(255,255,255,.14)">${SV.note.replace('width="24" height="24"','width="120" height="120"')}</div>`}</div>
  <div class="pl-t"><b>${esc(c.title)}</b><span>${esc(c.artist)}</span></div>
- <div class="prog"><i id="pfill" style="width:${Math.min(100,T.pos/d*100)}%"></i></div><div class="ptimes"><span id="pcur">${mmss(T.pos)}</span><span>-${mmss(Math.max(0,d-T.pos))}</span></div>
+ <div class="prog" data-a="seek" role="slider" aria-label="재생 위치"><i id="pfill" style="width:${Math.min(100,T.pos/d*100)}%"></i></div><div class="ptimes"><span id="pcur">${mmss(T.pos)}</span><span>-${mmss(Math.max(0,d-T.pos))}</span></div>
  <div class="ctrl"><button data-a="skip" data-v="-1" aria-label="이전 곡">${SV.prev}</button><button data-a="togglePlay" aria-label="재생">${T.playing?SV.pause:SV.play}</button><button data-a="skip" data-v="1" aria-label="다음 곡">${SV.next}</button></div></div>`;};
 
 /* sns */
@@ -921,7 +1289,8 @@ S.mail=()=>{const M=P.mail;const inN=M.items.filter(m=>m.box==='inbox'&&isUnread
  <div class="gh">계정</div><div class="grpl"><button class="gr" ${editMode?'data-a="editMailAcct"':''}>${esc(M.name)}<span class="gv">${esc(M.address)} ${editMode?SV.chevR:''}</span></button></div></div></div>`;};
 S.mailbox=r=>{const box=r.id;const items=P.mail.items.filter(m=>m.box===box);
  return `<div class="app">${navbar(box==='inbox'?'받은 편지함':'보낸 편지함',{back:'메일상자',large:true,right:ed('+ 메일','addMail',box)})}<div class="scroll">
- ${items.map(m=>`<button class="mrow" data-a="openMail" data-id="${m.id}"><span class="udot ${isUnread(m)?'on':''}"></span><div class="mm"><div class="mm-top"><b>${esc(box==='sent'?m.to:m.from)}</b><span>${esc(m.date)}</span></div><div class="mm-s">${esc(m.subject)}</div><div class="mm-p">${esc(m.body)}</div></div></button>`).join('')||'<div class="empty-in"><b>메일 없음</b></div>'}</div></div>`;};
+ ${items.map(m=>`<button class="mrow" data-a="openMail" data-id="${m.id}"><span class="udot ${isUnread(m)?'on':''}"></span><div class="mm"><div class="mm-top"><b>${esc(box==='sent'?m.to:m.from)}</b><span>${esc(m.date)}</span></div><div class="mm-s">${esc(m.subject)}</div><div class="mm-p">${esc(m.body)}</div></div></button>`).join('')||'<div class="empty-in"><b>메일 없음</b></div>'}</div>
+ <div class="btool"><span></span><span>방금 업데이트됨</span>${editMode?`<button data-a="addMail" data-id="${box}" aria-label="새 메일">${SV.compose}</button>`:`<span aria-hidden="true">${SV.compose}</span>`}</div></div>`;};
 S.mailitem=r=>{const m=P.mail.items.find(x=>x.id===r.id);if(!m){route.pop();return S.mail();}
  return `<div class="app">${navbar('',{back:m.box==='inbox'?'받은 편지함':'보낸 편지함',right:ed('편집','editMail',m.id)})}<div class="scroll"><div class="mail-doc"><h2>${esc(m.subject)}</h2>
  <div class="mfrom">${avatar(m.from,'',40)}<div><b>${esc(m.from)}</b><small>${esc(m.addr)}</small><small>받는 사람: ${esc(m.to)} · ${esc(m.date)}</small></div></div><p>${esc(m.body)}</p></div></div></div>`;};
@@ -936,33 +1305,169 @@ S.entry=r=>{const e=P.diary.items.find(x=>x.id===r.id);if(!e){route.pop();return
  <div class="paper-meta"><span>${esc(e.date)}</span>${e.weather?`<span>${esc(e.weather)}</span>`:''}${e.mood?`<span>${esc(e.mood)}</span>`:''}</div>
  ${editMode?`<input class="inplace h" data-bind="entry|${e.id}|title" value="${esc(e.title)}" placeholder="제목" aria-label="제목" style="font-size:22px"><textarea class="inplace b" data-bind="entry|${e.id}|body" placeholder="오늘 있었던 일" aria-label="내용">${esc(e.body)}</textarea>`:`<h2>${esc(e.title)}</h2><p>${esc(e.body)}</p>`}</div></div></div>`;};
 
+/* camera app */
+function shutterSound(){ try{ ringCtx=ringCtx||new (window.AudioContext||window.webkitAudioContext)(); if(ringCtx.resume) ringCtx.resume(); const c=ringCtx,len=.08,b=c.createBuffer(1,Math.floor(c.sampleRate*len),c.sampleRate),d=b.getChannelData(0); for(let i=0;i<d.length;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/d.length,4); const s=c.createBufferSource(),g=c.createGain(); g.gain.value=.3; s.buffer=b; s.connect(g); g.connect(c.destination); s.start(); }catch(e){} }
+S.camera=()=>{const C=P.camera, front=!!(T.camFront&&C.front), img=front?C.front:C.img, zf=T.camZoom||1, x=C.px??50, y=C.py??50;
+ const list=photoList('all'), last=list[list.length-1], mode=T.camMode||'사진';
+ const flip='<svg width="26" height="26" viewBox="0 0 30 30"><path d="M7.5 12a8 8 0 0 1 14.3-3.4M22.5 18a8 8 0 0 1-14.3 3.4" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round"/><path d="M22.8 4.8v4.6h-4.6M7.2 25.2v-4.6h4.6" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+ return `<div class="cam">
+ <div class="cam-top"><span>${SV.flash.replace('width="18" height="22"','width="13" height="17"')}</span><span class="cam-chev"><svg width="14" height="9" viewBox="0 0 14 9"><path d="M1.5 7.5L7 2l5.5 5.5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="7.5" fill="none" stroke="#fff" stroke-width="1.4" stroke-dasharray="2 2.2"/><circle cx="9" cy="9" r="4.2" fill="none" stroke="#fff" stroke-width="1.4"/><circle cx="9" cy="9" r="1.6" fill="#fff"/></svg></span></div>
+ <div class="cam-vf" id="camvf">${img?`<img src="${esc(src(img))}" alt="" draggable="false" style="object-fit:cover;object-position:${x}% ${y}%;transform:scale(${(+C.zoom||100)/100*zf});transform-origin:${x}% ${y}%">`:`<div class="cam-empty">${editMode?'아래 ‘카메라 화면 편집’에서 카메라에 보일 사진을 정해 주세요.':''}</div>`}
+  <div class="cam-zoom">${[1,2,3].map(z=>`<button class="${zf===z?'on':''}" data-a="camZoom" data-v="${z}">${zf===z?z+'×':z}</button>`).join('')}</div>
+  <div class="cam-flash" id="camflash"></div></div>
+ <div class="cam-modes">${['시네마틱','비디오','사진','인물','파노라마'].map(m=>`<button class="${mode===m?'on':''}" data-a="camMode" data-v="${m}">${m}</button>`).join('')}</div>
+ <div class="cam-bot"><button class="cam-thumb" data-a="camThumb" aria-label="마지막 사진">${photoThumbImg(last)}</button><button class="cam-shut ${mode==='비디오'?'video':''}" data-a="camShoot" aria-label="촬영"><i></i></button><button class="cam-flip" data-a="camFlip" aria-label="카메라 전환">${flip}</button></div>
+ ${editMode?'<button class="edfab cam-ed" data-a="editCamera">카메라 화면 편집</button>':''}</div>`;};
+
+/* phone app */
+const digits=s=>String(s||'').replace(/\D/g,'');
+function allRecents(){ return editMode?P.phone.recents:T.recents.concat(P.phone.recents); }
+const KIND={in:'수신',out:'발신',missed:'부재중'};
+function phoneTabs(){const t=T.phoneTab||'recents';const b=(v,label,ic)=>`<button class="${t===v?'on':''}" data-a="phoneTab" data-v="${v}">${ic}<span>${label}</span></button>`;
+ return `<div class="tabbar">${b('recents','최근 기록',SV.clock.replace('width="18" height="18"','width="26" height="26"'))}${b('contacts','연락처',SV.kFriends)}${b('keypad','키패드','<svg width="26" height="24" viewBox="0 0 26 24">'+[0,1,2].flatMap(r=>[0,1,2].map(c=>`<circle cx="${6+c*7}" cy="${4+r*7}" r="2.3" fill="currentColor"/>`)).join('')+'</svg>')}</div>`;}
+S.phone=()=>{const tab=T.phoneTab||'recents';let body='';T.missedNew=0;
+ if(tab==='recents'){const rs=allRecents();
+  body=`${navbar('최근 기록',{large:true,right:ed('기록 관리','editRecents')})}<div class="scroll tabbed">
+  ${rs.map(r=>{const c=contactFor(r.name);return `<button class="rc ${r.kind==='missed'?'miss':''}" data-a="callName" data-v="${esc(r.name)}">${avatar(r.name,c&&c.avatar,40)}<div class="rc-m"><b>${esc(r.name)}</b><span>${r.kind==='out'?SV.phone.replace('width="34" height="34"','width="11" height="11"')+' ':''}${KIND[r.kind]||''}${r.dur?' · '+esc(r.dur):''}</span></div><em>${esc(r.when||'')}</em></button>`;}).join('')||'<div class="empty-in"><b>최근 기록 없음</b></div>'}</div>`;}
+ else if(tab==='contacts'){const cs=[...P.phone.contacts].sort((a,b)=>String(a.name).localeCompare(String(b.name),'ko'));
+  body=`${navbar('연락처',{large:true,right:ed('+ 연락처','addContact')})}<div class="scroll tabbed">
+  <div class="sbar">${SV.search}검색</div>
+  <button class="ct-me">${avatar(P.owner,P.sns.avatar,56)}<div><b>${esc(P.owner)}</b><span>내 카드</span></div></button>
+  ${cs.map(c=>`<button class="ct" data-a="go" data-s="contact" data-id="${c.id}">${esc(c.name)}</button>`).join('')||'<div class="empty-in"><b>연락처 없음</b></div>'}</div>`;}
+ else { const d=T.dial||''; const match=(P.phone.contacts||[]).find(c=>digits(c.number)&&digits(c.number)===digits(d));
+  body=`<div class="kp"><div class="kp-num">${esc(d)}</div><div class="kp-name">${match?esc(match.name):'&nbsp;'}</div>
+  <div class="keys kp-keys">${[1,2,3,4,5,6,7,8,9,'*',0,'#'].map(k=>`<button class="key" data-a="dial" data-v="${k}"><b>${k}</b><small>${KEYL[k]||(k===0?'+':'&nbsp;')}</small></button>`).join('')}</div>
+  <div class="kp-bot"><span></span><button class="cbtn green" data-a="dialCall" aria-label="전화 걸기">${SV.phone}</button>${d?'<button class="kp-del" data-a="dialDel" aria-label="지우기">⌫</button>':'<span></span>'}</div></div>`; }
+ return `<div class="app phoneapp">${body}${phoneTabs()}</div>`;};
+S.contact=r=>{const c=P.phone.contacts.find(x=>x.id===r.id);if(!c){route.pop();return S.phone();}
+ return `<div class="app grp phoneapp">${navbar('',{back:'연락처',right:ed('편집','editContact',c.id)})}<div class="scroll">
+ <div class="ct-hero">${avatar(c.name,c.avatar,96)}<b>${esc(c.name)}</b></div>
+ <div class="ct-acts"><span><i>${SV.kChats}</i>메시지</span><button data-a="callContact" data-id="${c.id}"><i>${SV.phone.replace('width="34" height="34"','width="22" height="22"')}</i>통화</button><span><i>${SV.compose}</i>메일</span></div>
+ <div class="grpl"><button class="gr ct-num" data-a="callContact" data-id="${c.id}"><small>휴대전화</small>${esc(c.number||'번호 없음')}</button></div>
+ ${editMode?`<p class="edhint">이 사람에게 전화를 걸면 ${c.answer?'받아요. 받은 뒤 아래 대사가 자막처럼 나와요.':'받지 않아요.'}${c.answer&&c.lines?`\n\n${esc(c.lines)}`:''}</p>`:''}</div></div>`;};
+
+/* kakaotalk-style messenger */
+function kav(name,img,size){return `<span class="kav" style="width:${size}px;height:${size}px;font-size:${Math.round(size*.4)}px;${img?'':`background:${GRADS[hashIdx(name)%GRADS.length]}`}">${img?`<img src="${esc(src(img))}" alt="">`:esc((name||'?').trim().charAt(0))}</span>`;}
+S.talk=()=>{const tab=T.talkTab||'chats', me=P.talk.me, ts=P.talk.threads;
+ const head=(title,right)=>`<div class="k-head"><b>${title}</b><div class="nr">${right}</div></div>`;
+ let body;
+ if(tab==='friends') body=`${head('친구',ed('내 프로필','editKMe'))}<div class="scroll k-scroll">
+  <button class="k-me" data-a="go" data-s="kprofile" data-id="me">${kav(me.name,me.avatar,60)}<div><b>${esc(me.name)}</b>${me.status?`<span>${esc(me.status)}</span>`:''}</div></button>
+  <div class="k-sec">친구 ${ts.length}</div>
+  ${ts.map(t=>`<button class="k-fr" data-a="go" data-s="kprofile" data-id="${t.id}">${kav(t.name,t.avatar,44)}<div><b>${esc(t.name)}</b>${t.status?`<span>${esc(t.status)}</span>`:''}</div></button>`).join('')}</div>`;
+ else body=`${head('채팅',ed('+ 채팅','addKThread'))}<div class="scroll k-scroll">
+  ${ts.map(t=>{const l=lastMsg(t);return `<button class="k-row" data-a="go" data-s="kthread" data-id="${t.id}">${kav(t.name,t.avatar,48)}<div class="k-mid"><b>${esc(t.name)}</b><span>${esc(l?(l.text||(l.img?'사진을 보냈습니다.':'')):'')}</span></div><div class="k-r"><em>${esc(l?.time||'')}</em>${!editMode&&T.unread[t.id]?`<span class="k-badge">${T.unread[t.id]}</span>`:''}</div></button>`;}).join('')||`<div class="empty-in"><b>채팅 없음</b>${editMode?'오른쪽 위 + 채팅으로 새 채팅을 만드세요.':''}</div>`}</div>`;
+ return `<div class="app talkapp">${body}<div class="tabbar k-tabs"><button class="${tab==='friends'?'on':''}" data-a="talkTab" data-v="friends">${SV.kFriends}<span>친구</span></button><button class="${tab==='chats'?'on':''}" data-a="talkTab" data-v="chats">${SV.kChats}<span>채팅</span></button></div></div>`;};
+S.kprofile=r=>{const isMe=r.id==='me', t=isMe?null:thread(r.id), o=isMe?P.talk.me:t; if(!o){route.pop();return S.talk();}
+ const ph=SV.phone.replace('width="34" height="34"','width="26" height="26"');
+ return `<div class="kprof" style="background:${esc(o.bg?bgCss(o.bg):GRADS[hashIdx(o.name)%GRADS.length])}"><div class="kprof-dim"></div><div class="kprof-in">
+ <div class="kprof-top"><button class="nb" data-a="back" aria-label="닫기">✕</button>${editMode?`<button class="nb ed" data-a="${isMe?'editKMe':'editThread'}" data-id="${isMe?'':t.id}">편집</button>`:''}</div>
+ <div class="kprof-mid">${kav(o.name,o.avatar,100)}<b>${esc(o.name)}</b>${o.status?`<span>${esc(o.status)}</span>`:''}</div>
+ <div class="kprof-acts">${isMe?`<div><i>${SV.kChats}</i><small>나와의 채팅</small></div><div><i>${SV.compose}</i><small>프로필 편집</small></div>`:`<button data-a="kOpenChat" data-id="${t.id}"><i>${SV.kChats}</i><small>1:1 채팅</small></button><div><i>${ph}</i><small>통화하기</small></div>`}</div></div></div>`;};
+function kChatLog(t){
+ const arr=allMsgs(t), tempStart=t.msgs.length; let h='';
+ arr.forEach((m,i)=>{
+  const saved=i<tempStart;
+  if(m.date){h+=`<button class="kdate" ${editMode&&saved?`data-a="editMsg" data-t="${t.id}" data-id="${m.id}"`:''}>${esc(m.text)}</button>`;return;}
+  const pv=arr[i-1], nx=arr[i+1];
+  const first=!pv||pv.date||pv.me!==m.me, last=!nx||nx.date||nx.me!==m.me||(nx.time||'')!==(m.time||'');
+  const unread=m.me&&!saved&&!T.readSet.has(m.id);
+  const bub=`<button class="kb ${m.img&&!m.text?'pic':''} ${first?'first':''} ${editMode?'ed-on':''}" ${editMode&&saved?`data-a="editMsg" data-t="${t.id}" data-id="${m.id}"`:''}>${m.img?`<img src="${esc(src(m.img))}" alt="">`:''}${m.text?`<span>${esc(m.text)}</span>`:''}</button>`;
+  const meta=`<span class="kmeta">${unread?'<i>1</i>':''}${last&&m.time?`<small>${esc(m.time)}</small>`:''}</span>`;
+  if(m.me) h+=`<div class="krow me">${meta}${bub}</div>`;
+  else h+=`<div class="krow them ${first?'first':''}">${first?kav(t.name,t.avatar,38):'<span class="kav-sp"></span>'}<div class="kcol">${first?`<span class="kname">${esc(t.name)}</span>`:''}<div class="kline">${bub}${meta}</div></div></div>`;
+ });
+ if(!editMode&&T.typing===t.id) h+=`<div class="krow them first">${kav(t.name,t.avatar,38)}<div class="kcol"><span class="kname">${esc(t.name)}</span><div class="typing"><i></i><i></i><i></i></div></div></div>`;
+ if(!editMode&&(T.chats[t.id]||[]).length) h+=`<div class="tempnote">이 대화는 저장되지 않아요 <button data-a="clearTemp" data-id="${t.id}">지우기</button></div>`;
+ if(editMode&&!t.msgs.length) h+='<div class="empty-in">아래 입력창에서 나 또는 상대를 고르고 메시지를 추가하세요.</div>';
+ return h;
+}
+S.kthread=r=>{const t=thread(r.id);if(!t){route.pop();return S.talk();}T.unread[t.id]=0;
+ return `<div class="app kchat"><div class="k-chead"><div><button class="nb" data-a="back" aria-label="뒤로">${SV.chev}</button></div><b ${editMode?`data-a="editThread" data-id="${t.id}"`:''}>${esc(t.name)}${editMode?' ✎':''}</b><div class="nr">${editMode?`<button class="nb ed" data-a="rules" data-id="${t.id}">자동 답장</button>`:`<span class="k-ic" aria-hidden="true">${SV.search}</span>`}</div></div>
+ <div class="scroll chatlog kchatlog" id="chatlog">${kChatLog(t)}</div>
+ <form class="composer kcomposer" data-form="send" data-id="${t.id}">${editMode?`<button type="button" class="plus" data-a="chatPlus" data-id="${t.id}" aria-label="사진이나 날짜 추가">+</button><div class="who"><button type="button" data-a="sendAs" data-v="me" class="${T.sendAs==='me'?'on':''}">나</button><button type="button" data-a="sendAs" data-v="them" class="${T.sendAs==='them'?'on':''}">상대</button></div>`:'<span class="kplus" aria-hidden="true">+</span>'}
+ <input id="chatin" autocomplete="off" aria-label="메시지" placeholder="${editMode?(T.sendAs==='me'?'내가 보낸 메시지':'상대가 보낸 메시지'):'메시지 입력'}"><button class="ksend" aria-label="보내기">${SV.up}</button></form></div>`;};
+
+/* calendar */
+const pad2=n=>String(n).padStart(2,'0');
+const isoOf=(y,m,d)=>`${y}-${pad2(m)}-${pad2(d)}`;
+const DOW=['일','월','화','수','목','금','토'];
+function calToday(){ const m=/(\d{1,2})\s*월\s*(\d{1,2})\s*일/.exec(P.lock.date||''); const y=Math.round(+P.lock.year)||2026; return m?isoOf(y,+m[1],+m[2]):isoOf(y,1,1); }
+function parseIso(s){ const m=/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||''); return m?{y:+m[1],m:+m[2],d:+m[3]}:null; }
+function dayLabel(iso){ const p=parseIso(iso); if(!p) return iso||''; const w=new Date(p.y,p.m-1,p.d).getDay(); return `${p.m}월 ${p.d}일 ${DOW[w]}요일`; }
+function calGlyph(){ const p=P?parseIso(calToday()):null; const d=p?p.d:18; return `<svg viewBox="0 0 60 60"><rect x="0" y="0" width="60" height="19" fill="#ff3b30"/><circle cx="19" cy="9.5" r="2.6" fill="#fff"/><circle cx="41" cy="9.5" r="2.6" fill="#fff"/><text x="30" y="46" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif" font-size="27" font-weight="600" fill="#1c1c1e">${d}</text></svg>`; }
+const evSort=(a,b)=>String(a.date).localeCompare(String(b.date))||String(a.time||'').localeCompare(String(b.time||''));
+S.calendar=()=>{
+ const today=calToday(), tp=parseIso(today);
+ if(!T.calY){T.calY=tp.y;T.calM=tp.m;}
+ const y=T.calY, m=T.calM, sel=T.calSel||today;
+ const first=new Date(y,m-1,1).getDay(), days=new Date(y,m,0).getDate();
+ const evs=P.calendar.events; const has=new Set(evs.map(e=>e.date));
+ let cells=''; for(let i=0;i<first;i++) cells+='<span></span>';
+ for(let d=1;d<=days;d++){ const iso=isoOf(y,m,d), w=(first+d-1)%7; cells+=`<button class="cd ${iso===today?'today':''} ${iso===sel?'sel':''} ${w===0||w===6?'we':''}" data-a="calSel" data-v="${iso}"><span>${d}</span>${has.has(iso)?'<i></i>':''}</button>`; }
+ const list=evs.filter(e=>e.date===sel).sort(evSort);
+ return `<div class="app calapp"><div class="nav"><div><span class="cal-y">${y}년</span></div><div class="nt"></div><div class="nr">${ed('+ 일정','addEvent')}</div></div>
+ <div class="cal-top"><h1 class="cal-m">${m}월</h1><div class="cal-arrows"><button data-a="calMove" data-v="-1" aria-label="이전 달">${SV.chev}</button><button data-a="calMove" data-v="1" aria-label="다음 달" style="transform:scaleX(-1)">${SV.chev}</button></div></div>
+ <div class="cal-dow">${DOW.map((d,i)=>`<span class="${i===0||i===6?'we':''}">${d}</span>`).join('')}</div>
+ <div class="cal-grid">${cells}</div>
+ <div class="scroll cal-list"><div class="cal-day">${esc(dayLabel(sel))}${sel===today?' · 오늘':''}</div>
+ ${list.map(e=>`<button class="ev" data-a="go" data-s="event" data-id="${e.id}"><i style="background:${esc(e.color||'#007aff')}"></i><div><b>${esc(e.title||'새로운 이벤트')}</b>${e.place?`<span>${esc(e.place)}</span>`:''}</div><em>${esc(e.time||'')}</em></button>`).join('')||'<p class="ev-none">일정 없음</p>'}
+ ${editMode?`<p class="edhint" style="margin-top:12px">날짜를 누른 뒤 오른쪽 위 ‘+ 일정’을 누르면 그날에 일정이 생겨요.</p>`:''}</div>
+ <div class="btool"><button data-a="calToday" style="color:#ff3b30;justify-self:start">오늘</button><span></span><span></span></div></div>`;
+};
+S.event=r=>{const e=P.calendar.events.find(x=>x.id===r.id);if(!e){route.pop();return S.calendar();}const p=parseIso(e.date);
+ return `<div class="app grp calapp">${navbar('',{back:p?`${p.m}월`:'캘린더',right:ed('편집','editEvent',e.id)})}<div class="scroll"><div class="ev-doc">
+ <h2>${esc(e.title||'새로운 이벤트')}</h2>${e.place?`<p class="ev-place">${esc(e.place)}</p>`:''}
+ <p class="ev-when">${p?`${p.y}년 ${esc(dayLabel(e.date))}`:esc(e.date)}<br>${esc(e.time||'')}</p></div>
+ <div class="grpl"><div class="gr"><span class="ev-dot" style="background:${esc(e.color||'#007aff')}"></span>캘린더<span class="gv">${esc(P.owner)}</span></div></div>
+ ${e.note?`<div class="grpl"><div class="gr ev-note"><small>메모</small>${esc(e.note)}</div></div>`:''}</div></div>`;};
+
 /* settings */
-S.settings=()=>{const a=editMode;const row=(ic,label,val,act)=>`<button class="gr" ${a&&act?`data-a="${act}"`:''}><span class="gi" style="background:${ic}"></span>${label}<span class="gv">${esc(val)}${a&&act?' '+SV.chevR:''}</span></button>`;
+S.settings=()=>{const a=editMode;const GI={lock:'<svg viewBox="0 0 30 30"><rect x="9" y="13.5" width="12" height="9" rx="2" fill="#fff"/><path d="M11.5 13.5v-2.2a3.5 3.5 0 0 1 7 0v2.2" fill="none" stroke="#fff" stroke-width="2"/></svg>',home:'<svg viewBox="0 0 30 30">'+[[8,8],[16,8],[8,16],[16,16]].map(([x,y])=>`<rect x="${x}" y="${y}" width="6" height="6" rx="1.6" fill="#fff"/>`).join('')+'</svg>',ant:'<svg viewBox="0 0 30 30"><path d="M15 13v9" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><circle cx="15" cy="11" r="2.2" fill="#fff"/><path d="M10.5 6.5a7 7 0 0 0 0 9M19.5 6.5a7 7 0 0 1 0 9" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>',bat:'<svg viewBox="0 0 30 30"><rect x="6.5" y="10.5" width="15" height="9" rx="2.2" fill="none" stroke="#fff" stroke-width="1.8"/><rect x="8.5" y="12.5" width="8" height="5" rx="1" fill="#fff"/><path d="M23.5 13.5v3" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>',inf:'<svg viewBox="0 0 30 30"><path d="M15 13.5v7" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><circle cx="15" cy="9.5" r="1.6" fill="#fff"/></svg>'};
+ const row=(ic,label,val,act,g)=>`<button class="gr" ${a&&act?`data-a="${act}"`:''}><span class="gi" style="background:${ic}">${g?GI[g]:''}</span>${label}<span class="gv">${esc(val)}${a&&act?' '+SV.chevR:''}</span></button>`;
  return `<div class="app grp">${navbar(appLabel('settings'),{large:true})}<div class="scroll">
  ${a?'<p class="edhint">편집 모드에서는 여기서 잠금 화면, 홈 화면, 상태 표시줄, 휴대폰 이름을 바꿀 수 있어요.</p>':''}
  <div class="grpl"><button class="prow" ${a?'data-a="editInfo"':''}>${avatar(P.owner,P.sns.avatar,58)}<div><b>${esc(P.owner)}</b><span>${esc(P.name)}</span></div></button></div>
  <div class="gh">배경화면</div><div class="grpl"><div class="wallpair"><button style="background:${esc(bgCss(P.lock.wall))}" ${a?'data-a="editLock"':''} aria-label="잠금 화면">${esc(P.lock.time)}</button><button style="background:${esc(bgCss(P.home.wall))}" ${a?'data-a="editHome"':''} aria-label="홈 화면"></button></div></div>
- <div class="grpl">${row('#ff9500','잠금 화면',P.lock.passcode?'암호 사용':'암호 없음','editLock')}${row('#5856d6','홈 화면',P.home.apps.filter(x=>!x.hidden).length+'개 앱','editHome')}${row('#34c759','통신사',P.status.carrier,'editInfo')}${row('#ff3b30','배터리',P.status.battery+'%','editInfo')}</div>
- <div class="grpl">${row('#8e8e93','이 휴대폰의 이름',P.name,'editInfo')}</div></div></div>`;};
+ <div class="grpl">${row('#ff9500','잠금 화면',P.lock.passcode?'암호 사용':'암호 없음','editLock','lock')}${row('#5856d6','홈 화면',P.home.apps.filter(x=>!x.hidden).length+'개 앱','editHome','home')}${row('#34c759','통신사',P.status.carrier,'editInfo','ant')}${row('#34c759','배터리',P.status.battery+'%','editInfo','bat')}</div>
+ <div class="grpl">${row('#8e8e93','이 휴대폰의 이름',P.name,'editInfo','inf')}</div></div></div>`;};
 
 /* custom */
 S.custom=r=>{const a=P.home.apps.find(x=>x.id===r.id);if(!a){route.pop();return S.home();}const pg=a.page||{};
  return `<div class="app">${navbar(pg.title||a.label,{large:true,right:ed('편집','editApp',a.id)})}<div class="scroll"><div class="cpage">${pg.img?`<img src="${esc(src(pg.img))}" alt="">`:''}<p>${esc(pg.body||(editMode?'편집 버튼으로 이 앱에 보여 줄 내용을 쓰세요.':''))}</p></div></div></div>`;};
 
 /* ---------------- rendering ---------------- */
-const DARKBAR=new Set(['messages','thread','photos','notes','note','web','webpage','websearch','music','sns','post','mail','mailbox','mailitem','diary','entry','settings','custom']);
+const DARKBAR=new Set(['phone','contact','talk','kthread','calendar','event','album','photo','messages','thread','photos','notes','note','web','webpage','websearch','music','sns','post','mail','mailbox','mailitem','diary','entry','settings','custom']);
+let lastNav={s:null,depth:0};
+function navAnim(r2){
+ if(T.call&&!editMode){lastNav={s:'call',depth:route.length};return '';}
+ const s=r2.s, depth=route.length, prev=lastNav; lastNav={s,depth};
+ if(!prev.s||prev.s===s&&prev.depth===depth) return '';
+ if(prev.s==='lock'||prev.s==='pass') return s==='home'?'unlock':'';
+ if(s==='home') return prev.s==='home'?'':'close';
+ if(s==='lock'||s==='pass') return '';
+ if(prev.s==='home') return 'open';
+ if(depth>prev.depth) return 'push';
+ if(depth<prev.depth) return 'pop';
+ return '';
+}
+document.addEventListener('scroll',e=>{const t=e.target;if(t&&t.classList&&t.classList.contains('scroll')&&t.id!=='chatlog'){const app=t.closest('.app');if(app)app.classList.toggle('scrolled',t.scrollTop>40);}},true);
 function renderScreen(){
  const sc=$('#screen'); if(!sc||!P) return;
  const r=cur(); const fn=(T.call&&!editMode)?S.call:(S[r.s]||S.home);
  const prevScroll=sc.querySelector('.scroll:not(#chatlog)')?.scrollTop||0; const prevKey=sc.dataset.key;
  const html=fn(r); const r2=cur();
- const dark=!(T.call&&!editMode)&&DARKBAR.has(r2.s)||((r2.s==='lock'||r2.s==='pass')&&P.lock.clock==='dark'&&r2.s==='lock')||(r2.s==='home'&&P.home.ink);
- sc.innerHTML=`<div class="sb ${dark?'dk':''}"><span>${r2.s==='lock'||r2.s==='pass'?esc(P.status.carrier):esc(P.lock.time)}</span><span class="sb-r">${r2.s==='lock'||r2.s==='pass'?'':`<span class="sb-car">${esc(P.status.carrier)}</span>`}${SV.sig}${SV.wifi}<span class="bat"><i style="width:${Math.max(4,Math.min(100,+P.status.battery||0))}%"></i></span></span></div><div class="island"></div><div class="view">${html}</div><button class="homebar ${dark?'dk':''}" data-a="home" aria-label="홈으로"><i></i></button>`;
- const key=JSON.stringify(r2); sc.dataset.key=key;
- if(key===prevKey){const s=sc.querySelector('.scroll:not(#chatlog)');if(s)s.scrollTop=prevScroll;}
+ const anim=navAnim(r2);
+ const dark=!(T.call&&!editMode)&&DARKBAR.has(r2.s)&&!(r2.s==='photo'&&T.pvDark)||((r2.s==='lock'||r2.s==='pass')&&P.lock.clock==='dark'&&r2.s==='lock')||(r2.s==='home'&&P.home.ink);
+ sc.innerHTML=`<div class="sb ${dark?'dk':''}"><span>${r2.s==='lock'||r2.s==='pass'?esc(P.status.carrier):esc(P.lock.time)}</span><span class="sb-r">${r2.s==='lock'||r2.s==='pass'?'':`<span class="sb-car">${esc(P.status.carrier)}</span>`}${SV.sig}${SV.wifi}<span class="bat"><i style="width:${Math.max(4,Math.min(100,+P.status.battery||0))}%"></i></span></span></div><div class="island"></div><div class="view ${anim?'anim-'+anim:''}" ${anim&&T.origin&&(anim==='open'||anim==='close')?`style="transform-origin:${T.origin}"`:''}>${html}</div><button class="homebar ${dark?'dk':''}" data-a="home" aria-label="홈으로"><i></i></button>`;
+ const key=JSON.stringify(r2)+(r2.s==='photos'?(T.photoTab||''):''); sc.dataset.key=key;
+ sc.querySelectorAll('.app').forEach(app=>{const lt=app.querySelector(':scope>.lt'),scr=app.querySelector(':scope>.scroll');if(lt&&scr){scr.prepend(lt);app.classList.add('has-lt');}});
+ const s0=sc.querySelector('.scroll:not(#chatlog)');
+ if(s0){ if(key===prevKey) s0.scrollTop=prevScroll; else if(s0.classList.contains('lib')) s0.scrollTop=s0.scrollHeight; const app=s0.closest('.app'); if(app) app.classList.toggle('scrolled',s0.scrollTop>40); }
  const cl=$('#chatlog'); if(cl) cl.scrollTop=cl.scrollHeight;
 }
 function renderRail(){
+ if(P){ if(editMode) stopSchedule(); else ensureSchedule(); }
  const n=$('#railname'); if(n&&P) n.innerHTML=`<b>${esc(P.name)}</b><span>${esc(P.owner)}</span>`;
  const seg=$('#segwrap'); if(seg) seg.innerHTML=editable()?`<div class="seg"><button data-a="mode" data-v="view" class="${editMode?'':'on'}" aria-pressed="${!editMode}">보기</button><button data-a="mode" data-v="edit" class="${editMode?'on':''}" aria-pressed="${editMode}">편집</button></div>`:'';
  const h=$('#railhint'); if(h) h.innerHTML=editMode
@@ -977,7 +1482,7 @@ function renderStudio(){
   ${VIEWER?'':STANDALONE?'<button class="btn" data-a="exportLink">보기 전용 링크 만들기</button><button class="btn ghost" data-a="exportPhone">백업 파일 내보내기</button>':'<button class="btn" data-a="copyLink">링크 복사</button>'}
   <button class="btn ghost" data-a="lockNow">화면 잠그기</button>
   <p class="hint" id="railhint"></p><div class="savestate" id="savestate" aria-live="polite">${isLocal(PID)?'이 브라우저에만 저장돼요':''}</div>
- </aside><div class="stage" id="stage"><div class="pbox" id="pbox"><div class="phone" id="phone"><div class="screen" id="screen"></div></div></div></div></div>`;
+ </aside><div class="stage" id="stage"><div class="pbox" id="pbox"><div class="phone" id="phone"><div class="screen" id="screen"></div><div class="bnr-layer" id="bnr"></div></div></div></div></div>`;
  renderRail(); renderScreen(); fit();
 }
 function fit(){const st=$('#stage'),pb=$('#pbox'),ph=$('#phone');document.body.classList.toggle('fullphone',window.innerWidth<=560);document.body.classList.toggle('viewer',!!VIEWER);if(!st||!pb)return;const full=document.body.classList.contains('fullphone');const W=full?390:414,H=full?844:868;const s=Math.max(.3,Math.min(st.clientWidth/W,st.clientHeight/H,full?2:1.1));ph.style.transform=`scale(${s})`;pb.style.width=W*s+'px';pb.style.height=H*s+'px';}
@@ -1011,7 +1516,7 @@ let DEMO=null;
 const readHash=()=>{const h=decodeURIComponent(location.hash.slice(1));return /^[A-Za-z0-9_-]{1,40}$/.test(h)?h:'';};
 function openPhoneId(id){
  if(unsubPhone){unsubPhone();unsubPhone=null;}
- stopCallTimers(); PID=id||null; P=null; T=freshTemp(); route=[{s:'lock'}]; editMode=false; lastSaved=''; pendingRemote=null; closeSheets();
+ stopCallTimers(); stopAudio(); stopSchedule(); PID=id||null; P=null; T=freshTemp(); route=[{s:'lock'}]; editMode=false; lastSaved=''; pendingRemote=null; closeSheets();
  if(!PID){ document.body.classList.remove('in-phone'); render(); return; }
  if(isLocal(PID)){ const d=LOCALP[PID]; if(!d){ document.body.classList.remove('in-phone'); $('#app').innerHTML=`<main class="lib"><div class="empty"><b>이 휴대폰은 여기에 없어요</b>방문자가 만든 휴대폰은 만든 사람의 브라우저에만 저장돼서, 다른 기기나 다른 사람은 열 수 없어요.<br><br><button class="btn" data-a="toList">휴대폰 서랍으로</button></div></main>`; return; } P=normalize(clone(d)); render(); return; }
  if(!DB){ if(READY){ document.body.classList.remove('in-phone'); $('#app').innerHTML=`<main class="lib"><div class="empty"><b>로그인해야 볼 수 있어요</b>이 휴대폰은 로그인한 상태로 열어야 보여요.<br><br><button class="btn" data-a="toList">휴대폰 서랍으로</button></div></main>`; } else render(); return; }
@@ -1036,10 +1541,11 @@ function goHash(id){ try{ if(id) location.hash=id; else history.replaceState(nul
 /* ---------------- navigation inside phone ---------------- */
 function push(r){route.push(r);renderScreen();}
 function openApp(a){
- const map={messages:'messages',photos:'photos',notes:'notes',web:'web',music:'music',sns:'sns',mail:'mail',diary:'diary',settings:'settings'};
+ const map={camera:'camera',phone:'phone',talk:'talk',calendar:'calendar',messages:'messages',photos:'photos',notes:'notes',web:'web',music:'music',sns:'sns',mail:'mail',diary:'diary',settings:'settings'};
  route=[{s:'home'},a.type==='custom'?{s:'custom',id:a.id}:{s:map[a.type]||'home'}];renderScreen();
 }
-function unlock(){ if(editMode||!P.lock.passcode){route=[{s:'home'}];} else {T.pin='';route=[{s:'pass'}];} renderScreen(); }
+function afterUnlock(){ route=[{s:'home'}]; if(T.afterUnlock){ openNotif(T.afterUnlock); T.afterUnlock=null; } T.lockNotifs=[]; }
+function unlock(){ if(editMode||!P.lock.passcode){afterUnlock();} else {T.pin='';route=[{s:'pass'}];} renderScreen(); }
 
 /* ---------------- auto reply ---------------- */
 function matchRule(t,text){
@@ -1052,15 +1558,15 @@ function sendTemp(t,text){
  const arr=T.chats[t.id]||(T.chats[t.id]=[]);const time=timeLabel(P.lock.time);
  const my={id:uid(),me:true,text,img:'',time};arr.push(my);renderChatLog();
  const r=matchRule(t,text); if(!r) return;
- if(r.kind==='call'){ const w=Math.max(.4,Number(r.delay)||1.5)*1000; setTimeout(()=>{T.readUpTo[t.id]=my.id;if(cur().id===t.id)renderChatLog();},Math.min(900,w/2)); setTimeout(()=>{ if(P&&!editMode) startCall(t,r); },w); return; }
+ if(r.kind==='call'){ const w=Math.max(.4,Number(r.delay)||1.5)*1000; setTimeout(()=>{T.readUpTo[t.id]=my.id;markRead(t.id);if(cur().id===t.id)renderChatLog();},Math.min(900,w/2)); setTimeout(()=>{ if(P&&!editMode) startCall(t,r); },w); return; }
  const lines=String(r.reply).split('\n').filter(s=>s.trim());
  let wait=Math.max(.4,Number(r.delay)||1.5)*1000;
- setTimeout(()=>{T.readUpTo[t.id]=my.id;T.typing=t.id;if(cur().id===t.id)renderChatLog();},Math.min(900,wait/2));
+ setTimeout(()=>{T.readUpTo[t.id]=my.id;markRead(t.id);T.typing=t.id;if(cur().id===t.id)renderChatLog();},Math.min(900,wait/2));
  lines.forEach((line,i)=>{
   setTimeout(()=>{
    (T.chats[t.id]||(T.chats[t.id]=[])).push({id:uid(),me:false,text:line,img:'',time});
    T.typing=i<lines.length-1?t.id:null; if(i===lines.length-1) delete T.readUpTo[t.id];
-   if(cur().s==='thread'&&cur().id===t.id) renderChatLog(); else if(cur().s==='messages') renderScreen();
+   deliver(t,line,time);
   },wait+i*Math.max(700,Math.min(2200,line.length*70)));
  });
 }
@@ -1071,15 +1577,28 @@ function tone(f,at,d){const c=ringCtx,o=c.createOscillator(),g=c.createGain();o.
 function ringStart(){ try{ ringCtx=ringCtx||new (window.AudioContext||window.webkitAudioContext)(); if(ringCtx.resume) ringCtx.resume(); const play=()=>{const n=ringCtx.currentTime;[0,.28,.9,1.18].forEach((dt,i)=>tone(i%2?659:880,n+dt,.22));}; play(); ringTimer=setInterval(play,3000);}catch(e){} }
 function ringStop(){ clearInterval(ringTimer); ringTimer=null; }
 function stopCallTimers(){ ringStop(); clearInterval(callTick); callTick=null; const c=T.call; if(c){ clearTimeout(c.timeout); (c.timeouts||[]).forEach(clearTimeout); } }
+function ringbackStart(){ try{ ringCtx=ringCtx||new (window.AudioContext||window.webkitAudioContext)(); if(ringCtx.resume) ringCtx.resume(); const play=()=>{const n=ringCtx.currentTime;tone(440,n,1.6);tone(480,n,1.6);}; play(); ringTimer=setInterval(play,4000);}catch(e){} }
+function contactFor(name){ return (P.phone.contacts||[]).find(c=>c.name===name); }
+function startOutgoing(o){
+ if(T.call) return;
+ if(editMode){toast('전화는 보기 모드에서 걸 수 있어요.');return;}
+ const c=T.call={who:{name:o.name||o.number||'알 수 없음',avatar:o.avatar||'',number:o.number||''},out:true,state:'dialing',lines:String(o.lines||'').split('\n').filter(x=>x.trim()),t0:0,shown:0,hung:false,timeouts:[]};
+ ringbackStart(); renderScreen();
+ if(o.answer){ c.timeout=setTimeout(()=>{ if(T.call===c){ ringStop(); goLive(c); } },3800); }
+ else { c.timeout=setTimeout(()=>{ if(T.call!==c) return; ringStop(); c.noAnswer=true; renderScreen(); c.timeouts.push(setTimeout(()=>{ if(T.call===c) endCall('noanswer'); },1800)); },8000); }
+}
 function startCall(t,r){
  if(T.call) return;
- T.call={tid:t.id,state:'ring',lines:String(r.reply||'').split('\n').filter(x=>x.trim()),t0:0,shown:0,hung:false,timeouts:[]};
+ T.call={tid:t.id,who:{name:t.name,avatar:t.avatar||''},state:'ring',lines:String(r.reply||'').split('\n').filter(x=>x.trim()),t0:0,shown:0,hung:false,timeouts:[]};
  T.call.timeout=setTimeout(()=>endCall('missed'),25000);
  ringStart(); renderScreen();
 }
 function acceptCall(){
  const c=T.call; if(!c||c.state!=='ring') return;
- ringStop(); clearTimeout(c.timeout); c.state='live'; c.t0=Date.now(); renderScreen();
+ ringStop(); clearTimeout(c.timeout); goLive(c);
+}
+function goLive(c){
+ c.state='live'; c.t0=Date.now(); renderScreen();
  let at=1500;
  c.lines.forEach((l,i)=>{ c.timeouts.push(setTimeout(()=>{ if(T.call!==c) return; c.shown=i+1; updateCall(); },at)); at+=Math.max(1900,Math.min(4800,l.length*120)); });
  if(c.lines.length) c.timeouts.push(setTimeout(()=>{ if(T.call!==c) return; c.hung=true; updateCall(); c.timeouts.push(setTimeout(()=>{ if(T.call===c) endCall('done'); },1600)); },at+800));
@@ -1089,8 +1608,10 @@ function endCall(kind){
  const c=T.call; if(!c) return;
  stopCallTimers(); T.call=null;
  const time=timeLabel(P.lock.time); const dur=c.t0?Math.round((Date.now()-c.t0)/1000):0;
- (T.chats[c.tid]||(T.chats[c.tid]=[])).push({id:uid(),date:true,text:c.state==='live'?`음성 통화 ${mmss(dur)} · ${time}`:(kind==='declined'?`거절한 전화 · ${time}`:`부재중 전화 · ${time}`)});
+ if(c.tid) (T.chats[c.tid]||(T.chats[c.tid]=[])).push({id:uid(),date:true,text:c.state==='live'?`음성 통화 ${mmss(dur)} · ${time}`:(kind==='declined'?`거절한 전화 · ${time}`:`부재중 전화 · ${time}`)});
+ T.recents.unshift({id:uid(),name:c.who.name,number:c.who.number||'',kind:c.out?'out':(c.state==='live'?'in':'missed'),when:time,dur:c.state==='live'?mmss(dur):'',temp:true});
  renderScreen();
+ if(!c.out&&c.state!=='live'){ T.missedNew=(T.missedNew||0)+1; if(kind==='missed') notify({app:'phone',title:c.who.name,body:'부재중 전화',go:[{s:'phone'}]}); }
 }
 function callSubs(c){
  const ls=c.lines.slice(0,c.shown).slice(-3);
@@ -1102,28 +1623,87 @@ function updateCall(){
  const sb=$('#callsubs'); if(sb) sb.innerHTML=callSubs(c);
 }
 S.call=()=>{
- const c=T.call; const t=thread(c.tid)||{name:'알 수 없음',avatar:''};
+ const c=T.call; const t=c.who||thread(c.tid)||{name:'알 수 없음',avatar:''};
  const bg=t.avatar?`center/cover no-repeat url("${src(t.avatar)}")`:GRADS[hashIdx(t.name)%GRADS.length];
  const down=SV.phone.replace('<svg ','<svg style="transform:rotate(135deg)" ');
  if(c.state==='ring') return `<div class="call" style="background:${esc(bg)}"><div class="call-dim"></div><div class="call-in">
   <div class="call-top"><span class="call-sub">휴대전화</span><b class="call-name">${esc(t.name)}</b></div>
   <div class="call-mid">${avatar(t.name,t.avatar,120)}</div>
   <div class="call-btns"><div><button class="cbtn red" data-a="declineCall" aria-label="거절">${down}</button><span>거절</span></div><div><button class="cbtn green ringing" data-a="acceptCall" aria-label="수락">${SV.phone}</button><span>수락</span></div></div></div></div>`;
+ const live=c.state==='live';
  return `<div class="call" style="background:${esc(bg)}"><div class="call-dim live"></div><div class="call-in">
-  <div class="call-top"><b class="call-name sm">${esc(t.name)}</b><span class="call-sub" id="calltime">${c.hung?'통화 종료':mmss((Date.now()-c.t0)/1000)}</span></div>
-  <div class="call-subs" id="callsubs" aria-live="polite">${callSubs(c)}</div>
+  <div class="call-top"><b class="call-name sm">${esc(t.name)}</b><span class="call-sub" id="calltime">${live?(c.hung?'통화 종료':mmss((Date.now()-c.t0)/1000)):(c.noAnswer?'응답 없음':'호출 중…')}</span></div>
+  <div class="call-subs" id="callsubs" aria-live="polite">${live?callSubs(c):''}</div>
   <div class="call-grid">${['소리 끔','키패드','스피커','통화 추가','영상','연락처'].map(x=>`<div><span class="cg"></span><small>${x}</small></div>`).join('')}</div>
   <div class="call-btns one"><div><button class="cbtn red" data-a="endCall" aria-label="통화 종료">${down}</button></div></div></div></div>`;
 };
 
+/* ---------------- incoming messages & notifications ---------------- */
+function viewingThread(t){const r=cur();return (r.s==='thread'||r.s==='kthread')&&r.id===t.id&&!T.call;}
+function deliver(t,text,time){
+ if(!P||editMode) return;
+ (T.chats[t.id]||(T.chats[t.id]=[])).push({id:uid(),me:false,text,img:'',time:time||timeLabel(P.lock.time)});
+ if(viewingThread(t)){ renderChatLog(); return; }
+ T.unread[t.id]=(T.unread[t.id]||0)+1;
+ const app=isTalk(t)?'talk':'messages';
+ notify({app,title:t.name,body:text,go:[{s:app},{s:app==='talk'?'kthread':'thread',id:t.id}]});
+ const s=cur().s; if(['messages','talk','home'].includes(s)&&!T.call) renderScreen();
+ else if((s==='thread'||s==='kthread')&&!T.call) renderChatLog();
+}
+function chime(){ try{ ringCtx=ringCtx||new (window.AudioContext||window.webkitAudioContext)(); if(ringCtx.resume) ringCtx.resume(); const n=ringCtx.currentTime; tone(1318,n,.12); tone(1760,n+.12,.2);}catch(e){} }
+function appMini(type,size,cls){ const a=P.home.apps.find(x=>x.type===type); const def=APPDEF[type]||APPDEF.custom; const inner=a&&a.icon?`<img src="${esc(src(a.icon))}" alt="">`:(type==='calendar'?calGlyph():(GLYPH[type]||GLYPH.custom)); return `<span class="mini-ic ${cls||''}" style="width:${size}px;height:${size}px;border-radius:${Math.round(size*.24)}px;background:${esc(bgCss(a?a.bg:def.bg,def.bg))}">${inner}</span>`; }
+let bnrTimer=null;
+function hideBanner(){ const b=document.querySelector('#bnr .bnr'); if(!b) return; b.classList.add('out'); setTimeout(()=>{ if(b.parentNode) b.remove(); },320); }
+function notify(n){
+ if(!P||editMode||T.call) return;
+ n.id=uid(); n.time='지금'; T.nmap[n.id]=n;
+ const s=cur().s;
+ if(s==='lock'||s==='pass'){ T.lockNotifs.unshift(n); if(s==='lock') renderScreen(); chime(); return; }
+ const layer=$('#bnr'); if(!layer) return;
+ clearTimeout(bnrTimer);
+ layer.innerHTML=`<button class="bnr" data-a="bnrOpen" data-n="${n.id}">${appMini(n.app,38,'bnr-ic')}<div class="bnr-m"><div class="bnr-top"><b>${esc(n.title)}</b><span>지금</span></div><div class="bnr-b">${esc(n.body)}</div></div></button>`;
+ chime(); bnrTimer=setTimeout(hideBanner,4800);
+}
+function openNotif(n){ if(!n) return; if(n.app==='phone') T.phoneTab='recents'; route=[{s:'home'},...n.go]; }
+function badgeCount(type){ if(!P||editMode) return 0; if(type==='phone') return T.missedNew||0; const ts=type==='messages'?P.messages.threads:type==='talk'?P.talk.threads:null; return ts?ts.reduce((a,t)=>a+(T.unread[t.id]||0),0):0; }
+const badgeHtml=type=>{const n=badgeCount(type);return n?`<i class="badge">${n>99?'99+':n}</i>`:'';};
+function ensureSchedule(){
+ if(T.schedOn||!P||editMode) return; T.schedOn=true; T.schedTimers=[];
+ [...P.messages.threads,...P.talk.threads].forEach(t=>(t.incoming||[]).forEach(m=>{
+  String(m.text||'').split('\n').filter(x=>x.trim()).forEach((line,i)=>{ const key=t.id+':'+m.id+':'+i; if(T.schedDone.has(key)) return;
+   T.schedTimers.push(setTimeout(()=>{ if(editMode||!P||T.schedDone.has(key)) return; T.schedDone.add(key); deliver(t,line); }, Math.max(0,+m.after||0)*1000+i*1400)); });
+ }));
+}
+function stopSchedule(){ (T.schedTimers||[]).forEach(clearTimeout); T.schedTimers=[]; T.schedOn=false; }
+
 /* ---------------- music ticker ---------------- */
+const AUD=new Audio(); AUD.preload='metadata';
+const hasAudio=c=>!!(STANDALONE&&c&&c.audio);
+function trackDur(c){ if(hasAudio(c)&&AUD.dataset.id===c.id&&isFinite(AUD.duration)&&AUD.duration>0) return AUD.duration; return durSec(c.len); }
+function syncAudio(){
+ const c=curTrack();
+ if(T.playing&&hasAudio(c)){
+  if(AUD.dataset.id!==c.id||AUD.dataset.src!==c.audio){ AUD.src=c.audio; AUD.dataset.id=c.id; AUD.dataset.src=c.audio; try{AUD.currentTime=T.pos||0;}catch(e){} }
+  const pr=AUD.play(); if(pr&&pr.catch) pr.catch(err=>{ if(err&&err.name==='AbortError') return; T.playing=false; toast('음악을 재생하지 못했어요. 음악 파일 주소를 확인해 주세요.'); renderScreen(); });
+ } else { AUD.pause(); }
+}
+function stopAudio(){ AUD.pause(); AUD.removeAttribute('src'); delete AUD.dataset.id; delete AUD.dataset.src; try{AUD.load();}catch(e){} }
+AUD.addEventListener('ended',()=>{ if(T.playing) skip(1); });
+AUD.addEventListener('loadedmetadata',()=>{ if(cur()&&cur().s==='player') updateProgress(); });
+function updateProgress(){
+ const c=curTrack(); if(!c) return; const d=trackDur(c);
+ const f=$('#pfill'); if(!f) return; f.style.width=Math.min(100,T.pos/d*100)+'%'; $('#pcur').textContent=mmss(T.pos);
+ const rem=f.closest('.player').querySelector('.ptimes span:last-child'); if(rem) rem.textContent='-'+mmss(Math.max(0,d-T.pos));
+}
 setInterval(()=>{
- if(!T.playing||!P) return; const c=curTrack(); if(!c) return; const d=durSec(c.len);
- T.pos+=1; if(T.pos>=d){skip(1);return;}
- const f=$('#pfill');if(f){f.style.width=Math.min(100,T.pos/d*100)+'%';$('#pcur').textContent=mmss(T.pos);const rem=f.closest('.player').querySelector('.ptimes span:last-child');if(rem)rem.textContent='-'+mmss(d-T.pos);}
-},1000);
+ if(!T.playing||!P) return; const c=curTrack(); if(!c) return;
+ if(hasAudio(c)){ T.pos=AUD.currentTime||0; }
+ else { T.pos+=1; if(T.pos>=durSec(c.len)){skip(1);return;} }
+ updateProgress();
+},500);
 function setNow(id){ if(editMode){P.music.now=id;touch();} else T.now=id; T.pos=0; }
-function skip(dir){const tr=P.music.tracks;if(!tr.length)return;const i=tr.findIndex(x=>x.id===curTrack().id);setNow(tr[(i+dir+tr.length)%tr.length].id);renderScreen();}
+function skip(dir){const tr=P.music.tracks;if(!tr.length)return;const i=tr.findIndex(x=>x.id===curTrack().id);setNow(tr[(i+dir+tr.length)%tr.length].id);syncAudio();renderScreen();}
+function fixUrl(u){ const m=/^https:\/\/github\.com\/([^/]+)\/([^/]+)\/(?:blob|raw)\/[^/]+\/(.+)$/.exec(u); return m?`https://${m[1].toLowerCase()}.github.io/${m[2]}/${m[3]}`:u; }
 
 /* ---------------- editors ---------------- */
 const E={};
@@ -1132,9 +1712,10 @@ E.lock=()=>openForm({title:'잠금 화면',values:{...P.lock},fields:[
   {k:'date',l:'날짜',ph:'10월 18일 일요일'},
   {k:'wall',l:'잠금 화면 배경',t:'wall'},
   {k:'clock',l:'시계 글자색',t:'select',o:[['light','흰색'],['dark','검은색']]},
+  {k:'year',l:'연도',t:'number',min:1900,max:2200,h:'캘린더 앱에서 오늘로 표시할 연도예요. 월과 일은 위 날짜에서 가져와요.'},
   {k:'passcode',l:'잠금 비밀번호 (숫자 4~6자리)',num:true,max:6,ph:'비워 두면 비밀번호 없이 열려요',h:'보기 모드에서 휴대폰을 열 때 이 번호를 눌러야 해요.'}],
  extra:[{label:()=>`잠금 화면 알림 (${P.lock.notifs.length}개)`,fn:E.notifs}],
- onSave(v){ if(v.passcode&&!/^\d{4,6}$/.test(v.passcode)){toast('비밀번호는 숫자 4~6자리로 정해 주세요.');return false;} Object.assign(P.lock,{time:v.time,date:v.date,wall:v.wall,clock:v.clock,passcode:v.passcode}); }});
+ onSave(v){ if(v.passcode&&!/^\d{4,6}$/.test(v.passcode)){toast('비밀번호는 숫자 4~6자리로 정해 주세요.');return false;} Object.assign(P.lock,{time:v.time,date:v.date,wall:v.wall,clock:v.clock,passcode:v.passcode,year:Math.round(v.year)||2026}); T.calY=null; }});
 E.notifs=()=>openList({title:'잠금 화면 알림',get:()=>P.lock.notifs,label:n=>n.title||n.app,sub:n=>n.body,addLabel:'알림 추가',
  onEdit(i){const n=P.lock.notifs[i];openForm({title:'알림',values:n,fields:[{k:'app',l:'앱 이름',ph:'메시지'},{k:'title',l:'제목',ph:'보낸 사람'},{k:'body',l:'내용',t:'textarea',rows:3},{k:'time',l:'시간',ph:'지금, 5분 전'}],onSave(v){Object.assign(n,v);},onDelete(){P.lock.notifs.splice(i,1);}});},
  onAdd(){const n={id:uid(),app:'메시지',title:'',body:'',time:'지금'};openForm({title:'새 알림',values:n,autofocus:true,fields:[{k:'app',l:'앱 이름',ph:'메시지'},{k:'title',l:'제목',ph:'보낸 사람'},{k:'body',l:'내용',t:'textarea',rows:3},{k:'time',l:'시간',ph:'지금, 5분 전'}],onSave(v){Object.assign(n,v);P.lock.notifs.push(n);}});}});
@@ -1162,11 +1743,25 @@ E.app=a=>{const custom=a.type==='custom';const pg=a.page||{};
 E.info=()=>openForm({title:'휴대폰 정보',values:{name:P.name,owner:P.owner,carrier:P.status.carrier,battery:P.status.battery},fields:[
   {k:'name',l:'휴대폰 이름',h:'휴대폰 서랍에 이 이름으로 보여요.'},{k:'owner',l:'주인 (캐릭터 이름)'},{k:'carrier',l:'통신사',ph:'OC'},{k:'battery',l:'배터리 (%)',t:'number',min:1,max:100}],
  onSave(v){P.name=v.name||'이름 없는 휴대폰';P.owner=v.owner;P.status.carrier=v.carrier;P.status.battery=Math.max(1,Math.min(100,v.battery||1));}});
-E.thread=t=>openForm({title:'대화 상대',values:t,fields:[{k:'name',l:'이름'},{k:'avatar',l:'프로필 사진',t:'image'},{k:'pinned',l:'맨 위에 고정',t:'toggle'},
+E.thread=t=>openForm({title:isTalk(t)?'친구':'대화 상대',values:t,fields:[{k:'name',l:'이름'},{k:'avatar',l:'프로필 사진',t:'image'},...(isTalk(t)?[{k:'status',l:'상태 메시지'},{k:'bg',l:'프로필 배경',t:'wall'}]:[{k:'pinned',l:'맨 위에 고정',t:'toggle'}]),
   {k:'fallback',l:'기본 답장',t:'textarea',rows:2,h:'어떤 자동 답장 규칙에도 맞지 않을 때 이 말로 답해요. 비워 두면 답장하지 않아요. 줄을 바꾸면 말풍선이 나뉘어요.'}],
- extra:[{label:()=>`자동 답장 규칙 (${(t.rules||[]).length}개)`,fn:()=>E.rules(t)}],
- onSave(v){Object.assign(t,{name:v.name||'이름 없음',avatar:v.avatar,pinned:v.pinned,fallback:v.fallback});},
- onDelete(){P.messages.threads=P.messages.threads.filter(x=>x!==t);route=[{s:'home'},{s:'messages'}];},deleteLabel:'대화 지우기'});
+ extra:[{label:()=>`자동 답장 규칙 (${(t.rules||[]).length}개)`,fn:()=>E.rules(t)},{label:()=>`먼저 오는 메시지 (${(t.incoming||[]).length}개)`,fn:()=>E.incoming(t)}],
+ onSave(v){Object.assign(t,{name:v.name||'이름 없음',avatar:v.avatar,fallback:v.fallback});if(isTalk(t))Object.assign(t,{status:v.status||'',bg:v.bg||''});else t.pinned=v.pinned;},
+ onDelete(){if(isTalk(t)){P.talk.threads=P.talk.threads.filter(x=>x!==t);route=[{s:'home'},{s:'talk'}];}else{P.messages.threads=P.messages.threads.filter(x=>x!==t);route=[{s:'home'},{s:'messages'}];}},deleteLabel:'대화 지우기'});
+E.incoming=t=>{t.incoming=t.incoming||[];const fields=[{k:'text',l:'메시지',t:'textarea',rows:3,h:'줄을 바꾸면 말풍선이 따로 와요.'},{k:'after',l:'휴대폰을 열고 몇 초 뒤에 올까요',t:'number',min:0,max:600}];
+ openList({title:`${t.name}에게서 오는 메시지`,get:()=>t.incoming,label:m=>String(m.text||'').split('\n')[0],sub:m=>`휴대폰을 열고 ${m.after||0}초 뒤`,addLabel:'메시지 추가',
+  note:'보기 모드로 휴대폰을 열면, 정해 둔 시간이 지난 뒤 이 메시지가 와요. 다른 화면에 있으면 위에서 알림이 내려오고, 잠금 화면이면 잠금 화면 알림으로 쌓여요. 받은 메시지는 저장되지 않아요.',
+  onEdit(i){const m=t.incoming[i];openForm({title:'먼저 오는 메시지',values:m,fields,onSave(v){if(!String(v.text).trim()){toast('메시지를 적어 주세요.');return false;}Object.assign(m,{text:v.text,after:Math.max(0,v.after||0)});},onDelete(){t.incoming.splice(i,1);}});},
+  onAdd(){const m={id:uid(),text:'',after:5};openForm({title:'새 메시지',values:m,autofocus:true,fields,onSave(v){if(!String(v.text).trim()){toast('메시지를 적어 주세요.');return false;}Object.assign(m,{text:v.text,after:Math.max(0,v.after||0)});t.incoming.push(m);}});}});};
+E.camera=()=>openForm({title:'카메라 화면',values:{...P.camera,zoom:P.camera.zoom||100,px:P.camera.px??50,py:P.camera.py??50},note:'카메라 앱을 열면 이 사진이 카메라 화면에 보여요. 셔터를 누르면 그 모습 그대로 사진 앱에 들어가요.\n편집 모드에서 찍은 사진은 저장되고, 보기 모드에서 찍은 사진은 저장되지 않아요.',fields:[
+  {k:'img',l:'카메라에 보일 사진',t:'image'},
+  {k:'adj',t:'adjprev',src:'img',boxes:[['cam','카메라 화면']]},
+  {k:'zoom',l:'크기',t:'range',min:100,max:300,step:5,unit:'%',def:100},
+  {k:'px',l:'가로 위치',t:'range',min:0,max:100,unit:'%'},
+  {k:'py',l:'세로 위치',t:'range',min:0,max:100,unit:'%'},
+  {k:'front',l:'셀카 화면 사진 (선택)',t:'image',h:'카메라 전환 버튼을 누르면 이 사진으로 바뀌어요.'}],
+ onSave(v){Object.assign(P.camera,{img:v.img,front:v.front,zoom:v.zoom||100,px:v.px,py:v.py});}});
+E.kme=()=>openForm({title:'내 프로필',values:P.talk.me,fields:[{k:'name',l:'이름'},{k:'avatar',l:'프로필 사진',t:'image'},{k:'status',l:'상태 메시지'},{k:'bg',l:'프로필 배경',t:'wall'}],onSave(v){Object.assign(P.talk.me,{name:v.name,avatar:v.avatar,status:v.status,bg:v.bg});}});
 E.rules=t=>{t.rules=t.rules||[];openList({title:`${t.name} 자동 답장`,get:()=>t.rules,label:r=>r.keys,sub:r=>(r.kind==='call'?'전화 → ':'→ ')+String(r.reply).replace(/\n/g,' / '),addLabel:'규칙 추가',
  note:'보기 모드에서 이 사람에게 메시지를 보내면, 위에서부터 차례로 키워드를 확인해 처음 맞는 규칙으로 답장해요.',
  onEdit(i){E.rule(t,i);},onAdd(){t.rules.push({id:uid(),keys:'',exact:false,reply:'',delay:2});E.rule(t,t.rules.length-1,true);}});};
@@ -1182,8 +1777,8 @@ E.rule=(t,i,isNew)=>{const r=t.rules[i];openForm({title:'자동 답장 규칙',v
 E.msg=(t,m)=>{ if(m.date) return openForm({title:'날짜 구분선',values:m,fields:[{k:'text',l:'표시할 글자',ph:'오늘, 10월 18일 (토)'}],onSave(v){m.text=v.text;},onDelete(){t.msgs=t.msgs.filter(x=>x!==m);}});
  openForm({title:'메시지',values:{...m,me:m.me?'me':'them'},fields:[{k:'me',l:'보낸 사람',t:'select',o:[['me','나'],['them',t.name]]},{k:'text',l:'내용',t:'textarea',rows:3},{k:'img',l:'사진',t:'image'},{k:'time',l:'시간',ph:'오후 3:12'}],
   onSave(v){Object.assign(m,{me:v.me==='me',text:v.text,img:v.img,time:v.time});},onDelete(){t.msgs=t.msgs.filter(x=>x!==m);}});};
-E.photo=p=>openForm({title:'사진',values:p,fields:[{k:'src',l:'사진',t:'image'},{k:'caption',l:'설명'},{k:'date',l:'날짜',ph:'2026년 10월 3일'},{k:'fav',l:'즐겨찾기',t:'toggle'}],
- onSave(v){Object.assign(p,v);},onDelete(){P.photos.items=P.photos.items.filter(x=>x!==p);route.pop();}});
+E.photo=p=>openForm({title:'사진',values:{...p,album:p.album||'',...adjVals(p)},fields:[{k:'src',l:'사진',t:'image'},...adjFields('src'),{k:'caption',l:'설명'},{k:'date',l:'날짜',ph:'2026년 10월 3일 오후 4:12'},{k:'album',l:'앨범',ph:'예: 여행, 유하',h:'같은 이름을 적은 사진끼리 앨범으로 묶여요. 비워 두면 앨범에 넣지 않아요.'},{k:'fav',l:'즐겨찾기',t:'toggle'}],
+ onSave(v){Object.assign(p,{src:v.src,caption:v.caption,date:v.date,album:String(v.album||'').trim(),fav:v.fav,fit:v.fit,zoom:v.zoom,px:v.px,py:v.py});},onDelete(){P.photos.items=P.photos.items.filter(x=>x!==p);if(cur().s==='photo')route.pop();}});
 E.note=n=>openForm({title:'메모 정보',values:n,fields:[{k:'date',l:'날짜',ph:'어제, 10월 2일'},{k:'pinned',l:'맨 위에 고정',t:'toggle'}],
  onSave(v){Object.assign(n,{date:v.date,pinned:v.pinned});},onDelete(){P.notes.items=P.notes.items.filter(x=>x!==n);route.pop();},deleteLabel:'메모 지우기'});
 E.page=(p,isNew)=>openForm({title:isNew?'새 페이지':'페이지',values:p,fields:[{k:'title',l:'페이지 제목'},{k:'url',l:'주소',ph:'blog.oc/my-page'},{k:'img',l:'대표 사진',t:'image'},{k:'body',l:'내용',t:'textarea',rows:7},{k:'fav',l:'즐겨찾기에 보이기',t:'toggle'}],
@@ -1191,8 +1786,19 @@ E.page=(p,isNew)=>openForm({title:isNew?'새 페이지':'페이지',values:p,fie
 E.history=()=>openList({title:'최근 검색',get:()=>P.web.history,label:h=>h.text,addLabel:'검색어 추가',note:'위에 있는 것이 가장 최근 검색이에요.',
  onEdit(i){const h=P.web.history[i];openForm({title:'검색어',values:h,fields:[{k:'text',l:'검색어'}],onSave(v){h.text=v.text;},onDelete(){P.web.history.splice(i,1);}});},
  onAdd(){const h={id:uid(),text:''};openForm({title:'새 검색어',values:h,autofocus:true,fields:[{k:'text',l:'검색어'}],onSave(v){if(!v.text.trim())return false;h.text=v.text;P.web.history.unshift(h);}});}});
-E.track=(tr,isNew)=>openForm({title:isNew?'새 노래':'노래',values:tr,fields:[{k:'title',l:'제목'},{k:'artist',l:'가수'},{k:'cover',l:'앨범 커버',t:'image'},{k:'len',l:'길이',ph:'3:24'}],
- onSave(v){Object.assign(tr,v);if(isNew&&!P.music.tracks.includes(tr))P.music.tracks.push(tr);},onDelete:isNew?null:()=>{P.music.tracks=P.music.tracks.filter(x=>x!==tr);if(P.music.now===tr.id)P.music.now=P.music.tracks[0]?.id||'';route=[{s:'home'},{s:'music'}];}});
+E.track=(tr,isNew)=>openForm({title:isNew?'새 노래':'노래',values:tr,fields:[{k:'title',l:'제목'},{k:'artist',l:'가수'},{k:'cover',l:'앨범 커버',t:'image'},{k:'len',l:'길이',ph:'3:24',h:'음악 파일을 넣으면 실제 길이로 바뀌어요.'},...(STANDALONE?[{k:'audio',l:'음악 파일 주소 (선택)',ph:'https://아이디.github.io/저장소/song.mp3',h:'GitHub 저장소에 mp3 파일을 올린 뒤 그 주소를 넣으면, 재생할 때 실제로 소리가 나와요. 비워 두면 화면만 재생돼요.'}]:[])],
+ onSave(v){ if(v.audio!=null){ v.audio=fixUrl(String(v.audio).trim()); if(v.audio&&!/^https:\/\/\S+$/.test(v.audio)){toast('음악 파일 주소는 https://로 시작해야 해요.');return false;} } Object.assign(tr,v); if(curTrack()&&curTrack().id===tr.id){stopAudio();T.playing=false;}if(isNew&&!P.music.tracks.includes(tr))P.music.tracks.push(tr);},onDelete:isNew?null:()=>{P.music.tracks=P.music.tracks.filter(x=>x!==tr);if(P.music.now===tr.id)P.music.now=P.music.tracks[0]?.id||'';route=[{s:'home'},{s:'music'}];}});
+E.event=(e,isNew)=>openForm({title:isNew?'새 일정':'일정',values:e,autofocus:isNew,fields:[{k:'title',l:'제목'},{k:'date',l:'날짜',t:'date'},{k:'time',l:'시간',ph:'오후 3:00, 하루 종일'},{k:'place',l:'장소'},{k:'color',l:'색',t:'select',o:[['#ff3b30','빨강'],['#ff9500','주황'],['#ffcc00','노랑'],['#34c759','초록'],['#007aff','파랑'],['#af52de','보라'],['#a2845e','갈색']]},{k:'note',l:'메모',t:'textarea',rows:3}],
+ onSave(v){ if(!parseIso(v.date)){toast('날짜를 골라 주세요.');return false;} Object.assign(e,v); if(isNew&&!P.calendar.events.includes(e))P.calendar.events.push(e); const p=parseIso(e.date); T.calY=p.y;T.calM=p.m;T.calSel=e.date; },
+ onDelete:isNew?null:()=>{P.calendar.events=P.calendar.events.filter(x=>x!==e);if(cur().s==='event')route.pop();}});
+E.contact=(c,isNew)=>openForm({title:isNew?'새 연락처':'연락처',values:{...c,answer:c.answer?'yes':'no'},autofocus:isNew,fields:[{k:'name',l:'이름'},{k:'number',l:'전화번호',ph:'010-1234-5678'},{k:'avatar',l:'사진',t:'image'},
+  {k:'answer',l:'전화를 걸면',t:'select',o:[['yes','받아요'],['no','받지 않아요']]},
+  {k:'lines',l:'통화할 때 하는 말',t:'textarea',rows:4,h:'전화를 받으면 한 줄씩 자막처럼 나오고, 마지막 줄 뒤에 상대가 끊어요. 비워 두면 내가 끊을 때까지 이어져요.'}],
+ onSave(v){ if(!String(v.name).trim()){toast('이름을 적어 주세요.');return false;} Object.assign(c,{name:v.name.trim(),number:v.number,avatar:v.avatar,answer:v.answer==='yes',lines:v.lines}); if(isNew&&!P.phone.contacts.includes(c))P.phone.contacts.push(c); },
+ onDelete:isNew?null:()=>{P.phone.contacts=P.phone.contacts.filter(x=>x!==c);if(cur().s==='contact')route.pop();},deleteLabel:'연락처 지우기'});
+E.recents=()=>openList({title:'최근 기록',get:()=>P.phone.recents,label:r=>r.name,sub:r=>`${KIND[r.kind]||''} · ${r.when||''}${r.dur?' · '+r.dur:''}`,addLabel:'기록 추가',note:'위에 있는 것이 가장 최근 기록이에요. 보기 모드에서 통화하면 생기는 기록은 저장되지 않고 이 목록 위에 잠깐 붙어요.',
+ onEdit(i){const r=P.phone.recents[i];openForm({title:'통화 기록',values:r,fields:[{k:'name',l:'이름'},{k:'kind',l:'종류',t:'select',o:[['in','수신'],['out','발신'],['missed','부재중']]},{k:'when',l:'언제',ph:'오전 9:12, 어제, 월요일'},{k:'dur',l:'통화 시간',ph:'3:12'}],onSave(v){Object.assign(r,v);},onDelete(){P.phone.recents.splice(i,1);}});},
+ onAdd(){const r={id:uid(),name:'',kind:'in',when:'오늘',dur:''};openForm({title:'새 통화 기록',values:r,autofocus:true,fields:[{k:'name',l:'이름'},{k:'kind',l:'종류',t:'select',o:[['in','수신'],['out','발신'],['missed','부재중']]},{k:'when',l:'언제',ph:'오전 9:12, 어제, 월요일'},{k:'dur',l:'통화 시간',ph:'3:12'}],onSave(v){if(!String(v.name).trim())return false;Object.assign(r,v);P.phone.recents.unshift(r);}});}});
 E.sns=()=>openForm({title:'SNS 프로필',values:P.sns,fields:[{k:'username',l:'아이디'},{k:'name',l:'이름'},{k:'avatar',l:'프로필 사진',t:'image'},{k:'bio',l:'소개',t:'textarea',rows:3},{k:'followers',l:'팔로워 수'},{k:'following',l:'팔로잉 수'}],
  onSave(v){Object.assign(P.sns,{username:v.username,name:v.name,avatar:v.avatar,bio:v.bio,followers:v.followers,following:v.following});}});
 E.post=(p,isNew)=>openForm({title:isNew?'새 게시물':'게시물',values:p,fields:[{k:'img',l:'사진',t:'image'},{k:'caption',l:'글',t:'textarea',rows:3},{k:'likes',l:'좋아요 수',t:'number',min:0},{k:'date',l:'올린 때',ph:'3일 전'},{k:'comments',l:'댓글',t:'textarea',rows:4,h:'한 줄에 하나씩 ‘아이디: 댓글’ 형식으로 적어요.'}],
@@ -1210,12 +1816,44 @@ const A={
  dupPhone:async el=>{const src0=(LIST||[]).find(p=>p.id===el.dataset.id);if(!src0||!DB)return;const {id,...rest}=src0;const d=clone(rest);d.name=(d.name||'')+' 사본';d.createdAt=d.updatedAt=Date.now();try{await DB.doc('phones/p'+uid()).set(d);toast('복제했어요.');}catch(e){toast('복제하지 못했어요.');}},
  delPhone:el=>{const p=(LIST||[]).find(x=>x.id===el.dataset.id);if(!p)return;openConfirm('휴대폰 지우기',`‘${p.name}’을(를) 지울까요? 안의 메시지, 메모, 일기가 모두 사라지고 되돌릴 수 없어요.`,'지우기',async()=>{closeSheets();try{await DB.doc('phones/'+p.id).delete();toast('지웠어요.');}catch(e){toast('지우지 못했어요.');}});},
  acceptCall:()=>acceptCall(),
+ camZoom:el=>{T.camZoom=+el.dataset.v;renderScreen();},
+ camMode:el=>{T.camMode=el.dataset.v;renderScreen();},
+ camFlip:()=>{T.camFront=!T.camFront;renderScreen();const vf=$('#camvf');if(vf)vf.classList.add('flip');},
+ editCamera:()=>E.camera(),
+ camThumb:()=>{const list=photoList('all');const last=list[list.length-1];if(!last)return;T.pvDark=false;T.pvInfo=false;T.photoTab='library';route=[{s:'home'},{s:'photos'},{s:'photo',id:last.id,ctx:'all'}];renderScreen();},
+ camShoot:()=>{const C=P.camera, img=(T.camFront&&C.front)?C.front:C.img; const fl=$('#camflash'); if(fl){fl.classList.remove('go');void fl.offsetWidth;fl.classList.add('go');} shutterSound();
+  if(!img){toast('카메라에 보일 사진이 아직 없어요.');return;}
+  const shot={id:uid(),src:img,caption:'',date:P.lock.date,fav:false,album:'',fit:'cover',zoom:Math.round((+C.zoom||100)*(T.camZoom||1)),px:C.px??50,py:C.py??50};
+  if(editMode){P.photos.items.push(shot);touch();toast('사진 앱에 저장했어요.');} else T.shots.push(shot);
+  setTimeout(()=>{const th=document.querySelector('.cam-thumb');if(th){th.innerHTML=photoThumbImg(shot);th.classList.remove('pop');void th.offsetWidth;th.classList.add('pop');}},220);},
+ bnrOpen:el=>{const n=T.nmap[el.dataset.n];clearTimeout(bnrTimer);hideBanner();if(!n||T.call)return;openNotif(n);renderScreen();},
+ unlockTo:el=>{T.afterUnlock=T.nmap[el.dataset.n]||null;unlock();},
+ phoneTab:el=>{T.phoneTab=el.dataset.v;renderScreen();},
+ dial:el=>{if((T.dial||'').length<20){T.dial=(T.dial||'')+el.dataset.v;renderScreen();}},
+ dialDel:()=>{T.dial=(T.dial||'').slice(0,-1);renderScreen();},
+ dialCall:()=>{const d=T.dial||'';if(!d){toast('번호를 눌러 주세요.');return;}const c=(P.phone.contacts||[]).find(x=>digits(x.number)&&digits(x.number)===digits(d));startOutgoing(c||{name:d,number:d,answer:false});},
+ callContact:el=>{const c=P.phone.contacts.find(x=>x.id===el.dataset.id);if(c)startOutgoing(c);},
+ callName:el=>{const n=el.dataset.v;const c=contactFor(n);if(c)startOutgoing(c);else{const t=[...P.messages.threads,...P.talk.threads].find(x=>x.name===n);startOutgoing({name:n,avatar:t&&t.avatar,answer:false});}},
+ addContact:()=>E.contact({id:uid(),name:'',number:'',avatar:'',answer:true,lines:''},true),
+ editContact:el=>E.contact(P.phone.contacts.find(x=>x.id===el.dataset.id)),
+ editRecents:()=>E.recents(),
  declineCall:()=>endCall('declined'),
  endCall:()=>endCall('done'),
- exportLink:async el=>{ const id=el.dataset.id||PID; const d=(PID===id&&P)?P:LOCALP[id]; if(!d) return; try{ await makeViewLink(d); }catch(e){ toast('링크를 만들지 못했어요.'); } },
+ exportLink:async el=>{ const id=el.dataset.id||PID; const d=(PID===id&&P)?P:LOCALP[id]; if(!d) return; try{ await makeViewLink(d,id); }catch(e){ toast('링크를 만들지 못했어요.'); } },
+ shortFile:()=>{
+  const sh=SHEETS[SHEETS.length-1]; const slug=String($('#slug').value||'').trim().toLowerCase();
+  if(!slugOk(slug)){toast('영어 소문자, 숫자, 하이픈(-)으로 1~40자를 적어 주세요.');return;}
+  const d=clone(sh.phone); delete d.shareSlug;
+  saveBlob(new Blob([JSON.stringify({app:'ocphone',v:1,phone:d})],{type:'application/json'}),slug+'.json');
+  if(sh.phoneId===PID&&P){P.shareSlug=slug;touch();} else if(LOCALP[sh.phoneId]){LOCALP[sh.phoneId].shareSlug=slug;persistLocal();}
+  sh.short=location.href.split('#')[0].split('?')[0]+'?p='+slug;
+  $('#shortout').innerHTML=`<ol class="steps"><li>방금 받은 <b>${esc(slug)}.json</b> 파일을 GitHub 저장소에서 <b>Add file → Upload files</b>로 올리고 <b>Commit changes</b>를 눌러요. index.html과 같은 곳에 올리면 돼요.</li><li>1~2분 뒤 아래 링크가 열려요.</li></ol><div class="fld"><label for="shortbox">짧은 링크</label><input type="text" class="linkbox" id="shortbox" readonly value="${esc(sh.short)}"></div><button class="btn primary row" style="justify-content:center" data-a="copyShort">짧은 링크 복사</button>`;
+  toast(slug+'.json 파일을 받았어요.');
+ },
+ copyShort:()=>{ const sh=SHEETS[SHEETS.length-1]; const box=$('#shortbox'); try{ navigator.clipboard.writeText(sh.short).then(()=>toast('링크를 복사했어요.'),()=>{box.select();toast('링크를 길게 눌러 복사해 주세요.');}); }catch(e){ box.select(); toast('링크를 길게 눌러 복사해 주세요.'); } },
  copyView:()=>{ const s=SHEETS[SHEETS.length-1]; const box=$('#linkbox'); try{ navigator.clipboard.writeText(s.url).then(()=>toast('링크를 복사했어요.'),()=>{box.select();toast('링크를 길게 눌러 복사해 주세요.');}); }catch(e){ box.select(); toast('링크를 길게 눌러 복사해 주세요.'); } },
  shareView:()=>{ const s=SHEETS[SHEETS.length-1]; navigator.share({title:s.name||'OC Phone',url:s.url}).catch(()=>{}); },
- urlImg:el=>{ const k=el.dataset.k; const parent=SHEETS[SHEETS.length-1]; openForm({title:'사진 주소로 넣기',autofocus:true,note:'인터넷에 올라가 있는 사진의 주소를 넣어요. 이렇게 넣은 사진은 보기 전용 링크에서도 보여요.\n예: GitHub 저장소에 사진을 올린 뒤 그 사진의 주소',values:{u:''},fields:[{k:'u',l:'사진 주소 (https://로 시작)',ph:'https://아이디.github.io/저장소/photo.jpg'}],onSave(v){ const u=String(v.u||'').trim(); if(!/^https:\/\/\S+$/.test(u)){toast('https://로 시작하는 주소를 넣어 주세요.');return false;} parent.st[k]=u; }}); },
+ urlImg:el=>{ const k=el.dataset.k; const parent=SHEETS[SHEETS.length-1]; openForm({title:'사진 주소로 넣기',autofocus:true,note:'인터넷에 올라가 있는 사진의 주소를 넣어요. 이렇게 넣은 사진은 보기 전용 링크에서도 보여요.\n예: GitHub 저장소에 사진을 올린 뒤 그 사진의 주소',values:{u:''},fields:[{k:'u',l:'사진 주소 (https://로 시작)',ph:'https://아이디.github.io/저장소/photo.jpg'}],onSave(v){ const u=fixUrl(String(v.u||'').trim()); if(!/^https:\/\/\S+$/.test(u)){toast('https://로 시작하는 주소를 넣어 주세요.');return false;} parent.st[k]=u; }}); },
  exportPhone:el=>{ const id=el.dataset.id||PID; const d=(PID===id&&P)?P:LOCALP[id]; if(!d) return; const name=String(d.name||'phone').replace(/[\\/:*?"<>|]/g,'_'); const blob=new Blob([JSON.stringify({app:'ocphone',v:1,phone:d})],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name+'.ocphone.json'; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},1500); toast('휴대폰 파일을 내보냈어요.'); },
  importPhone:()=>{ const f=$('#jsonpick'); f.onchange=async()=>{ const file=f.files[0]; f.value=''; if(!file) return; try{ const o=JSON.parse(await file.text()); const d=o&&o.phone?o.phone:o; if(!d||!d.lock||!d.home) throw 0; d.updatedAt=Date.now(); LOCALP['L'+uid()]=normalize(d); if(!persistLocal()) return; renderList(); toast('휴대폰을 불러왔어요.'); }catch(e){ toast('휴대폰 파일이 아니에요. ‘백업’으로 받은 .json 파일을 골라 주세요. 보기 전용 링크는 불러올 수 없어요.'); } }; f.click(); },
  newLocal:()=>{ const id='L'+uid(); LOCALP[id]=template(); persistLocal(); goHash(id); editMode=true; renderRail(); renderScreen(); toast('새 휴대폰을 만들었어요. 지금은 편집 모드예요.'); },
@@ -1230,12 +1868,21 @@ const A={
  cancelPass:()=>{T.pin='';route=[{s:'lock'}];renderScreen();},
  delPin:()=>{T.pin=T.pin.slice(0,-1);renderScreen();},
  pin:el=>{const code=P.lock.passcode||'';T.pin+=el.dataset.v;T.shake=false;
-  if(T.pin.length>=code.length){ if(T.pin===code){T.pin='';route=[{s:'home'}];renderScreen();} else {T.shake=true;renderScreen();setTimeout(()=>{T.pin='';T.shake=false;renderScreen();},450);} }
+  if(T.pin.length>=code.length){ if(T.pin===code){T.pin='';afterUnlock();renderScreen();} else {T.shake=true;renderScreen();setTimeout(()=>{T.pin='';T.shake=false;renderScreen();},450);} }
   else renderScreen();},
- open:el=>{const a=P.home.apps.find(x=>x.id===el.dataset.id);if(a)openApp(a);},
+ open:el=>{const a=P.home.apps.find(x=>x.id===el.dataset.id);if(!a)return;const sc=$('#screen');if(sc){const sr=sc.getBoundingClientRect(),er=el.querySelector('.ic').getBoundingClientRect(),k=sr.width/390;T.origin=`${Math.round((er.left+er.width/2-sr.left)/k)}px ${Math.round((er.top+er.height/2-sr.top)/k)}px`;}openApp(a);},
  back:()=>{ if(route.length>1) route.pop(); else route=[{s:'home'}]; if(route.length===1&&route[0].s!=='home'&&route[0].s!=='lock') route=[{s:'home'}]; renderScreen(); },
- go:el=>push({s:el.dataset.s,id:el.dataset.id}),
+ go:el=>{const r={s:el.dataset.s,id:el.dataset.id};if(el.dataset.ctx)r.ctx=el.dataset.ctx;if(r.s==='photo'){T.pvDark=false;T.pvInfo=false;}push(r);},
+ photoTab:el=>{T.photoTab=el.dataset.v;renderScreen();},
+ pvTap:()=>{if(T.swiped){T.swiped=false;return;}T.pvDark=!T.pvDark;renderScreen();},
+ pvInfo:()=>{T.pvInfo=!T.pvInfo;renderScreen();},
+ pvJump:el=>{cur().id=el.dataset.id;renderScreen();},
+ delPhoto:el=>{const p=P.photos.items.find(x=>x.id===el.dataset.id);if(!p)return;openConfirm('사진 지우기','이 사진을 지울까요? 되돌릴 수 없어요.','지우기',()=>{const list=photoList(cur().ctx);const i=list.indexOf(p);P.photos.items=P.photos.items.filter(x=>x!==p);const rest=photoList(cur().ctx);if(rest.length)cur().id=rest[Math.min(i,rest.length-1)].id;else route.pop();closeSheets();commit();});},
  /* messages */
+ addKThread:()=>{const t={id:uid(),name:'',avatar:'',bg:'',status:'',pinned:false,fallback:'',msgs:[],rules:[]};openForm({title:'새 친구와 채팅',values:t,autofocus:true,fields:[{k:'name',l:'이름'},{k:'avatar',l:'프로필 사진',t:'image'},{k:'status',l:'상태 메시지'}],onSave(v){Object.assign(t,{name:v.name||'이름 없음',avatar:v.avatar,status:v.status});P.talk.threads.unshift(t);route.push({s:'kthread',id:t.id});}});},
+ editKMe:()=>E.kme(),
+ talkTab:el=>{T.talkTab=el.dataset.v;renderScreen();},
+ kOpenChat:el=>{route.pop();push({s:'kthread',id:el.dataset.id});},
  addThread:()=>{const t={id:uid(),name:'',avatar:'',pinned:false,fallback:'',msgs:[],rules:[]};openForm({title:'새 대화',values:t,autofocus:true,fields:[{k:'name',l:'이름'},{k:'avatar',l:'프로필 사진',t:'image'}],onSave(v){t.name=v.name||'이름 없음';t.avatar=v.avatar;P.messages.threads.unshift(t);route.push({s:'thread',id:t.id});}});},
  editThread:el=>E.thread(thread(el.dataset.id)),
  rules:el=>E.rules(thread(el.dataset.id)),
@@ -1244,11 +1891,16 @@ const A={
  chatPlus:el=>{const t=thread(el.dataset.id);pushSheet({title:'추가하기',html:()=>`<div class="menu"><button class="btn row" data-a="chatPhoto" data-id="${t.id}">사진 메시지 (${T.sendAs==='me'?'나':'상대'}) <span>›</span></button><button class="btn row" data-a="chatDate" data-id="${t.id}">날짜 구분선 <span>›</span></button></div>`});},
  chatPhoto:el=>{const t=thread(el.dataset.id);closeSheets();pick(async files=>{toast('사진을 올리는 중…');const r=await uploadImage(files[0]);if(!r)return;t.msgs.push({id:uid(),me:T.sendAs==='me',text:'',img:r,time:timeLabel(P.lock.time)});commit();});},
  chatDate:el=>{const t=thread(el.dataset.id);closeSheets();const m={id:uid(),date:true,text:'오늘'};openForm({title:'날짜 구분선',values:m,autofocus:true,fields:[{k:'text',l:'표시할 글자',ph:'오늘, 10월 18일 (토)'}],onSave(v){m.text=v.text||'오늘';t.msgs.push(m);}});},
- clearTemp:el=>{delete T.chats[el.dataset.id];T.typing=null;renderChatLog();},
+ clearTemp:el=>{const id=el.dataset.id;delete T.chats[id];T.typing=null;T.unread[id]=0;[...T.schedDone].forEach(k=>{if(k.startsWith(id+':'))T.schedDone.delete(k);});stopSchedule();ensureSchedule();renderChatLog();},
  /* photos */
- addPhotos:()=>pick(async files=>{let n=0;for(const f of files){toast(`사진 올리는 중… (${++n}/${files.length})`);const r=await uploadImage(f);if(r){P.photos.items.push({id:uid(),src:r,caption:'',date:'',fav:false});commit();}}if(n)toast('사진을 추가했어요.');},true),
+ addPhotos:()=>{ if(!STANDALONE) return A.addPhotosFile(); pushSheet({title:'사진 추가',html:()=>`<div class="menu"><button class="btn row" data-a="addPhotosFile">기기에서 사진 고르기 <span>›</span></button><button class="btn row" data-a="addPhotosUrl">사진 주소로 넣기 <span>›</span></button></div><p class="sh-note">기기에서 고른 사진은 이 브라우저에만 저장되고, 보기 전용 링크에는 담기지 않아요.\n주소로 넣은 사진은 링크로 공유해도 그대로 보여요.</p>`}); },
+ addPhotosFile:()=>{ closeSheets(); pick(async files=>{let n=0;for(const f of files){toast(`사진 올리는 중… (${++n}/${files.length})`);const r=await uploadImage(f);if(r){P.photos.items.push({id:uid(),src:r,caption:'',date:'',fav:false,album:T.photoAlbum||''});commit();}}if(n)toast('사진을 추가했어요.');},true); },
+ addPhotosUrl:()=>{ openForm({title:'사진 주소로 넣기',autofocus:true,values:{urls:'',album:T.photoAlbum||'',date:'',fit:'contain',zoom:100,px:50,py:50},note:'인터넷에 올라가 있는 사진 주소를 넣어요. 한 줄에 하나씩 적으면 여러 장을 한 번에 넣을 수 있어요.\n예: GitHub 저장소에 사진을 올린 뒤 그 사진의 주소',
+  fields:[{k:'urls',l:'사진 주소 (https://로 시작)',t:'textarea',rows:4,ph:'https://아이디.github.io/저장소/photo1.jpg\nhttps://아이디.github.io/저장소/photo2.jpg'},...adjFields('urls'),{k:'album',l:'앨범 (선택)',ph:'예: 여행'},{k:'date',l:'날짜 (선택)',ph:'2026년 10월 3일'}],
+  onSave(v){ const list=String(v.urls||'').split(/\s+/).map(x=>fixUrl(x.trim())).filter(Boolean); if(!list.length){toast('사진 주소를 적어 주세요.');return false;} const bad=list.filter(u=>!/^https:\/\/\S+$/.test(u)); if(bad.length){toast('https://로 시작하는 주소만 넣을 수 있어요.');return false;}
+   list.forEach(u=>P.photos.items.push({id:uid(),src:u,caption:'',date:v.date||'',fav:false,album:String(v.album||'').trim(),fit:v.fit,zoom:v.zoom,px:v.px,py:v.py})); SHEETS.splice(0,SHEETS.length-1); toast(`사진 ${list.length}장을 넣었어요.`); } }); },
  editPhoto:el=>E.photo(P.photos.items.find(x=>x.id===el.dataset.id)),
- favPhoto:el=>{const p=P.photos.items.find(x=>x.id===el.dataset.id);if(editMode){p.fav=!p.fav;commit();}else{T.fav[p.id]=!(T.fav[p.id]??p.fav);renderScreen();}},
+ favPhoto:el=>{const p=photoList('all').find(x=>x.id===el.dataset.id);if(!p)return;if(editMode){p.fav=!p.fav;commit();}else{T.fav[p.id]=!(T.fav[p.id]??p.fav);renderScreen();}},
  /* notes */
  addNote:()=>{const n={id:uid(),title:'',body:'',date:'오늘',pinned:false};P.notes.items.unshift(n);route.push({s:'note',id:n.id});commit();setTimeout(()=>$('.inplace.h')?.focus(),50);},
  editNote:el=>E.note(P.notes.items.find(x=>x.id===el.dataset.id)),
@@ -1259,8 +1911,9 @@ const A={
  webHome:()=>{route=[{s:'home'},{s:'web'}];renderScreen();},
  webQuery:el=>webSearch(el.dataset.q,true),
  /* music */
- playTrack:el=>{const id=el.dataset.id;if(curTrack()?.id!==id)setNow(id);T.playing=true;push({s:'player'});},
- togglePlay:(el,e)=>{e.stopPropagation();T.playing=!T.playing;renderScreen();},
+ playTrack:el=>{const id=el.dataset.id;if(curTrack()?.id!==id)setNow(id);T.playing=true;syncAudio();push({s:'player'});},
+ seek:(el,e)=>{const c=curTrack();if(!c)return;const r=el.getBoundingClientRect();const f=Math.max(0,Math.min(1,(e.clientX-r.left)/r.width));T.pos=f*trackDur(c);if(hasAudio(c)&&AUD.dataset.id===c.id){try{AUD.currentTime=T.pos;}catch(_){}}updateProgress();},
+ togglePlay:(el,e)=>{e.stopPropagation();T.playing=!T.playing;syncAudio();renderScreen();},
  skip:el=>skip(+el.dataset.v),
  addTrack:()=>E.track({id:'t'+uid(),title:'',artist:'',cover:'',len:'3:30'},true),
  editTrack:el=>E.track(P.music.tracks.find(x=>x.id===el.dataset.id)),
@@ -1280,6 +1933,11 @@ const A={
  editEntry:el=>E.entry(P.diary.items.find(x=>x.id===el.dataset.id)),
  diaryLock:()=>openForm({title:'일기장 잠금',values:{lock:P.diary.lock},fields:[{k:'lock',l:'일기장 비밀번호',num:true,max:8,ph:'비워 두면 잠그지 않아요',h:'보기 모드에서 일기 앱을 열 때 이 번호를 입력해야 해요.'}],onSave(v){P.diary.lock=String(v.lock||'').trim();}}),
  /* settings */
+ calSel:el=>{T.calSel=el.dataset.v;renderScreen();},
+ calMove:el=>{let m=T.calM+ +el.dataset.v,y=T.calY;if(m<1){m=12;y--;}if(m>12){m=1;y++;}T.calM=m;T.calY=y;T.calSel=isoOf(y,m,1);renderScreen();},
+ calToday:()=>{const p=parseIso(calToday());T.calY=p.y;T.calM=p.m;T.calSel=calToday();renderScreen();},
+ addEvent:()=>E.event({id:uid(),date:T.calSel||calToday(),time:'오전 10:00',title:'',place:'',note:'',color:'#007aff'},true),
+ editEvent:el=>E.event(P.calendar.events.find(x=>x.id===el.dataset.id)),
  editLock:()=>E.lock(), editHome:()=>E.home(), editInfo:()=>E.info(),
  editApp:el=>E.app(P.home.apps.find(x=>x.id===el.dataset.id)),
  /* sheets */
@@ -1312,16 +1970,26 @@ document.addEventListener('click',e=>{const el=e.target.closest('[data-a]');if(!
 document.addEventListener('submit',e=>{const f=e.target.closest('[data-form]');if(!f)return;e.preventDefault();F[f.dataset.form]?.(f);});
 let bindT=null;
 document.addEventListener('input',e=>{const el=e.target;
+ if(el.closest&&el.closest('#sheet')) updAdj();
  if(el.classList.contains('cpick')){setFieldVal(el.dataset.k,el.value);return;}
  if(el.dataset.bind&&P){const [kind,id,field]=el.dataset.bind.split('|');const coll=kind==='note'?P.notes.items:P.diary.items;const o=coll.find(x=>x.id===id);if(o){o[field]=el.value;clearTimeout(bindT);bindT=setTimeout(touch,500);}}
 });
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&SHEETS.length)A.shCancel();});
-let swipeY=null;
-document.addEventListener('pointerdown',e=>{swipeY=e.target.closest('.lock')?e.clientY:null;});
-document.addEventListener('pointerup',e=>{if(swipeY!=null&&swipeY-e.clientY>40&&cur().s==='lock')unlock();swipeY=null;});
+let swipeY=null, swipeX=null;
+document.addEventListener('pointerdown',e=>{swipeY=e.target.closest('.lock')?e.clientY:null;swipeX=e.target.closest('[data-swipe="photo"]')?e.clientX:null;});
+document.addEventListener('pointerup',e=>{
+ if(swipeY!=null&&swipeY-e.clientY>40&&cur().s==='lock')unlock();
+ if(swipeX!=null&&cur().s==='photo'){const dx=e.clientX-swipeX;if(Math.abs(dx)>45){const list=photoList(cur().ctx);const i=list.findIndex(x=>x.id===cur().id);const j=i+(dx<0?1:-1);if(j>=0&&j<list.length){cur().id=list[j].id;T.swipeDir=dx<0?'next':'prev';T.swiped=true;renderScreen();const v=document.querySelector('.pv');if(v){v.classList.add('slide-'+T.swipeDir);}}else T.swiped=true;}}
+ swipeY=null;swipeX=null;});
+document.addEventListener('keydown',e=>{if(!P||SHEETS.length||cur().s!=='photo'||!['ArrowLeft','ArrowRight'].includes(e.key))return;const list=photoList(cur().ctx);const i=list.findIndex(x=>x.id===cur().id);const j=i+(e.key==='ArrowRight'?1:-1);if(j>=0&&j<list.length){cur().id=list[j].id;renderScreen();}});
 
 /* ---------------- boot ---------------- */
 (async function boot(){
+ const qp=STANDALONE&&!VIEWER?new URLSearchParams(location.search).get('p'):null;
+ if(qp!=null){
+  if(slugOk(qp)){ try{ const r=await fetch(qp+'.json',{cache:'no-cache'}); if(!r.ok) throw new Error('missing'); const o=await r.json(); const d=o&&o.phone?o.phone:o; if(!d||!d.lock||!d.home) throw new Error('bad'); VIEWER=true; READY=true; LOCAL=true; canWrite=false; PID='view'; P=normalize(d); document.title=P.name||document.title; render(); return; }catch(e){} }
+  $('#app').innerHTML=`<main class="lib"><div class="empty"><b>휴대폰을 찾을 수 없어요</b>‘${esc(qp)}.json’ 파일이 사이트에 없어요. 파일을 저장소에 올렸는지, 이름이 링크와 같은지 확인해 주세요. 올린 직후라면 1~2분 뒤 다시 열어 보세요.</div></main>`; return;
+ }
  if(STANDALONE&&!VIEWER&&isViewHash(location.hash.slice(1))){
   try{ const d=await unpackPhone(location.hash.slice(1)); VIEWER=true; READY=true; LOCAL=true; canWrite=false; PID='view'; P=normalize(d); document.title=P.name||document.title; render(); return; }
   catch(e){ $('#app').innerHTML='<main class="lib"><div class="empty"><b>링크를 열 수 없어요</b>링크가 중간에 잘렸거나 이 브라우저가 너무 오래됐어요. 링크 전체를 다시 복사해서 열어 보세요.</div></main>'; return; }
