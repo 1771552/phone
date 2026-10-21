@@ -494,6 +494,20 @@ body.fullphone.viewer{background:#000}
 .pv-info b{font-size:16px}
 .pv-info span{color:var(--ios-sec)}
 
+/* image adjust everywhere */
+.wall-l{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;border-radius:inherit}
+.wall-l img{width:100%;height:100%;display:block}
+.lock,.pass,.home,.kprof,.mini,.wallpair button{isolation:isolate}
+.wallpair button{position:relative}
+.iclip{display:block;overflow:hidden}
+.page .iclip,.cpage .iclip{border-radius:12px;margin-bottom:14px}
+.page .iclip img,.cpage .iclip img{margin:0;border-radius:0;width:100%;display:block}
+.ic-chat{border-radius:16px;width:max-content;max-width:100%}
+.ic-chat img{border-radius:0!important}
+.ap-round>div{border-radius:50%}
+.ap-wall>div{width:90px;height:195px;background:#000}
+.ap-wide>div{width:160px;height:100px}
+
 /* banner, badges */
 .bnr-layer{position:absolute;top:12px;left:12px;width:390px;height:844px;border-radius:54px;overflow:hidden;pointer-events:none;z-index:60;font-family:var(--f-phone)}
 body.fullphone .bnr-layer{top:0;left:0;border-radius:0}
@@ -869,8 +883,12 @@ const uid=()=>Math.random().toString(36).slice(2,10);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const clone=o=>JSON.parse(JSON.stringify(o));
 const isImg=r=>typeof r==='string'&&(r.startsWith('a:')||r.startsWith('data:')||/^https?:\/\//.test(r));
-const src=r=>!r?'':r.startsWith('a:')?'/_blob/'+r.slice(2):r;
-function bgCss(v,fb){ if(!v) return fb||GRADS[0]; if(v.startsWith('g:')) return GRADS[+v.slice(2)]||GRADS[0]; if(isImg(v)) return `center/cover no-repeat url("${src(v)}")`; return v; }
+function parseImg(v){ const m=/^(.*)#adj=(\d+(?:\.\d+)?),(\d+(?:\.\d+)?),(\d+(?:\.\d+)?)$/.exec(v||''); return m?{base:m[1],z:+m[2],x:+m[3],y:+m[4]}:{base:v||'',z:100,x:50,y:50,none:true}; }
+const src=r=>{ if(!r) return ''; r=parseImg(r).base; return r.startsWith('a:')?'/_blob/'+r.slice(2):r; };
+function adjCss(v){ const p=parseImg(v); if(p.none) return ''; return `object-fit:cover;object-position:${p.x}% ${p.y}%;transform:scale(${p.z/100});transform-origin:${p.x}% ${p.y}%`; }
+const imgT=v=>`<img src="${esc(src(v))}" alt="" style="${adjCss(v)}">`;
+function wallLayer(v){ if(!isImg(v)) return ''; const p=parseImg(v); return `<span class="wall-l" aria-hidden="true"><img src="${esc(src(v))}" alt="" style="object-fit:cover;object-position:${p.x}% ${p.y}%;transform:scale(${p.z/100});transform-origin:${p.x}% ${p.y}%"></span>`; }
+function bgCss(v,fb){ if(!v) return fb||GRADS[0]; if(v.startsWith('g:')) return GRADS[+v.slice(2)]||GRADS[0]; if(isImg(v)){ const p=parseImg(v); return `${p.x}% ${p.y}%/cover no-repeat url("${src(v)}")`; } return v; }
 function hashIdx(s){let h=0;for(const c of String(s))h=(h*31+c.charCodeAt(0))|0;return Math.abs(h);}
 function timeLabel(t){const m=/(\d{1,2}):(\d{2})/.exec(t||'');if(!m)return t||'';let h=+m[1];const ap=h>=12?'오후':'오전';h=h%12||12;return `${ap} ${h}:${m[2]}`;}
 const norm=s=>String(s||'').toLowerCase().replace(/\s+/g,' ').trim();
@@ -1095,6 +1113,7 @@ function fieldHtml(f,v){
  if(f.t==='textarea') return `<div class="fld">${lab}<textarea id="${id}" rows="${f.rows||4}" placeholder="${esc(f.ph||'')}">${esc(v)}</textarea>${help}</div>`;
  if(f.t==='select') return `<div class="fld">${lab}<select id="${id}">${f.o.map(([ov,ol])=>`<option value="${esc(ov)}" ${String(ov)===String(v)?'selected':''}>${esc(ol)}</option>`).join('')}</select>${help}</div>`;
  if(f.t==='toggle') return `<div class="fld tog"><label for="${id}">${esc(f.l)}</label><input type="checkbox" id="${id}" ${v?'checked':''}></div>${help?`<div class="fld">${help}</div>`:''}`;
+ if(f.t==='hiddenval') return `<input type="hidden" id="${id}" value="${esc(v||'')}">`;
  if(f.t==='range'){ const val=v??f.def??50; return `<div class="fld"><label for="${id}">${esc(f.l)} <output id="o_${f.k}">${esc(val)}${f.unit||''}</output></label><input type="range" id="${id}" min="${f.min}" max="${f.max}" step="${f.step||1}" value="${esc(val)}">${help}</div>`; }
  if(f.t==='adjprev') return `<div class="adjprev" data-src="${f.src}">${f.boxes.map(([b,lab])=>`<figure class="ap ap-${b}"><div><img alt="" hidden></div><figcaption>${esc(lab)}</figcaption></figure>`).join('')}</div>`;
  if(f.t==='date') return `<div class="fld">${lab}<input type="date" id="${id}" value="${esc(v)}">${help}</div>`;
@@ -1102,7 +1121,7 @@ function fieldHtml(f,v){
  if(f.t==='image'||f.t==='wall'||f.t==='bg'){
   return `<div class="fld"><label>${esc(f.l)}</label><input type="hidden" id="${id}" value="${esc(v||'')}">
    <div class="imgf"><div class="imgprev ${f.t==='wall'?'wall':''}" id="pv_${f.k}" data-t="${f.t}" style="background:${esc(prevCss(f.t,v))}"></div>
-   <div class="imgbtns"><button type="button" class="btn sm" data-a="pickImg" data-k="${f.k}">사진 고르기</button>${STANDALONE?`<button type="button" class="btn sm ghost" data-a="urlImg" data-k="${f.k}">주소로 넣기</button>`:''}${f.t==='image'?`<button type="button" class="btn sm ghost" data-a="clearImg" data-k="${f.k}">지우기</button>`:''}</div></div>
+   <div class="imgbtns"><button type="button" class="btn sm" data-a="pickImg" data-k="${f.k}">사진 고르기</button>${STANDALONE?`<button type="button" class="btn sm ghost" data-a="urlImg" data-k="${f.k}">주소로 넣기</button>`:''}${f.noAdj?'':`<button type="button" class="btn sm ghost" data-a="adjImg" data-k="${f.k}" data-shape="${f.shape||(f.t==='wall'?'wall':(f.k==='avatar'?'round':'thumb'))}">크기·위치</button>`}${f.t==='image'?`<button type="button" class="btn sm ghost" data-a="clearImg" data-k="${f.k}">지우기</button>`:''}</div></div>
    ${f.t!=='image'?`<div class="swatches">${GRADS.map((g,i)=>`<button type="button" class="sw" data-a="setSw" data-k="${f.k}" data-v="g:${i}" style="background:${g}" aria-label="배경 ${i+1}"></button>`).join('')}${f.t==='bg'?`<input type="color" class="cpick" data-k="${f.k}" aria-label="색 직접 고르기">`:''}</div>`:''}${help}</div>`;
  }
  return `<div class="fld">${lab}<input type="text" id="${id}" value="${esc(v)}" placeholder="${esc(f.ph||'')}" ${f.num?'inputmode="numeric"':''} ${f.max?`maxlength="${f.max}"`:''}>${help}</div>`;
@@ -1132,8 +1151,8 @@ function markRead(id){(T.chats[id]||[]).forEach(x=>{if(x.me)T.readSet.add(x.id);
 function allMsgs(t){return editMode?t.msgs:t.msgs.concat(T.chats[t.id]||[]);}
 function lastMsg(t){const a=allMsgs(t).filter(m=>!m.date);return a[a.length-1];}
 function curTrack(){const id=T.now||P.music.now;return P.music.tracks.find(x=>x.id===id)||P.music.tracks[0];}
-function avatar(name,img,size){return `<span class="av" style="width:${size}px;height:${size}px;font-size:${Math.round(size*.42)}px;${img?'':`background:${GRADS[hashIdx(name)%GRADS.length]}`}">${img?`<img src="${esc(src(img))}" alt="">`:esc((name||'?').trim().charAt(0))}</span>`;}
-function cover(t,size){return `<span class="cov" style="width:${size}px;height:${size}px;background:${esc(t&&t.cover?'#222':GRADS[hashIdx(t?t.title:'')%GRADS.length])}">${t&&t.cover?`<img src="${esc(src(t.cover))}" alt="">`:SV.note}</span>`;}
+function avatar(name,img,size){return `<span class="av" style="width:${size}px;height:${size}px;font-size:${Math.round(size*.42)}px;${img?'':`background:${GRADS[hashIdx(name)%GRADS.length]}`}">${img?`${imgT(img)}`:esc((name||'?').trim().charAt(0))}</span>`;}
+function cover(t,size){return `<span class="cov" style="width:${size}px;height:${size}px;background:${esc(t&&t.cover?'#222':GRADS[hashIdx(t?t.title:'')%GRADS.length])}">${t&&t.cover?`${imgT(t.cover)}`:SV.note}</span>`;}
 const ed=(label,a,id='')=>editMode?`<button class="nb ed" data-a="${a}" data-id="${esc(id)}">${esc(label)}</button>`:'';
 function navbar(title,{back,right='',large}={}){return `<div class="nav"><div>${back?`<button class="nb" data-a="back">${SV.chev}${esc(back)}</button>`:''}</div><div class="nt">${esc(title)}</div><div class="nr">${right}</div></div>${large?`<h1 class="lt">${esc(title)}</h1>`:''}`;}
 const appOf=type=>P.home.apps.find(a=>a.type===type);
@@ -1141,24 +1160,24 @@ const appLabel=type=>(appOf(type)||{}).label||APPDEF[type].label;
 
 /* ---------------- screens ---------------- */
 const S={};
-S.lock=()=>{const L=P.lock;return `<div class="lock ${L.clock==='dark'?'ink':''}" style="background:${esc(bgCss(L.wall))}">
+S.lock=()=>{const L=P.lock;return `<div class="lock ${L.clock==='dark'?'ink':''}" style="background:${esc(bgCss(L.wall))}">${wallLayer(L.wall)}
  <div class="lock-clock"><div class="lock-ic">${SV.lock}</div><div class="lock-date">${esc(L.date)}</div><div class="lock-time">${esc(L.time)}</div></div>
  ${editMode?'<button class="edfab" data-a="editLock">잠금 화면 편집</button>':''}
  <div class="notifs">${(editMode?[]:T.lockNotifs).map(n=>`<button class="notif" data-a="unlockTo" data-n="${n.id}"><div class="nt-h">${appMini(n.app,20)}<b>${esc(appLabel(n.app))}</b><span>${esc(n.time)}</span></div><div class="nt-t">${esc(n.title)}</div><div class="nt-b">${esc(n.body)}</div></button>`).join('')}${(L.notifs||[]).map(n=>`<button class="notif" data-a="unlock"><div class="nt-h"><span class="nt-ic"></span><b>${esc(n.app)}</b><span>${esc(n.time)}</span></div>${n.title?`<div class="nt-t">${esc(n.title)}</div>`:''}<div class="nt-b">${esc(n.body)}</div></button>`).join('')}</div>
  <div class="lock-foot"><span class="lk-btn">${SV.flash}</span><button class="lock-hint" data-a="unlock">${editMode||!L.passcode?'위로 쓸어 올려서 열기':'위로 쓸어 올려서 잠금 해제'}</button><span class="lk-btn">${SV.cam}</span></div></div>`;};
 S.pass=()=>{const code=P.lock.passcode||'';const n=Math.max(4,code.length);
- return `<div class="pass" style="background:${esc(bgCss(P.lock.wall))}"><div class="pass-dim"></div><div class="pass-in"><div class="pass-t">암호 입력</div>
+ return `<div class="pass" style="background:${esc(bgCss(P.lock.wall))}">${wallLayer(P.lock.wall)}<div class="pass-dim"></div><div class="pass-in"><div class="pass-t">암호 입력</div>
  <div class="dots ${T.shake?'shake':''}">${Array.from({length:n},(_,i)=>`<i class="${i<T.pin.length?'on':''}"></i>`).join('')}</div>
  <div class="keys">${[1,2,3,4,5,6,7,8,9].map(k=>`<button class="key" data-a="pin" data-v="${k}"><b>${k}</b><small>${KEYL[k]||'&nbsp;'}</small></button>`).join('')}<button class="key z" data-a="pin" data-v="0"><b>0</b></button></div>
  <div class="pass-foot"><button data-a="cancelPass">취소</button><button data-a="delPin">${T.pin?'삭제':''}</button></div></div></div>`;};
-function appIcon(a,dock){return `<button class="appi" data-a="open" data-id="${esc(a.id)}" aria-label="${esc(a.label)}"><span class="ic" style="background:${esc(bgCss(a.bg,APPDEF[a.type]?.bg))}">${a.icon?`<img src="${esc(src(a.icon))}" alt="">`:(a.type==='calendar'?calGlyph():(GLYPH[a.type]||GLYPH.custom))}</span>${badgeHtml(a.type)}${dock?'':`<span class="al">${esc(a.label)}</span>`}</button>`;}
+function appIcon(a,dock){return `<button class="appi" data-a="open" data-id="${esc(a.id)}" aria-label="${esc(a.label)}"><span class="ic" style="background:${esc(bgCss(a.bg,APPDEF[a.type]?.bg))}">${a.icon?`${imgT(a.icon)}`:(a.type==='calendar'?calGlyph():(GLYPH[a.type]||GLYPH.custom))}</span>${badgeHtml(a.type)}${dock?'':`<span class="al">${esc(a.label)}</span>`}</button>`;}
 function widget(){const w=P.home.widget||{};
  if(w.type==='clock') return `<div class="wd wd-clock"><small>${esc(P.lock.date)}</small><b>${esc(P.lock.time)}</b></div>`;
  if(w.type==='text') return `<div class="wd wd-text"><small>${esc(appLabel('notes'))}</small><p>${esc(w.text)}</p></div>`;
- if(w.type==='photo') return `<div class="wd wd-photo">${w.img?`<img src="${esc(src(w.img))}" alt="">`:''}</div>`;
+ if(w.type==='photo') return `<div class="wd wd-photo">${w.img?`${imgT(w.img)}`:''}</div>`;
  return '';}
 S.home=()=>{const H=P.home;const vis=H.apps.filter(a=>!a.hidden);
- return `<div class="home ${H.ink?'ink':''}" style="background:${esc(bgCss(H.wall))}"><div class="home-in">${widget()}<div class="grid">${vis.filter(a=>!a.dock).map(a=>appIcon(a)).join('')}</div></div>
+ return `<div class="home ${H.ink?'ink':''}" style="background:${esc(bgCss(H.wall))}">${wallLayer(H.wall)}<div class="home-in">${widget()}<div class="grid">${vis.filter(a=>!a.dock).map(a=>appIcon(a)).join('')}</div></div>
  ${editMode?'<button class="edfab low" data-a="editHome">홈 화면 편집</button>':''}
  <div class="hsearch">${SV.search}<span>검색</span></div>
  <div class="dock">${vis.filter(a=>a.dock).slice(0,4).map(a=>appIcon(a,true)).join('')}</div></div>`;};
@@ -1176,7 +1195,7 @@ function chatLog(t){
  arr.forEach((m,i)=>{
   if(m.date){h+=`<button class="cdate" ${editMode?`data-a="editMsg" data-t="${t.id}" data-id="${m.id}"`:''}>${esc(m.text)}</button>`;return;}
   const nx=arr[i+1];const end=!nx||nx.date||nx.me!==m.me;const saved=i<tempStart;
-  h+=`<div class="brow ${m.me?'me':'them'} ${end?'end':''}"><button class="bub ${m.img&&!m.text?'pic':(end?'tail':'')} ${editMode?'ed-on':''}" ${editMode&&saved?`data-a="editMsg" data-t="${t.id}" data-id="${m.id}"`:''}>${m.img?`<img src="${esc(src(m.img))}" alt="">`:''}${m.text?`<span>${esc(m.text)}</span>`:''}</button>${end&&m.time?`<span class="btime">${esc(m.time)}</span>`:''}</div>`;
+  h+=`<div class="brow ${m.me?'me':'them'} ${end?'end':''}"><button class="bub ${m.img&&!m.text?'pic':(end?'tail':'')} ${editMode?'ed-on':''}" ${editMode&&saved?`data-a="editMsg" data-t="${t.id}" data-id="${m.id}"`:''}>${m.img?`<span class="iclip ic-chat">${imgT(m.img)}</span>`:''}${m.text?`<span>${esc(m.text)}</span>`:''}</button>${end&&m.time?`<span class="btime">${esc(m.time)}</span>`:''}</div>`;
   if(!editMode&&T.readUpTo[t.id]===m.id) h+='<span class="readmark">읽음</span>';
  });
  if(!editMode&&T.typing===t.id) h+='<div class="brow them"><div class="typing"><i></i><i></i><i></i></div></div>';
@@ -1238,13 +1257,13 @@ function webHist(){return editMode?P.web.history:[...T.history].reverse().concat
 S.web=()=>{const favs=P.web.pages.filter(p=>p.fav);const others=P.web.pages.filter(p=>!p.fav);const hist=webHist();
  return `<div class="app web"><div class="scroll web-start">
  ${editMode?'<p class="edhint">페이지를 만들면 주소창에서 그 제목이나 주소로 검색해 열 수 있어요. 즐겨찾기를 켜면 이 화면에 타일로 나와요.</p>':''}
- <h3>즐겨찾기</h3><div class="favs">${favs.map(p=>`<button class="fav-t" data-a="go" data-s="webpage" data-id="${p.id}"><i>${p.img?`<img src="${esc(src(p.img))}" alt="">`:esc((p.title||'?').charAt(0))}</i><span>${esc(p.title)}</span></button>`).join('')}${editMode?'<button class="fav-t" data-a="addPage"><i style="color:#007aff">+</i><span>페이지 만들기</span></button>':''}</div>
+ <h3>즐겨찾기</h3><div class="favs">${favs.map(p=>`<button class="fav-t" data-a="go" data-s="webpage" data-id="${p.id}"><i>${p.img?imgT(p.img):esc((p.title||'?').charAt(0))}</i><span>${esc(p.title)}</span></button>`).join('')}${editMode?'<button class="fav-t" data-a="addPage"><i style="color:#007aff">+</i><span>페이지 만들기</span></button>':''}</div>
  ${editMode&&others.length?`<h3>다른 페이지</h3><div class="grpl">${others.map(p=>`<button class="gr" data-a="go" data-s="webpage" data-id="${p.id}">${esc(p.title)}<span class="gv">${esc(p.url)}</span></button>`).join('')}</div>`:''}
  <h3 style="display:flex;justify-content:space-between;align-items:center">최근 검색 ${editMode?'<button class="nb ed" data-a="editHistory">관리</button>':''}</h3>
  <div class="grpl">${hist.map(h=>`<button class="hrow" data-a="webQuery" data-q="${esc(h.text)}">${SV.clock}<span>${esc(h.text)}</span></button>`).join('')||'<div class="hrow" style="color:#8a8a8e">기록 없음</div>'}</div>
  </div>${addrBar('')}</div>`;};
 S.webpage=r=>{const p=P.web.pages.find(x=>x.id===r.id);if(!p){route.pop();return S.web();}
- return `<div class="app web"><div class="scroll page"><div class="pg-url">${esc(p.url)}</div>${p.img?`<img src="${esc(src(p.img))}" alt="">`:''}<h1>${esc(p.title)}</h1><div class="pg-body">${esc(p.body)}</div>
+ return `<div class="app web"><div class="scroll page"><div class="pg-url">${esc(p.url)}</div>${p.img?`<span class="iclip">${imgT(p.img)}</span>`:''}<h1>${esc(p.title)}</h1><div class="pg-body">${esc(p.body)}</div>
  ${editMode?`<p style="margin-top:24px"><button class="nb ed" data-a="editPage" data-id="${p.id}">이 페이지 편집</button></p>`:''}</div>${addrBar(p.url||p.title)}</div>`;};
 S.websearch=r=>{const q=norm(r.q);const res=P.web.pages.filter(p=>norm(p.title+' '+p.url+' '+p.body).includes(q));
  return `<div class="app web"><div class="scroll sres">${res.map(p=>`<button class="sres-row" data-a="go" data-s="webpage" data-id="${p.id}"><small>${esc(p.url)}</small><b>${esc(p.title)}</b><span>${esc(p.body)}</span></button>`).join('')||`<div class="empty-in"><b>검색 결과 없음</b>‘${esc(r.q)}’에 맞는 페이지가 없어요.${editMode?'<br><br><button class="nb ed" data-a="addPage" data-q="'+esc(r.q)+'">이 이름으로 페이지 만들기</button>':''}</div>`}</div>${addrBar(r.q)}</div>`;};
@@ -1259,7 +1278,7 @@ S.music=()=>{const tr=P.music.tracks;const c=curTrack();
 S.player=()=>{const c=curTrack();if(!c){route.pop();return S.music();}const d=trackDur(c);
  return `<div class="player" style="background:${esc(c.cover?'linear-gradient(180deg,#3a3a46,#14141a)':GRADS[hashIdx(c.title)%GRADS.length])}">
  <div style="display:flex;justify-content:space-between"><button class="nb" data-a="back">${SV.chev} ${esc(appLabel('music'))}</button>${editMode?`<button class="nb ed" data-a="editTrack" data-id="${c.id}" style="color:#fff;background:rgba(255,255,255,.2)!important">편집</button>`:''}</div>
- <div class="bigcov ${T.playing?'':'paused'}">${c.cover?`<img src="${esc(src(c.cover))}" alt="">`:`<div style="width:100%;height:100%;display:grid;place-items:center;background:rgba(255,255,255,.14)">${SV.note.replace('width="24" height="24"','width="120" height="120"')}</div>`}</div>
+ <div class="bigcov ${T.playing?'':'paused'}">${c.cover?`${imgT(c.cover)}`:`<div style="width:100%;height:100%;display:grid;place-items:center;background:rgba(255,255,255,.14)">${SV.note.replace('width="24" height="24"','width="120" height="120"')}</div>`}</div>
  <div class="pl-t"><b>${esc(c.title)}</b><span>${esc(c.artist)}</span></div>
  <div class="prog" data-a="seek" role="slider" aria-label="재생 위치"><i id="pfill" style="width:${Math.min(100,T.pos/d*100)}%"></i></div><div class="ptimes"><span id="pcur">${mmss(T.pos)}</span><span>-${mmss(Math.max(0,d-T.pos))}</span></div>
  <div class="ctrl"><button data-a="skip" data-v="-1" aria-label="이전 곡">${SV.prev}</button><button data-a="togglePlay" aria-label="재생">${T.playing?SV.pause:SV.play}</button><button data-a="skip" data-v="1" aria-label="다음 곡">${SV.next}</button></div></div>`;};
@@ -1271,13 +1290,13 @@ S.sns=()=>{const s=P.sns;
  <div class="prof">${avatar(s.name,s.avatar,86)}<div class="stats"><div><b>${s.items.length}</b><span>게시물</span></div><div><b>${esc(s.followers)}</b><span>팔로워</span></div><div><b>${esc(s.following)}</b><span>팔로잉</span></div></div></div>
  <div class="bio"><b>${esc(s.name)}</b>${esc(s.bio)}</div>
  <div class="sns-btns">${editMode?'<button data-a="addPost" class="blue">+ 게시물 추가</button>':`<button data-a="follow" class="${T.follow?'':'blue'}">${T.follow?'팔로잉':'팔로우'}</button><button>메시지</button>`}</div>
- <div class="sgrid">${s.items.map(p=>`<button class="sp" data-a="go" data-s="post" data-id="${p.id}" style="background:${esc(GRADS[hashIdx(p.id)%GRADS.length])}">${p.img?`<img src="${esc(src(p.img))}" alt="">`:esc(p.caption)}</button>`).join('')}</div>
+ <div class="sgrid">${s.items.map(p=>`<button class="sp" data-a="go" data-s="post" data-id="${p.id}" style="background:${esc(GRADS[hashIdx(p.id)%GRADS.length])}">${p.img?imgT(p.img):esc(p.caption)}</button>`).join('')}</div>
  ${s.items.length?'':'<div class="empty-in"><b>게시물 없음</b></div>'}</div></div>`;};
 S.post=r=>{const s=P.sns;const p=s.items.find(x=>x.id===r.id);if(!p){route.pop();return S.sns();}const liked=!!T.liked[p.id];
  const cm=(p.comments||'').split('\n').filter(x=>x.trim()).map(l=>{const i=l.indexOf(':');return i>0?`<p><b>${esc(l.slice(0,i).trim())}</b> ${esc(l.slice(i+1).trim())}</p>`:`<p>${esc(l)}</p>`;}).join('');
  return `<div class="app">${navbar('게시물',{back:'뒤로',right:ed('편집','editPost',p.id)})}<div class="scroll">
  <div class="post-h">${avatar(s.name,s.avatar,32)}${esc(s.username)}</div>
- <div class="post-img" style="background:${esc(GRADS[hashIdx(p.id)%GRADS.length])}">${p.img?`<img src="${esc(src(p.img))}" alt="">`:esc(p.caption)}</div>
+ <div class="post-img" style="background:${esc(GRADS[hashIdx(p.id)%GRADS.length])}">${p.img?imgT(p.img):esc(p.caption)}</div>
  <div class="post-act"><button data-a="like" data-id="${p.id}" aria-label="좋아요">${liked?SV.heartF:SV.heart}</button>${SV.cmt}${SV.plane}</div>
  <div class="post-txt"><p><b>좋아요 ${Number(p.likes||0)+(liked?1:0)}개</b></p><p><b>${esc(s.username)}</b> ${esc(p.caption)}</p>${cm}<small>${esc(p.date)}</small></div></div></div>`;};
 
@@ -1347,7 +1366,7 @@ S.contact=r=>{const c=P.phone.contacts.find(x=>x.id===r.id);if(!c){route.pop();r
  ${editMode?`<p class="edhint">이 사람에게 전화를 걸면 ${c.answer?'받아요. 받은 뒤 아래 대사가 자막처럼 나와요.':'받지 않아요.'}${c.answer&&c.lines?`\n\n${esc(c.lines)}`:''}</p>`:''}</div></div>`;};
 
 /* kakaotalk-style messenger */
-function kav(name,img,size){return `<span class="kav" style="width:${size}px;height:${size}px;font-size:${Math.round(size*.4)}px;${img?'':`background:${GRADS[hashIdx(name)%GRADS.length]}`}">${img?`<img src="${esc(src(img))}" alt="">`:esc((name||'?').trim().charAt(0))}</span>`;}
+function kav(name,img,size){return `<span class="kav" style="width:${size}px;height:${size}px;font-size:${Math.round(size*.4)}px;${img?'':`background:${GRADS[hashIdx(name)%GRADS.length]}`}">${img?`${imgT(img)}`:esc((name||'?').trim().charAt(0))}</span>`;}
 S.talk=()=>{const tab=T.talkTab||'chats', me=P.talk.me, ts=P.talk.threads;
  const head=(title,right)=>`<div class="k-head"><b>${title}</b><div class="nr">${right}</div></div>`;
  let body;
@@ -1360,7 +1379,7 @@ S.talk=()=>{const tab=T.talkTab||'chats', me=P.talk.me, ts=P.talk.threads;
  return `<div class="app talkapp">${body}<div class="tabbar k-tabs"><button class="${tab==='friends'?'on':''}" data-a="talkTab" data-v="friends">${SV.kFriends}<span>친구</span></button><button class="${tab==='chats'?'on':''}" data-a="talkTab" data-v="chats">${SV.kChats}<span>채팅</span></button></div></div>`;};
 S.kprofile=r=>{const isMe=r.id==='me', t=isMe?null:thread(r.id), o=isMe?P.talk.me:t; if(!o){route.pop();return S.talk();}
  const ph=SV.phone.replace('width="34" height="34"','width="26" height="26"');
- return `<div class="kprof" style="background:${esc(o.bg?bgCss(o.bg):GRADS[hashIdx(o.name)%GRADS.length])}"><div class="kprof-dim"></div><div class="kprof-in">
+ return `<div class="kprof" style="background:${esc(o.bg?bgCss(o.bg):GRADS[hashIdx(o.name)%GRADS.length])}">${wallLayer(o.bg)}<div class="kprof-dim"></div><div class="kprof-in">
  <div class="kprof-top"><button class="nb" data-a="back" aria-label="닫기">✕</button>${editMode?`<button class="nb ed" data-a="${isMe?'editKMe':'editThread'}" data-id="${isMe?'':t.id}">편집</button>`:''}</div>
  <div class="kprof-mid">${kav(o.name,o.avatar,100)}<b>${esc(o.name)}</b>${o.status?`<span>${esc(o.status)}</span>`:''}</div>
  <div class="kprof-acts">${isMe?`<div><i>${SV.kChats}</i><small>나와의 채팅</small></div><div><i>${SV.compose}</i><small>프로필 편집</small></div>`:`<button data-a="kOpenChat" data-id="${t.id}"><i>${SV.kChats}</i><small>1:1 채팅</small></button><div><i>${ph}</i><small>통화하기</small></div>`}</div></div></div>`;};
@@ -1372,7 +1391,7 @@ function kChatLog(t){
   const pv=arr[i-1], nx=arr[i+1];
   const first=!pv||pv.date||pv.me!==m.me, last=!nx||nx.date||nx.me!==m.me||(nx.time||'')!==(m.time||'');
   const unread=m.me&&!saved&&!T.readSet.has(m.id);
-  const bub=`<button class="kb ${m.img&&!m.text?'pic':''} ${first?'first':''} ${editMode?'ed-on':''}" ${editMode&&saved?`data-a="editMsg" data-t="${t.id}" data-id="${m.id}"`:''}>${m.img?`<img src="${esc(src(m.img))}" alt="">`:''}${m.text?`<span>${esc(m.text)}</span>`:''}</button>`;
+  const bub=`<button class="kb ${m.img&&!m.text?'pic':''} ${first?'first':''} ${editMode?'ed-on':''}" ${editMode&&saved?`data-a="editMsg" data-t="${t.id}" data-id="${m.id}"`:''}>${m.img?`<span class="iclip ic-chat">${imgT(m.img)}</span>`:''}${m.text?`<span>${esc(m.text)}</span>`:''}</button>`;
   const meta=`<span class="kmeta">${unread?'<i>1</i>':''}${last&&m.time?`<small>${esc(m.time)}</small>`:''}</span>`;
   if(m.me) h+=`<div class="krow me">${meta}${bub}</div>`;
   else h+=`<div class="krow them ${first?'first':''}">${first?kav(t.name,t.avatar,38):'<span class="kav-sp"></span>'}<div class="kcol">${first?`<span class="kname">${esc(t.name)}</span>`:''}<div class="kline">${bub}${meta}</div></div></div>`;
@@ -1428,13 +1447,13 @@ S.settings=()=>{const a=editMode;const GI={lock:'<svg viewBox="0 0 30 30"><rect 
  return `<div class="app grp">${navbar(appLabel('settings'),{large:true})}<div class="scroll">
  ${a?'<p class="edhint">편집 모드에서는 여기서 잠금 화면, 홈 화면, 상태 표시줄, 휴대폰 이름을 바꿀 수 있어요.</p>':''}
  <div class="grpl"><button class="prow" ${a?'data-a="editInfo"':''}>${avatar(P.owner,P.sns.avatar,58)}<div><b>${esc(P.owner)}</b><span>${esc(P.name)}</span></div></button></div>
- <div class="gh">배경화면</div><div class="grpl"><div class="wallpair"><button style="background:${esc(bgCss(P.lock.wall))}" ${a?'data-a="editLock"':''} aria-label="잠금 화면">${esc(P.lock.time)}</button><button style="background:${esc(bgCss(P.home.wall))}" ${a?'data-a="editHome"':''} aria-label="홈 화면"></button></div></div>
+ <div class="gh">배경화면</div><div class="grpl"><div class="wallpair"><button style="background:${esc(bgCss(P.lock.wall))}" ${a?'data-a="editLock"':''} aria-label="잠금 화면">${wallLayer(P.lock.wall)}${esc(P.lock.time)}</button><button style="background:${esc(bgCss(P.home.wall))}" ${a?'data-a="editHome"':''} aria-label="홈 화면">${wallLayer(P.home.wall)}</button></div></div>
  <div class="grpl">${row('#ff9500','잠금 화면',P.lock.passcode?'암호 사용':'암호 없음','editLock','lock')}${row('#5856d6','홈 화면',P.home.apps.filter(x=>!x.hidden).length+'개 앱','editHome','home')}${row('#34c759','통신사',P.status.carrier,'editInfo','ant')}${row('#34c759','배터리',P.status.battery+'%','editInfo','bat')}</div>
  <div class="grpl">${row('#8e8e93','이 휴대폰의 이름',P.name,'editInfo','inf')}</div></div></div>`;};
 
 /* custom */
 S.custom=r=>{const a=P.home.apps.find(x=>x.id===r.id);if(!a){route.pop();return S.home();}const pg=a.page||{};
- return `<div class="app">${navbar(pg.title||a.label,{large:true,right:ed('편집','editApp',a.id)})}<div class="scroll"><div class="cpage">${pg.img?`<img src="${esc(src(pg.img))}" alt="">`:''}<p>${esc(pg.body||(editMode?'편집 버튼으로 이 앱에 보여 줄 내용을 쓰세요.':''))}</p></div></div></div>`;};
+ return `<div class="app">${navbar(pg.title||a.label,{large:true,right:ed('편집','editApp',a.id)})}<div class="scroll"><div class="cpage">${pg.img?`<span class="iclip">${imgT(pg.img)}</span>`:''}<p>${esc(pg.body||(editMode?'편집 버튼으로 이 앱에 보여 줄 내용을 쓰세요.':''))}</p></div></div></div>`;};
 
 /* ---------------- rendering ---------------- */
 const DARKBAR=new Set(['phone','contact','talk','kthread','calendar','event','album','photo','messages','thread','photos','notes','note','web','webpage','websearch','music','sns','post','mail','mailbox','mailitem','diary','entry','settings','custom']);
@@ -1489,7 +1508,7 @@ function fit(){const st=$('#stage'),pb=$('#pbox'),ph=$('#phone');document.body.c
 new ResizeObserver(()=>fit()).observe(document.documentElement);
 window.addEventListener('resize',fit);
 
-function phoneCard(p,acts){const L=p.lock||{};return `<article class="card"><button class="mini ${L.clock==='dark'?'ink':''}" data-a="openPhone" data-id="${esc(p.id)}" style="background:${esc(bgCss(L.wall))}" aria-label="${esc(p.name)} 열기"><span class="mini-date">${esc(L.date)}</span><span class="mini-time">${esc(L.time)}</span></button>
+function phoneCard(p,acts){const L=p.lock||{};return `<article class="card"><button class="mini ${L.clock==='dark'?'ink':''}" data-a="openPhone" data-id="${esc(p.id)}" style="background:${esc(bgCss(L.wall))}" aria-label="${esc(p.name)} 열기">${wallLayer(L.wall)}<span class="mini-date">${esc(L.date)}</span><span class="mini-time">${esc(L.time)}</span></button>
   <div class="card-meta"><b>${esc(p.name)}</b><span>${esc(p.owner)}</span></div>${acts?`<div class="card-acts">${acts}</div>`:''}</article>`;}
 function renderList(){
  document.body.classList.remove('in-phone');
@@ -1651,7 +1670,7 @@ function deliver(t,text,time){
  else if((s==='thread'||s==='kthread')&&!T.call) renderChatLog();
 }
 function chime(){ try{ ringCtx=ringCtx||new (window.AudioContext||window.webkitAudioContext)(); if(ringCtx.resume) ringCtx.resume(); const n=ringCtx.currentTime; tone(1318,n,.12); tone(1760,n+.12,.2);}catch(e){} }
-function appMini(type,size,cls){ const a=P.home.apps.find(x=>x.type===type); const def=APPDEF[type]||APPDEF.custom; const inner=a&&a.icon?`<img src="${esc(src(a.icon))}" alt="">`:(type==='calendar'?calGlyph():(GLYPH[type]||GLYPH.custom)); return `<span class="mini-ic ${cls||''}" style="width:${size}px;height:${size}px;border-radius:${Math.round(size*.24)}px;background:${esc(bgCss(a?a.bg:def.bg,def.bg))}">${inner}</span>`; }
+function appMini(type,size,cls){ const a=P.home.apps.find(x=>x.type===type); const def=APPDEF[type]||APPDEF.custom; const inner=a&&a.icon?`${imgT(a.icon)}`:(type==='calendar'?calGlyph():(GLYPH[type]||GLYPH.custom)); return `<span class="mini-ic ${cls||''}" style="width:${size}px;height:${size}px;border-radius:${Math.round(size*.24)}px;background:${esc(bgCss(a?a.bg:def.bg,def.bg))}">${inner}</span>`; }
 let bnrTimer=null;
 function hideBanner(){ const b=document.querySelector('#bnr .bnr'); if(!b) return; b.classList.add('out'); setTimeout(()=>{ if(b.parentNode) b.remove(); },320); }
 function notify(n){
@@ -1754,12 +1773,12 @@ E.incoming=t=>{t.incoming=t.incoming||[];const fields=[{k:'text',l:'메시지',t
   onEdit(i){const m=t.incoming[i];openForm({title:'먼저 오는 메시지',values:m,fields,onSave(v){if(!String(v.text).trim()){toast('메시지를 적어 주세요.');return false;}Object.assign(m,{text:v.text,after:Math.max(0,v.after||0)});},onDelete(){t.incoming.splice(i,1);}});},
   onAdd(){const m={id:uid(),text:'',after:5};openForm({title:'새 메시지',values:m,autofocus:true,fields,onSave(v){if(!String(v.text).trim()){toast('메시지를 적어 주세요.');return false;}Object.assign(m,{text:v.text,after:Math.max(0,v.after||0)});t.incoming.push(m);}});}});};
 E.camera=()=>openForm({title:'카메라 화면',values:{...P.camera,zoom:P.camera.zoom||100,px:P.camera.px??50,py:P.camera.py??50},note:'카메라 앱을 열면 이 사진이 카메라 화면에 보여요. 셔터를 누르면 그 모습 그대로 사진 앱에 들어가요.\n편집 모드에서 찍은 사진은 저장되고, 보기 모드에서 찍은 사진은 저장되지 않아요.',fields:[
-  {k:'img',l:'카메라에 보일 사진',t:'image'},
+  {k:'img',l:'카메라에 보일 사진',t:'image',noAdj:true},
   {k:'adj',t:'adjprev',src:'img',boxes:[['cam','카메라 화면']]},
   {k:'zoom',l:'크기',t:'range',min:100,max:300,step:5,unit:'%',def:100},
   {k:'px',l:'가로 위치',t:'range',min:0,max:100,unit:'%'},
   {k:'py',l:'세로 위치',t:'range',min:0,max:100,unit:'%'},
-  {k:'front',l:'셀카 화면 사진 (선택)',t:'image',h:'카메라 전환 버튼을 누르면 이 사진으로 바뀌어요.'}],
+  {k:'front',l:'셀카 화면 사진 (선택)',t:'image',noAdj:true,h:'카메라 전환 버튼을 누르면 이 사진으로 바뀌어요.'}],
  onSave(v){Object.assign(P.camera,{img:v.img,front:v.front,zoom:v.zoom||100,px:v.px,py:v.py});}});
 E.kme=()=>openForm({title:'내 프로필',values:P.talk.me,fields:[{k:'name',l:'이름'},{k:'avatar',l:'프로필 사진',t:'image'},{k:'status',l:'상태 메시지'},{k:'bg',l:'프로필 배경',t:'wall'}],onSave(v){Object.assign(P.talk.me,{name:v.name,avatar:v.avatar,status:v.status,bg:v.bg});}});
 E.rules=t=>{t.rules=t.rules||[];openList({title:`${t.name} 자동 답장`,get:()=>t.rules,label:r=>r.keys,sub:r=>(r.kind==='call'?'전화 → ':'→ ')+String(r.reply).replace(/\n/g,' / '),addLabel:'규칙 추가',
@@ -1777,7 +1796,7 @@ E.rule=(t,i,isNew)=>{const r=t.rules[i];openForm({title:'자동 답장 규칙',v
 E.msg=(t,m)=>{ if(m.date) return openForm({title:'날짜 구분선',values:m,fields:[{k:'text',l:'표시할 글자',ph:'오늘, 10월 18일 (토)'}],onSave(v){m.text=v.text;},onDelete(){t.msgs=t.msgs.filter(x=>x!==m);}});
  openForm({title:'메시지',values:{...m,me:m.me?'me':'them'},fields:[{k:'me',l:'보낸 사람',t:'select',o:[['me','나'],['them',t.name]]},{k:'text',l:'내용',t:'textarea',rows:3},{k:'img',l:'사진',t:'image'},{k:'time',l:'시간',ph:'오후 3:12'}],
   onSave(v){Object.assign(m,{me:v.me==='me',text:v.text,img:v.img,time:v.time});},onDelete(){t.msgs=t.msgs.filter(x=>x!==m);}});};
-E.photo=p=>openForm({title:'사진',values:{...p,album:p.album||'',...adjVals(p)},fields:[{k:'src',l:'사진',t:'image'},...adjFields('src'),{k:'caption',l:'설명'},{k:'date',l:'날짜',ph:'2026년 10월 3일 오후 4:12'},{k:'album',l:'앨범',ph:'예: 여행, 유하',h:'같은 이름을 적은 사진끼리 앨범으로 묶여요. 비워 두면 앨범에 넣지 않아요.'},{k:'fav',l:'즐겨찾기',t:'toggle'}],
+E.photo=p=>openForm({title:'사진',values:{...p,album:p.album||'',...adjVals(p)},fields:[{k:'src',l:'사진',t:'image',noAdj:true},...adjFields('src'),{k:'caption',l:'설명'},{k:'date',l:'날짜',ph:'2026년 10월 3일 오후 4:12'},{k:'album',l:'앨범',ph:'예: 여행, 유하',h:'같은 이름을 적은 사진끼리 앨범으로 묶여요. 비워 두면 앨범에 넣지 않아요.'},{k:'fav',l:'즐겨찾기',t:'toggle'}],
  onSave(v){Object.assign(p,{src:v.src,caption:v.caption,date:v.date,album:String(v.album||'').trim(),fav:v.fav,fit:v.fit,zoom:v.zoom,px:v.px,py:v.py});},onDelete(){P.photos.items=P.photos.items.filter(x=>x!==p);if(cur().s==='photo')route.pop();}});
 E.note=n=>openForm({title:'메모 정보',values:n,fields:[{k:'date',l:'날짜',ph:'어제, 10월 2일'},{k:'pinned',l:'맨 위에 고정',t:'toggle'}],
  onSave(v){Object.assign(n,{date:v.date,pinned:v.pinned});},onDelete(){P.notes.items=P.notes.items.filter(x=>x!==n);route.pop();},deleteLabel:'메모 지우기'});
@@ -1949,6 +1968,9 @@ const A={
  leEdit:el=>{const s=SHEETS[SHEETS.length-1];s.onEdit(+el.dataset.i);},
  leMove:el=>{const s=SHEETS[SHEETS.length-1];const a=s.get();const i=+el.dataset.i,j=i+ +el.dataset.d;if(j<0||j>=a.length)return;[a[i],a[j]]=[a[j],a[i]];commit();drawSheet();},
  leAdd:()=>{const s=SHEETS[SHEETS.length-1];s.onAdd();},
+ adjImg:el=>{ const k=el.dataset.k, shape=el.dataset.shape; const v0=($('#f_'+k)||{}).value||''; if(!isImg(v0)){toast('먼저 사진을 넣어 주세요.');return;} const parent=SHEETS[SHEETS.length-1]; const p=parseImg(v0);
+  openForm({title:'사진 크기·위치',values:{img:p.base,zoom:p.z,px:p.x,py:p.y},note:'막대를 움직여 사진이 보이는 크기와 위치를 맞춰요.',fields:[{k:'img',t:'hiddenval'},{k:'adj',t:'adjprev',src:'img',boxes:[[shape,'미리보기']]},{k:'zoom',l:'크기',t:'range',min:100,max:400,step:5,unit:'%',def:100},{k:'px',l:'가로 위치',t:'range',min:0,max:100,unit:'%'},{k:'py',l:'세로 위치',t:'range',min:0,max:100,unit:'%'}],
+   onSave(v){ const plain=+v.zoom===100&&+v.px===50&&+v.py===50; parent.st[k]=plain?p.base:`${p.base}#adj=${+v.zoom},${+v.px},${+v.py}`; }}); },
  pickImg:el=>{const k=el.dataset.k;pick(async files=>{toast('사진을 올리는 중…');const r=await uploadImage(files[0]);if(r){setFieldVal(k,r);toast('사진을 넣었어요. 저장을 눌러 주세요.');}});},
  clearImg:el=>setFieldVal(el.dataset.k,''),
  setSw:el=>setFieldVal(el.dataset.k,el.dataset.v)
